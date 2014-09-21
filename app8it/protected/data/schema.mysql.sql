@@ -1,13 +1,7 @@
 USE appstore;
-CREATE TABLE `tbl_approval_ref` 
+CREATE TABLE IF NOT EXISTS `tbl_appstatus` 
 (
-    `key` VARCHAR (10) PRIMARY KEY NOT NULL ,
-    `status` VARCHAR (100) NOT NULL,
-    
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tbl_appstatus` 
-(
-   `id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+   `id` INTEGER NOT NULL AUTO_INCREMENT,
    `app_id` INTEGER NOT NULL,
    `reviewer_id` INTEGER NOT NULL,
    `createdate` DATE NOT NULL,
@@ -18,61 +12,66 @@ CREATE TABLE `tbl_appstatus`
    `size` VARCHAR(128) NOT NULL,
    `code` VARCHAR(128) NOT NULL,
    `comment` VARCHAR(500) NOT NULL,
-   CONSTRAINT FK_2 FOREIGN KEY( `approvestatus` )
+    PRIMARY KEY ( `id` ),
+    FOREIGN KEY( `approvestatus` )
 	REFERENCES `tbl_approval_ref` ( `key` ) ON DELETE CASCADE ON UPDATE CASCADE,
 
-   CONSTRAINT FK_3 FOREIGN KEY(`app_id`)
+   FOREIGN KEY(`app_id`)
 	REFERENCES `tbl_application` ( `app_id` ) ON DELETE CASCADE ON UPDATE CASCADE,
-   CONSTRAINT FK_4 FOREIGN KEY (`reviewer_id` ) 
-	REFERENCES `tbl_user` ( `user_id` ) ON DELETE CASCADE ON UPDATE CASCADE,
+   FOREIGN KEY (`reviewer_id` ) 
+	REFERENCES `tbl_user` ( `user_id` ) ON DELETE CASCADE ON UPDATE CASCADE
    
 )ENGINE = InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tbl_apprating` (
-    `id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `tbl_apprating` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `app_id` INTEGER NOT NULL,
     `user_id` INTEGER NOT NULL,
     `rating` INTEGER NOT NULL,
     `date` DATE NOT NULL,
-    CONSTRAINT FK_5 FOREIGN KEY(`app_id`)
-	REFERENCES `tbl_application` ( `app_id` ) ON DELETE CASCADE ON UPDATE CASCADE
+     PRIMARY KEY ( `id` ),
+     FOREIGN KEY(`app_id`)
+	REFERENCES `tbl_application` ( `app_id` ) ON DELETE CASCADE ON UPDATE CASCADE,
     CHECK ( `rating` < 5 )
 )ENGINE = InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tbl_screenshot` (
-   `id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-   `app_id` INTEGER NOT NULL,
-   `screenshot` VARCHAR(128) NOT NULL,
-   CONSTRAINT FK_6 FOREIGN KEY( `app_id` )
-	REFERENCES `tbl_application` ( `app_id` ) ON DELETE ON UPDATE CASCADE
-)ENGINE = InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tbl_appreview` ( 
+
+CREATE TABLE IF NOT EXISTS `tbl_appreview` ( 
    `id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
    `app_id` INTEGER NOT NULL,
    `user_id` INTEGER NOT NULL,
    `review` VARCHAR(128) NOT NULL,
    `date` DATE NOT NULL,
-   CONSTRAINT FK_7 FOREIGN KEY ( `app_id` )
-	REFERENCES `tbl_application` ( `app_id` ) ON DELETE CASCADE ON UPDATE CASCADE
-   CONSTRAINT FK_8 FOREIGN KEY ( `user_id` )
+    FOREIGN KEY ( `app_id` )
+	REFERENCES `tbl_application` ( `app_id` ) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY ( `user_id` )
 	REFERENCES `tbl_user` ( `user_id` ) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tbl_category`(
-    `key` PRIMARY KEY VARCHAR(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_category`(
+    `key` VARCHAR(10) NOT NULL,
     `category` VARCHAR(128) NOT NULL,
+     PRIMARY KEY ( `key` )
 )ENGINE = InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tbl_checklist` (
+CREATE TABLE IF NOT EXISTS `tbl_checklist` (
    `id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
    `categorykey` VARCHAR(10) NOT NULL,
    `field` VARCHAR(200) NOT NULL,
    CONSTRAINT FK_9 FOREIGN KEY ( `categorykey` )
 	REFERENCES `tbl_category` (`key`) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE `tbl_cat_rev` ( 
+CREATE TABLE IF NOT EXISTS `tbl_cat_rev` ( 
    `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
    `cat_key` VARCHAR(10) NOT NULL,
    `rev_id` INTEGER NOT NULL,
    CONSTRAINT FK_10 FOREIGN KEY ( `cat_key` ) 
-	REFERENCES `tbl_category` (`key` )	 ON DELETE CASCADE ON UPDATE CASCADE
+	REFERENCES `tbl_category` (`key` )	 ON DELETE CASCADE ON UPDATE CASCADE,
    CONSTRAINT FK_11 FOREIGN KEY ( `rev_id` )	
 	REFERENCES `tbl_user` ( `user_id` ) ON DELETE CASCADE ON UPDATE CASCADE
  )ENGINE = InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `tbl_screenshot` (
+   `id` INTEGER NOT NULL AUTO_INCREMENT,
+   `app_id` INTEGER NOT NULL,
+   `screenshot` VARCHAR(128) NOT NULL,
+    PRIMARY KEY ( `id` ), 
+    FOREIGN KEY( `app_id` )
+	REFERENCES `tbl_application` ( `app_id` ) ON DELETE CASCADE  ON UPDATE CASCADE
+)ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
