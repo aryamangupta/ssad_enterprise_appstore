@@ -21,6 +21,11 @@ class SiteController extends Controller
 		);
 	}
 
+	public function actionpendingrequest()
+	{
+		echo "Hello world";
+		$this->render('pendingrequest');
+	}
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -109,4 +114,62 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	public function actionDeveloper()
+	{
+		echo "developer";
+		$this->render('developer');	
+	}
+	public function actionReviewer()
+	{
+		echo "developer";
+		$this->render('reviewer');	
+	}
+	
+	public function actionTeams()
+	{
+		echo "teams";
+		$this->render('teams');	
+	}
+	public function actionApplication()
+	{
+		echo "application";
+		$this->render('application');	
+	}
+	public function actionCategory()
+	{
+		echo "category";
+		$this->render('category');	
+	}
+	public function actionChecklist()
+	{
+		echo "Checklist";
+		$this->render('checklist');	
+	}
+	public function actionDevice()
+	{
+		echo "device";
+		$this->render('device');	
+	}
+	public function actionOS()
+	{
+		echo "os";
+		$this->render('os');	
+	}
+	public function actionApplicationStatus()
+	{
+		echo "applicationStatus";
+		$this->render('applicationStatus');	
+	}
+	public function actionEditProfile()
+	{
+		echo "editProfile";
+		$this->render('editProfile');
+	}
+	public function actionChangePassword()
+	{
+		echo "changePassword";
+		$this->render('changePassword');
+	}
+
+	
 }

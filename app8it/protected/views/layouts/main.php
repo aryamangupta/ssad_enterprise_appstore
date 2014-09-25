@@ -1,4 +1,4 @@
-<?phpdate_default_timezone_set('UTC');?>
+<?php date_default_timezone_set('UTC'); ?>
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -30,17 +30,19 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Profile', 'url'=>array('/site/index')),
-				//array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				//array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Create', 'url'=>array('/site/Create')),
-				array('label'=>'Edit', 'url'=>array('/site/Edit')),
-				array('label'=>'Search', 'url'=>array('/site/Search')),
-				array('label'=>'Delete', 'url'=>array('/site/Delete')),
-				array('label'=>'Appstatus', 'url'=>array('/site/Appstatus')),
-				array('label'=>'Category', 'url'=>array('/site/Category')),
-				array('label'=>'PendingRequest', 'url'=>array('/site/PendingRequest')),
-				array('label'=>'Checklist', 'url'=>array('/site/Checklist')),
+			//	array('label'=>'Profile', 'url'=>array('/site/index')),
+			array('label'=>'Manage Developer','url'=>array('/site/developer'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'Manage Reviewer','url'=>array('/site/reviewer'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'Manage Team','url'=>array('/site/teams'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'ManageApplication','url'=>array('/site/application'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'Categories','url'=>array('/site/category'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'Checklist','url'=>array('/site/checklist'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'Devices','url'=>array('/site/device'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'OS','url'=>array('/site/os'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'AppStatus','url'=>array('/site/applicationStatus'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'Profile','url'=>array('/site/editProfile'),'visible'=>(Yii::app()->user->Name=="admin")),
+			array('label'=>'Password','url'=>array('/site/changePassword'),'visible'=>(Yii::app()->user->Name=="admin")),
+				array('label'=>'Checklist', 'url'=>array('/site/')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)			),
 		)); ?>
