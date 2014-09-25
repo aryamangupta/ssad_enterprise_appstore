@@ -30,6 +30,7 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
+				array('label'=>'Home', 'url'=>array('/index')),
 			//	array('label'=>'Profile', 'url'=>array('/site/index')),
 			array('label'=>'Manage Developer','url'=>array('/site/developer'),'visible'=>(Yii::app()->user->Name=="admin")),
 			array('label'=>'Manage Reviewer','url'=>array('/site/reviewer'),'visible'=>(Yii::app()->user->Name=="admin")),
@@ -42,7 +43,6 @@
 			array('label'=>'AppStatus','url'=>array('/site/applicationStatus'),'visible'=>(Yii::app()->user->Name=="admin")),
 			array('label'=>'Profile','url'=>array('/site/editProfile'),'visible'=>(Yii::app()->user->Name=="admin")),
 			array('label'=>'Password','url'=>array('/site/changePassword'),'visible'=>(Yii::app()->user->Name=="admin")),
-				array('label'=>'Checklist', 'url'=>array('/site/')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)			),
 		)); ?>
