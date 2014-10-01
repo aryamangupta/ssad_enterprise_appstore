@@ -93,18 +93,7 @@ class SiteController extends Controller
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 			{
-				if( Yii::app()->user->role == 1 )
-					$this->redirect('protected/views/adminhome.php');
-			
-				else if( Yii::app()->user->role == 2 )
-					$this->redirect('protected/views/developerhome.php');
-				
-				else if( Yii::app()->user->role == 3 )
-					$this->redirect('protected/views/analysthome.php');
-				
-				else if( Yii::app()->user->role == 4 )
-					$this->redirect('protected/views/userhome.php');
-				
+				$this->redirect(Yii::app()->user->returnUrl);	
 			}
 		}
 		// display the login form

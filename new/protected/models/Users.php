@@ -45,7 +45,7 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, password, first_name, last_name, phone_number, role_id, create_date, modified_date, activation_key, status', 'required'),
+			array('email, password, first_name, last_name, phone_number, role_id, activation_key, status', 'required'),
 			array('role_id', 'numerical', 'integerOnly'=>true),
 			array('email, password, first_name, last_name, activation_key, reset_password_key', 'length', 'max'=>128),
 			array('phone_number', 'length', 'max'=>20),

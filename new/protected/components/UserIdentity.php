@@ -26,9 +26,10 @@ class UserIdentity extends CUserIdentity
                         $this->_id=$user->id;
                         $this->username=$user->email;
                         $this->errorCode=self::ERROR_NONE;
+			$role = Roles::model()->findByPk($user->role_id);
+			
 
-
-                        $this->setState('role', $user->role_id);
+                        $this->setState('role', $role->role);
                 }
                 return $this->errorCode==self::ERROR_NONE;
         }

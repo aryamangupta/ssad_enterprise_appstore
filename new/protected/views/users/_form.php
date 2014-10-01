@@ -50,22 +50,29 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'role_id'); ?>
-		<?php echo $form->textField($model,'role_id'); ?>
-		<?php echo $form->error($model,'role_id'); ?>
+	<?php
+		echo $form->labelEx($model,'role_id'); 
+		echo $form->dropDownList(
+			$model,'role_id',
+			CHtml::listData(
+				Roles::model()->findAll(),
+				'id',
+				'role'
+			),
+			array(
+				'class'=> 'my-drop-down',
+				'options'=>array(
+					'4'=>array(
+						'selected'=>"selected",
+					)
+				)
+			)
+		);
+	?>
+
+
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'create_date'); ?>
-		<?php echo $form->textField($model,'create_date'); ?>
-		<?php echo $form->error($model,'create_date'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'modified_date'); ?>
-		<?php echo $form->textField($model,'modified_date'); ?>
-		<?php echo $form->error($model,'modified_date'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'activation_key'); ?>
