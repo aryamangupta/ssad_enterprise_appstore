@@ -13,6 +13,7 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
+	'htmlOptions'=> array('enctype'=>'multipart/form-data'),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -25,16 +26,28 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
-		<?php echo $form->error($model,'user_id'); ?>
-	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'category_id'); ?>
-		<?php echo $form->textField($model,'category_id'); ?>
-		<?php echo $form->error($model,'category_id'); ?>
+	<?php
+	echo $form->labelEx($model,'category_id');
+	echo $form->dropDownList(
+			$model,'category_id',
+			CHtml::listData(
+				Categories::model()->findAll(),
+				'id',
+				'title'
+				),
+			array(
+				'class'=> 'my-drop-down',
+				'options'=>array(
+					'1'=>array(
+						'selected'=>"selected",
+						)
+					)
+			     )
+			);
+	?>
+
 	</div>
 
 	<div class="row">
@@ -43,41 +56,62 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status',array('size'=>1,'maxlength'=>1)); ?>
-		<?php echo $form->error($model,'status'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'logo'); ?>
-		<?php echo $form->textField($model,'logo',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->fileField($model,'logo'); ?>
 		<?php echo $form->error($model,'logo'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'platform_id'); ?>
-		<?php echo $form->textField($model,'platform_id'); ?>
-		<?php echo $form->error($model,'platform_id'); ?>
+	<?php  	
+		echo $form->labelEx($model,'platform_id');
+                echo $form->dropDownList(
+                        $model,'platform_id',
+                        CHtml::listData(
+                                Platforms::model()->findAll(),
+                                'id',
+                                'name'
+                        ),
+                        array(
+                                'class'=> 'my-drop-down',
+                                'options'=>array(
+                                        '4'=>array(
+                                                'selected'=>"selected",
+                                        )
+                                )
+                        )
+                );
+        ?>
+
+
+
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'device_id'); ?>
-		<?php echo $form->textField($model,'device_id'); ?>
-		<?php echo $form->error($model,'device_id'); ?>
+        <div class="row">
+        <?php
+                echo $form->labelEx($model,'device_id');
+                echo $form->dropDownList(
+                        $model,'device_id',
+                        CHtml::listData(
+                                Devices::model()->findAll(),
+                                'id',
+                                'type'
+                        ),
+                        array(
+                                'class'=> 'my-drop-down',
+                                'options'=>array(
+                                        '4'=>array(
+                                                'selected'=>"selected",
+                                        )
+                                )
+                        )
+                );
+        ?>
+	
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'ndownloads'); ?>
-		<?php echo $form->textField($model,'ndownloads'); ?>
-		<?php echo $form->error($model,'ndownloads'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'disabled_comments'); ?>
-		<?php echo $form->textArea($model,'disabled_comments',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'disabled_comments'); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

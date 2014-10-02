@@ -1,13 +1,13 @@
 <?php
-/* @var $this CategoriesController */
-/* @var $model Categories */
+/* @var $this ChecklistsController */
+/* @var $model Checklists */
 /* @var $form CActiveForm */
 ?>
 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'categories-form',
+	'id'=>'checklists-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -26,40 +26,15 @@
 	</div>
 
 	<div class="row">
-	        <?php
-                echo $form->labelEx($model,'parent_id'); 
-                echo $form->dropDownList(
-                        $model,'parent_id',
-                        CHtml::listData(
-                                Categories::model()->findAll(),
-                                'id',
-                                'title'
-                        ),
-                        array(
-                                'class'=> 'my-drop-down',
-                                'options'=>array(
-                                        ''=>array(
-                                                'selected'=>"selected",
-                                        )
-                                )
-                        )
-                );
-        ?>
-	
-		
-		<?php echo $form->error($model,'parent_id'); ?>
+		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'description'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>
 		<?php echo $form->textField($model,'status',array('size'=>1,'maxlength'=>1)); ?>
 		<?php echo $form->error($model,'status'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'description'); ?>
 	</div>
 
 

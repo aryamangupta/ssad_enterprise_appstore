@@ -28,7 +28,7 @@ class AuthAssignmentController extends Controller
 	{
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','index','create','update'),
+				'actions'=>array('view','admin','delete','index','create','update'),
 				'roles'=>array('admin'),
 			),
 			array('deny',  // deny all users

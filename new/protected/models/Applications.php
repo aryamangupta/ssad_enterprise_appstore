@@ -32,6 +32,7 @@ class Applications extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+	public $logo;	
 	public function tableName()
 	{
 		return 'applications';
@@ -45,11 +46,12 @@ class Applications extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, user_id, category_id, description, logo, platform_id, device_id, ndownloads, disabled_comments', 'required'),
+			array('name, description, logo', 'required'),
 			array('user_id, category_id, platform_id, device_id, ndownloads', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>128),
 			array('status', 'length', 'max'=>1),
-			array('logo', 'length', 'max'=>255),
+			array('logo', 'file', 'types'=>'jpeg,jpg,gif,png'),
+			array('logo','safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, user_id, category_id, description, status, logo, platform_id, device_id, ndownloads, disabled_comments', 'safe', 'on'=>'search'),

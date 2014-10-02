@@ -34,8 +34,14 @@
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Manage Users', 'url'=>array('/users', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+				array('label'=>'Manage Categories', 'url'=>array('/categories', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+				array('label'=>'Manage Checklists', 'url'=>array('/checklists', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+				array('label'=>'Upload App', 'url'=>array('/applications', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
+				array('label'=>'View Apps', 'url'=>array('/applications', 'view'=>'view'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+	
+
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-					
+			      		
 			),
 		)); ?>
 	</div><!-- mainmenu -->

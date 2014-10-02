@@ -37,7 +37,7 @@ class Categories extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, description, create_date, modified_date', 'required'),
+			array('title, description', 'required'),
 			array('parent_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>128),
 			array('status', 'length', 'max'=>1),

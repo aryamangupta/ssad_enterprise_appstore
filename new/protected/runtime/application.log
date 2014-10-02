@@ -1091,3 +1091,583 @@ in /var/www/html/yii/new/index.php (13)
 2014/10/01 22:01:17 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
 in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
 in /var/www/html/yii/new/index.php (13)
+2014/10/01 22:05:34 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/01 22:12:09 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/01 22:13:03 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/01 22:13:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "cra".' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('cra')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('cra')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('users/cra')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/yii/new/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yii/new/index.php?r=users/cra
+---
+2014/10/01 22:13:15 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('users/create')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=users/create
+---
+2014/10/01 22:13:20 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/01 22:13:43 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/01 22:29:40 [error] [php] Invalid argument supplied for foreach() (/var/www/html/yii/framework/web/helpers/CHtml.php:2087)
+Stack trace:
+#0 /var/www/html/yii/framework/web/CBaseController.php(95): CategoriesController->renderInternal()
+#1 /var/www/html/yii/framework/web/CController.php(869): CategoriesController->renderFile()
+#2 /var/www/html/yii/new/protected/views/categories/create.php(18): CategoriesController->renderPartial()
+#3 /var/www/html/yii/framework/web/CBaseController.php(126): require()
+#4 /var/www/html/yii/framework/web/CBaseController.php(95): CategoriesController->renderInternal()
+#5 /var/www/html/yii/framework/web/CController.php(869): CategoriesController->renderFile()
+#6 /var/www/html/yii/framework/web/CController.php(782): CategoriesController->renderPartial()
+#7 /var/www/html/yii/new/protected/controllers/CategoriesController.php(76): CategoriesController->render()
+#8 /var/www/html/yii/framework/web/actions/CInlineAction.php(49): CategoriesController->actionCreate()
+#9 /var/www/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#10 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): CategoriesController->runAction()
+#11 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#12 /var/www/html/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#13 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CategoriesController->filterAccessControl()
+#14 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#15 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#16 /var/www/html/yii/framework/web/CController.php(265): CategoriesController->runActionWithFilters()
+#17 /var/www/html/yii/framework/web/CWebApplication.php(282): CategoriesController->run()
+#18 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#19 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#20 /var/www/html/yii/new/index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/new/index.php?r=categories/create
+in /var/www/html/yii/new/protected/views/categories/_form.php (38)
+in /var/www/html/yii/new/protected/views/categories/create.php (18)
+in /var/www/html/yii/new/protected/controllers/CategoriesController.php (76)
+2014/10/01 22:42:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "checklists".' in /var/www/html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('checklists')
+#1 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/html/yii/new/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/new/index.php?r=checklists&view=create
+HTTP_REFERER=http://localhost/yii/new/index.php?r=categories&view=create
+---
+2014/10/01 22:47:56 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('checklists/admi...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=checklists/admin
+HTTP_REFERER=http://localhost/yii/new/index.php?r=checklists/index
+---
+2014/10/01 22:48:12 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('checklists/admi...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=checklists/admin
+HTTP_REFERER=http://localhost/yii/new/index.php?r=checklists&view=create
+---
+2014/10/01 22:50:56 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('checklists/admi...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=checklists/admin
+HTTP_REFERER=http://localhost/yii/new/index.php?r=checklists&view=create
+---
+2014/10/01 22:51:11 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('checklists/admi...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=checklists/admin
+HTTP_REFERER=http://localhost/yii/new/index.php?r=checklists&view=create
+---
+2014/10/01 22:52:25 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('checklists/admi...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=checklists/admin
+HTTP_REFERER=http://localhost/yii/new/index.php?r=checklists&view=create
+---
+2014/10/02 12:06:21 [error] [exception.CDbException] exception 'CDbException' with message 'The value for the column "parent" is not supplied when querying the table "AuthItemChild".' in /var/www/html/yii/framework/db/schema/CDbCommandBuilder.php:813
+Stack trace:
+#0 /var/www/html/yii/framework/db/schema/CDbCommandBuilder.php(621): CDbCommandBuilder->createInCondition(Object(CMysqlTableSchema), Array, Array, '`t`.')
+#1 /var/www/html/yii/framework/db/ar/CActiveRecord.php(1485): CDbCommandBuilder->createPkCriteria(Object(CMysqlTableSchema), 'developer', '', Array, '`t`.')
+#2 /var/www/html/yii/new/protected/controllers/AuthItemChildController.php(155): CActiveRecord->findByPk('developer')
+#3 /var/www/html/yii/new/protected/controllers/AuthItemChildController.php(55): AuthItemChildController->loadModel('developer')
+#4 [internal function]: AuthItemChildController->actionView('developer')
+#5 /var/www/html/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AuthItemChildController), Array)
+#6 /var/www/html/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AuthItemChildController), Object(ReflectionMethod), Array)
+#7 /var/www/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#14 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#16 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authItemChild/v...')
+#17 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/html/yii/new/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/yii/new/index.php?r=authItemChild/view&id=developer
+HTTP_REFERER=http://localhost/yii/new/index.php?r=authItemChild/create
+---
+2014/10/02 12:07:08 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authAssignment/...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=authAssignment/view&id=developer
+HTTP_REFERER=http://localhost/yii/new/index.php?r=authAssignment/create
+---
+2014/10/02 12:07:52 [error] [exception.CDbException] exception 'CDbException' with message 'The value for the column "itemname" is not supplied when querying the table "AuthAssignment".' in /var/www/html/yii/framework/db/schema/CDbCommandBuilder.php:813
+Stack trace:
+#0 /var/www/html/yii/framework/db/schema/CDbCommandBuilder.php(621): CDbCommandBuilder->createInCondition(Object(CMysqlTableSchema), Array, Array, '`t`.')
+#1 /var/www/html/yii/framework/db/ar/CActiveRecord.php(1485): CDbCommandBuilder->createPkCriteria(Object(CMysqlTableSchema), 'developer', '', Array, '`t`.')
+#2 /var/www/html/yii/new/protected/controllers/AuthAssignmentController.php(147): CActiveRecord->findByPk('developer')
+#3 /var/www/html/yii/new/protected/controllers/AuthAssignmentController.php(47): AuthAssignmentController->loadModel('developer')
+#4 [internal function]: AuthAssignmentController->actionView('developer')
+#5 /var/www/html/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AuthAssignmentController), Array)
+#6 /var/www/html/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AuthAssignmentController), Object(ReflectionMethod), Array)
+#7 /var/www/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#14 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#16 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authAssignment/...')
+#17 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/html/yii/new/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/yii/new/index.php?r=authAssignment/view&id=developer
+---
+2014/10/02 12:08:12 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 12:12:06 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 12:27:16 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('categories/')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=categories/
+---
+2014/10/02 12:27:24 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 12:28:00 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 12:29:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "platform".' in /var/www/html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('platform')
+#1 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/html/yii/new/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/new/index.php?r=platform
+---
+2014/10/02 13:05:48 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (71)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 13:05:48 [error] [php] Undefined variable: user (/var/www/html/yii/new/protected/controllers/ApplicationsController.php:72)
+Stack trace:
+#0 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /var/www/html/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/new/index.php?r=applications/create
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (72)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 14:49:39 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 14:50:02 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (71)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 14:50:16 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (71)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 14:51:06 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (71)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:12:44 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (71)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:13:19 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (71)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:13:19 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`appstore`.`applications`, CONSTRAINT `applications_ibfk_3` FOREIGN KEY (`device_id`) REFERENCES `devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `applications` (`status`, `name`, `category_id`, `description`, `platform_id`, `device_id`, `user_id`, `ndownloads`, `disabled_comments`, `logo`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9).
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (78)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:13:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`appstore`.`applications`, CONSTRAINT `applications_ibfk_3` FOREIGN KEY (`device_id`) REFERENCES `devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `applications` (`status`, `name`, `category_id`, `description`, `platform_id`, `device_id`, `user_id`, `ndownloads`, `disabled_comments`, `logo`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9)' in /var/www/html/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /var/www/html/yii/framework/db/ar/CActiveRecord.php(1077): CDbCommand->execute()
+#1 /var/www/html/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 /var/www/html/yii/new/protected/controllers/ApplicationsController.php(78): CActiveRecord->save()
+#3 /var/www/html/yii/framework/web/actions/CInlineAction.php(49): ApplicationsController->actionCreate()
+#4 /var/www/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#13 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/cr...')
+#14 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/html/yii/new/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/new/index.php?r=applications/create
+HTTP_REFERER=http://localhost/yii/new/index.php?r=applications/create
+---
+2014/10/02 15:14:05 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:14:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "devices".' in /var/www/html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('devices')
+#1 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/html/yii/new/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/new/index.php?r=devices
+---
+2014/10/02 15:14:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "device".' in /var/www/html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('device')
+#1 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/html/yii/new/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/new/index.php?r=device
+---
+2014/10/02 15:14:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "devices".' in /var/www/html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('devices')
+#1 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/html/yii/new/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yii/new/index.php?r=devices
+---
+2014/10/02 15:17:41 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (71)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:17:41 [error] [php] move_uploaded_file(/var/www/html/yii/new/protected/../images/logo.jpeg): failed to open stream: Permission denied (/var/www/html/yii/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /var/www/html/yii/framework/web/actions/CInlineAction.php(49): ApplicationsController->actionCreate()
+#1 /var/www/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /var/www/html/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#8 /var/www/html/yii/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /var/www/html/yii/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /var/www/html/yii/new/index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/new/index.php?r=applications/create
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (79)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:18:36 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (71)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:18:36 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Test App' for key 'name'. The SQL statement executed was: INSERT INTO `applications` (`status`, `name`, `category_id`, `description`, `platform_id`, `device_id`, `user_id`, `ndownloads`, `disabled_comments`, `logo`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9).
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (78)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:18:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Test App' for key 'name'. The SQL statement executed was: INSERT INTO `applications` (`status`, `name`, `category_id`, `description`, `platform_id`, `device_id`, `user_id`, `ndownloads`, `disabled_comments`, `logo`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9)' in /var/www/html/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /var/www/html/yii/framework/db/ar/CActiveRecord.php(1077): CDbCommand->execute()
+#1 /var/www/html/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 /var/www/html/yii/new/protected/controllers/ApplicationsController.php(78): CActiveRecord->save()
+#3 /var/www/html/yii/framework/web/actions/CInlineAction.php(49): ApplicationsController->actionCreate()
+#4 /var/www/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#13 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/cr...')
+#14 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/html/yii/new/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/yii/new/index.php?r=applications/create
+HTTP_REFERER=http://localhost/yii/new/index.php?r=applications/create
+---
+2014/10/02 15:19:47 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/new/protected/controllers/ApplicationsController.php (71)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:20:34 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/ad...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=applications/admin
+HTTP_REFERER=http://localhost/yii/new/index.php?r=applications/view&id=4
+---
+2014/10/02 15:29:14 [error] [exception.CDbException] exception 'CDbException' with message 'The value for the column "parent" is not supplied when querying the table "AuthItemChild".' in /var/www/html/yii/framework/db/schema/CDbCommandBuilder.php:813
+Stack trace:
+#0 /var/www/html/yii/framework/db/schema/CDbCommandBuilder.php(621): CDbCommandBuilder->createInCondition(Object(CMysqlTableSchema), Array, Array, '`t`.')
+#1 /var/www/html/yii/framework/db/ar/CActiveRecord.php(1485): CDbCommandBuilder->createPkCriteria(Object(CMysqlTableSchema), 'developer', '', Array, '`t`.')
+#2 /var/www/html/yii/new/protected/controllers/AuthItemChildController.php(155): CActiveRecord->findByPk('developer')
+#3 /var/www/html/yii/new/protected/controllers/AuthItemChildController.php(55): AuthItemChildController->loadModel('developer')
+#4 [internal function]: AuthItemChildController->actionView('developer')
+#5 /var/www/html/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AuthItemChildController), Array)
+#6 /var/www/html/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AuthItemChildController), Object(ReflectionMethod), Array)
+#7 /var/www/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#14 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#16 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authItemChild/v...')
+#17 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/html/yii/new/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/yii/new/index.php?r=authItemChild/view&id=developer
+HTTP_REFERER=http://localhost/yii/new/index.php?r=authItemChild/create
+---
+2014/10/02 15:29:23 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authItemChild/a...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=authItemChild/admin
+HTTP_REFERER=http://localhost/yii/new/index.php?r=authItemChild/index
+---
+2014/10/02 15:34:28 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('delete')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authItemChild/d...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?ajax=auth-item-child-grid&id%5Bparent%5D=developer&id%5Bchild%5D=manageApps&r=authItemChild%2Fdelete
+HTTP_REFERER=http://localhost/yii/new/index.php?r=authItemChild/admin
+---
+2014/10/02 15:35:03 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/html/yii/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/html/yii/framework/web/CController.php(1116): CFilterChain->run()
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('delete')
+#12 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authItemChild/d...')
+#13 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /var/www/html/yii/new/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/yii/new/index.php?ajax=auth-item-child-grid&id%5Bparent%5D=developer&id%5Bchild%5D=manageApps&r=authItemChild%2Fdelete
+HTTP_REFERER=http://localhost/yii/new/index.php?r=authItemChild/admin
+---
+2014/10/02 15:35:16 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/html/yii/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/html/yii/framework/web/CController.php(1116): CFilterChain->run()
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('delete')
+#12 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authItemChild/d...')
+#13 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /var/www/html/yii/new/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/yii/new/index.php?ajax=auth-item-child-grid&id%5Bparent%5D=developer&id%5Bchild%5D=manageApps&r=authItemChild%2Fdelete
+HTTP_REFERER=http://localhost/yii/new/index.php?r=authItemChild/admin
+---
+2014/10/02 15:38:51 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:39:07 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authItemChild')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=authItemChild
+---
+2014/10/02 15:39:10 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('authAssignment/')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=authAssignment/
+---
+2014/10/02 15:39:18 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:40:41 [warning] [application] Failed to set unsafe attribute "rememberMe" of "LoginForm".
+in /var/www/html/yii/new/protected/controllers/SiteController.php (92)
+in /var/www/html/yii/new/index.php (13)
+2014/10/02 15:42:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/ad...')
+#9 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/new/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/new/index.php?r=applications/admin
+---
