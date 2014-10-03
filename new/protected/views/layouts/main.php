@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-
+<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl;?>/css/boostrap.css">
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
@@ -14,7 +14,6 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -36,8 +35,9 @@
 				array('label'=>'Manage Users', 'url'=>array('/users', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
 				array('label'=>'Manage Categories', 'url'=>array('/categories', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
 				array('label'=>'Manage Checklists', 'url'=>array('/checklists', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
-				array('label'=>'Upload App', 'url'=>array('/applications', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
+				array('label'=>'Upload App', 'url'=>array('/applications/create'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
 				array('label'=>'View Apps', 'url'=>array('/applications', 'view'=>'view'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+				array('label'=>'Change Password', 'url'=>array('/changePasswordForm/changePassword')),
 	
 
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),

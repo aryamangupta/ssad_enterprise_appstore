@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create Applications', 'url'=>array('create')),
+	array('label'=>'Upload Applications', 'url'=>array('create'),'visible'=>Yii::app()->user->checkAccess('createApp')),
 	array('label'=>'Manage Applications', 'url'=>array('admin')),
 );
 ?>
