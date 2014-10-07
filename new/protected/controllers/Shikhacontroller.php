@@ -1,6 +1,6 @@
 <?php
 
-class ApplicationsController extends Controller
+class ShikhaController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -13,9 +13,9 @@ class ApplicationsController extends Controller
 	public function filters()
 	{
 		return array(
-				'accessControl', // perform access control for CRUD operations
-				'postOnly + delete', // we only allow deletion via POST request
-			    );
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
 	}
 
 	/**
@@ -26,18 +26,18 @@ class ApplicationsController extends Controller
 	public function accessRules()
 	{
 		return array(
-				array('allow',  // allow all users to perform 'index' and 'view' actions
-					'actions'=>array('index','view','create','admin','updateApp'),
-					'roles'=>array('developer'),
-				     ),
-				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-					'actions'=>array('view','delete','admin','index','update'),
-					'roles'=>array('admin'),
-				     ),
-				array('deny',
-					'users'=>array('*'),
-				     )
-			    );
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view','create'),
+				'roles'=>array('developer'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('view','delete','admin','index','update'),
+				'roles'=>array('admin'),
+			),
+			array('deny',
+				'users'=>array('*'),
+			)
+		);
 	}
 
 	/**
@@ -47,8 +47,8 @@ class ApplicationsController extends Controller
 	public function actionView($id)
 	{
 		$this->render('view',array(
-					'model'=>$this->loadModel($id),
-					));
+			'model'=>$this->loadModel($id),
+		));
 	}
 
 	/**
@@ -57,69 +57,31 @@ class ApplicationsController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model = new Applications;
-		$entry = new Versions;
+		$model=new Applications;
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		if(isset($_POST['Applications']) && isset($_POST['Versions']))
-		{
 
-			$model->attributes = $_POST['Applications'];
-			$entry->attributes = $_POST['Versions'];
+		if(isset($_POST['Applications']))
+		{
+			$model->attributes=$_POST['Applications'];
 			$model->user_id = Yii::app()->user->id;
 			$model->status = 0 ;//default
-			$entry->reviewer_id = 1; //default admin
 			$model->ndownloads  = 0 ;//default
 			$model->disabled_comments = "Not approved by reviewer";
-			$entry->create_date = date_create()->format('Y-m-d H:i:s');
-
-			$model->logo = 	CUploadedFile::getInstance($model,'logo');
-			$entry->file_name = CUploadedFile::getInstance($entry,'file_name');
-			$entry->status_id = 1; //default
+		        $model->logo = 	CUploadedFile::getInstance($model,'logo');
+			
 			if($model->save()){
 				$model->logo->saveAs(Yii::app()->basePath.'/../images/'.$model->logo);
-				$entry->application_id = $model->id;
-				//	$entry->application_id = 4;
-				if ( $entry->save() ){
-					$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-					$this->redirect(Yii::app()->user->returnUrl);
-				}
+				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
-		else{
-			$this->render('create',array(
-				'model'=>$model,'entry'=>$entry,
-						));
-		
-		}
-	}
-	public function actionUpdateApp()
-	{
-		$model = new Applications;
-		$entry = new Versions;
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		if(isset($_POST['Applications']) && isset($_POST['Versions']))
-		{
-			$model->attributes = $_POST['Applications'];
-			$entry->attributes = $_POST['Versions'];
-			$entry->reviewer_id = 1; //default admin
-			$entry->create_date = date_create()->format('Y-m-d H:i:s');
-			$entry->file_name = CUploadedFile::getInstance($entry,'file_name');
-			$entry->status_id = 1; //default
-			$entry->application_id = $model->name;
-			if ( $entry->save() ){
-				$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-				$this->redirect(Yii::app()->user->returnUrl);
-			}
-		}
-		else{
-			$this->render('updateApp',array(
-						'model'=>$model,'entry'=>$entry,
-						));
 
-		}
+		$this->render('create',array(
+			'model'=>$model,
+		));
 	}
+
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -140,40 +102,10 @@ class ApplicationsController extends Controller
 		}
 
 		$this->render('update',array(
-					'model'=>$model,
-					));
+			'model'=>$model,
+		));
 	}
-/*	public function actionUpdateApp(){
-		$model = new Applications;
-		$entry = new Versions;
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		if(isset($_POST['Applications']) && isset($_POST['Versions']))
-		{
 
-			$model->attributes = $_POST['Applications'];
-			$entry->attributes = $_POST['Versions'];
-			$entry->reviewer_id = 1; //default admin
-			$entry->create_date = date_create()->format('Y-m-d H:i:s');
-
-			$entry->file_name = CUPloadedFile::getInstance($entry,'file_name');
-			$entry->status_id = 1; //default
-			$entry->application_id = $model->id;
-			//	$entry->application_id = 4;
-			if ( $entry->save() ){
-				$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-				$this->redirect(Yii::app()->user->returnUrl);
-			}
-		}
-	
-		else{
-			$this->render('updateApp',array(
-				'model'=>$model,'entry'=>$entry,
-						));
-			echo 'hello';
-		
-		}
-	}	
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -195,8 +127,8 @@ class ApplicationsController extends Controller
 	{
 		$dataProvider=new CActiveDataProvider('Applications');
 		$this->render('index',array(
-					'dataProvider'=>$dataProvider,
-					));
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**
@@ -210,8 +142,8 @@ class ApplicationsController extends Controller
 			$model->attributes=$_GET['Applications'];
 
 		$this->render('admin',array(
-					'model'=>$model,
-					));
+			'model'=>$model,
+		));
 	}
 
 	/**

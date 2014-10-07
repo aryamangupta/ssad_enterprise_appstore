@@ -8,7 +8,8 @@
         // See class documentation of CActiveForm for details on this.
         'enableAjaxValidation'=>false,
 )); ?>
-
+<form id="changePasswordForm-form"  autocomplete="off" action="/yii/new/index.php?r=changePasswordForm/changePassword" method="post">
+ <input type="text" name="user" value="chose" style="display: none" />
     <div class="row">
         <?php echo CHtml::activeLabel($model,'currentPassword'); ?>
         <?php echo CHtml::activePasswordField($model,'currentPassword') ?>
@@ -20,12 +21,12 @@
     </div>
 
     <div class="row">
-        <?php echo CHtml::activeLabel($model,'newPasswordRepeat'); ?>
-        <?php echo CHtml::activePasswordField($model,'newPasswordRepeat') ?>
+        <?php echo CHtml::activeLabel($model,'newPassword_repeat'); ?>
+        <?php echo CHtml::activePasswordField($model,'newPassword_repeat') ?>
     </div>
 
     <div class="row submit">
-        <?php echo CHtml::submitButton('Change password'); ?>
+        <?php echo CHtml::submitButton('Change password',array('confirm'=>'Are you sure?')); ?>
     </div>
 
 <?php $this->endWidget(); ?>

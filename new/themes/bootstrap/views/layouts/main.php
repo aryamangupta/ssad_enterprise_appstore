@@ -63,6 +63,8 @@
                                 array('label'=>'Manage Checklists', 'url'=>array('/checklists', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
                                 array('label'=>'Upload App', 'url'=>array('/applications/create'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
                                 array('label'=>'View Apps', 'url'=>array('/applications', 'view'=>'view'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+                                array('label'=>'Update App', 'url'=>array('/applications/updateApp'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
+
                                 array('label'=>'Change Password', 'url'=>array('/changePasswordForm/changePassword'),  'visible'=>!Yii::app()->user->isGuest),
 
 

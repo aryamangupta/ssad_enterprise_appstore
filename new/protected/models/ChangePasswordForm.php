@@ -1,53 +1,57 @@
 <?php
 class ChangePasswordForm extends CFormModel
 {
-    /**
-     * @var string
-     */
-    public $currentPassword;
-
-    /**
-     * @var string
-     */
-    public $newPassword;
-
-    /**
-     * @var string
-     */
-    public $newPasswordRepeat;
-
-    /**
-     * Validation rules for this form.
-     *
-     * @return array
- */
-    public function rules()
+  public $currentPassword;
+  public $newPassword;
+  public $newPassword_repeat;
+  private $_user;
+  
+  public function rules()
+  {
+    return array(
+   //   array(
+     //   'currentPassword', 'compareCurrentPassword'
+     // ),
+      array(
+        'currentPassword, newPassword, newPassword_repeat', 'required',
+      ),
+      array(
+        'newPassword_repeat', 'compare',
+        'compareAttribute'=>'newPassword',
+      ),
+      
+    );
+  }
+  
+  public function compareCurrentPassword($attribute='',$params='')
+  {
+    if( $this->currentPassword !== $this->_user->password )
     {
-        return array(
-            array('currentPassword, newPassword, newPasswordRepeat', 'required'),
-            array('currentPassword', 'validateCurrentPassword', 'message'=>'This is not your password.'),
-            array('newPassword', 'compare', 'compareAttribute'=>'validateNewPassword'),
-            array('newPassword', 'match', 'pattern'=>'/^[a-z0-9_\-]{5,}/i', 'message'=>'Your password does not meet our password complexity policy.'),
-        );
+      $this->addError($attribute,'La contraseña actual es incorrecta');
     }
-
-    protected function getUserPassword()
-    {
-        return Yii::app()->user->password;
-    }
-
-    /**
-     * Saves the new password.
-     */
-    public function saveNewPassword()
-    {
-        $user = Users::model()->findByPk(Yii::app()->user->id);
-        $user->password = $this->newPassword;
-        $user->update();
-    }
-
-    public function validateCurrentPassword()
-    {
-        return $this->currentPassword == $this->getUserPassword();
-    }
+  }
+  
+  public function init()
+  {
+    $this->_user = Users::model()->findByPk( Yii::app()->user->id );
+    
+  }
+  
+  public function attributeLabels()
+  {
+    return array(
+      'currentPassword'=>'Current Password',
+      'newPassword'=>'New Password',
+      'newPassword_repeat'=>'New Password ( Repeat )',
+    );
+  }
+  
+  public function changePassword()
+  {
+    $this->_user->password = $this->newPassword;
+    if( $this->_user->save() )
+      return true;
+    return false;
+  }
 }
+?>

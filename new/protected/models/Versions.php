@@ -38,7 +38,7 @@ class Versions extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('application_id, file_name, version, create_date, status_id, reviewer_id, activity, comment', 'required'),
+//			array('application_id, file_name, version, create_date, status_id, reviewer_id, activity, comment', 'required'),
 			array('application_id, status_id, reviewer_id', 'numerical', 'integerOnly'=>true),
 			array('file_name, version', 'length', 'max'=>128),
 			array('activity', 'length', 'max'=>255),

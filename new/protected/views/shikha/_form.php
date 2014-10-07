@@ -18,7 +18,7 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary(array($model,$entry)); ?>
+	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
@@ -88,8 +88,9 @@
 
 	</div>
 
+	<div class="row">
         <div class="row">
-        	<?php
+        <?php
                 echo $form->labelEx($model,'device_id');
                 echo $form->dropDownList(
                         $model,'device_id',
@@ -108,38 +109,12 @@
                         )
                 );
         ?>
-
+	
 	</div>
 
-
-<?php //$this->endWidget(); ?>
-
-
-<?php //$form=$this->beginWidget('CActiveForm', array(
-	//'id'=>'versions-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-//	'enableAjaxValidation'=>false,
-//)); ?>
-
-	<?php //echo $form->errorSummary($entry); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($entry,'file_name'); ?>
-		<?php echo $form->fileField($entry,'file_name',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($entry,'file_name'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($entry,'version'); ?>
-		<?php echo $form->textField($entry,'version',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($entry,'version'); ?>
-	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($entry->isNewRecord && $model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
