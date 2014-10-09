@@ -14,7 +14,14 @@ body
 	background: white;
 	border: 1px solid #C9E0ED;
 }
-
+DIV#content DIV.compactRadioGroup {
+    padding-left: 1em;
+}
+ 
+DIV#content .compactRadioGroup LABEL,
+DIV#content .compactRadioGroup INPUT {
+    display: inline;
+}
 #header
 {
 	margin: 0;
@@ -226,4 +233,12 @@ div.search-form
 .operations li a:hover
 {
 	background: #80CFFF;
+}
+DIV#content DIV.compactRadioGroup {
+    padding-left: 1em;
+}
+ 
+DIV#content .compactRadioGroup LABEL,
+DIV#content .compactRadioGroup INPUT {
+    display: inline;
 }

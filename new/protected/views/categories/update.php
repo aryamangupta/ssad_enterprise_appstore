@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Categories', 'url'=>array('index')),
+//	array('label'=>'List Categories', 'url'=>array('index')),
 	array('label'=>'Create Categories', 'url'=>array('create')),
 	array('label'=>'View Categories', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage Categories', 'url'=>array('admin')),

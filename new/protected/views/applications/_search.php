@@ -12,23 +12,31 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'category_id'); ?>
-		<?php echo $form->textField($model,'category_id'); ?>
+		<?php  echo $form->dropDownList(
+                        $model,'category_id',
+                        CHtml::listData(
+                                Categories::model()->findAll(),
+                                'id',
+                                'title'
+                                ),
+                        array(
+                                'class'=> 'my-drop-down',
+                                'options'=>array(
+                                        '1'=>array(
+                                                'selected'=>"selected",
+                                                )
+                                        )
+                             )
+                        );
+        ?>
+
 	</div>
 
 	<div class="row">
@@ -36,35 +44,53 @@
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
+
 	<div class="row">
-		<?php echo $form->label($model,'status'); ?>
-		<?php echo $form->textField($model,'status',array('size'=>1,'maxlength'=>1)); ?>
+		<?php
+		echo $form->labelEx($model,'platform_id');
+		echo $form->dropDownList(
+				$model,'platform_id',
+				CHtml::listData(
+					Platforms::model()->findAll(),
+					'id',
+					'name'
+					),
+				array(
+					'class'=> 'my-drop-down',
+					'options'=>array(
+						'4'=>array(
+							'selected'=>"selected",
+							)
+						)
+				     )
+				);
+		?>
+
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'logo'); ?>
-		<?php echo $form->textField($model,'logo',array('size'=>60,'maxlength'=>255)); ?>
+		<?php
+		echo $form->labelEx($model,'device_id');
+		echo $form->dropDownList(
+				$model,'device_id',
+				CHtml::listData(
+					Devices::model()->findAll(),
+					'id',
+					'type'
+					),
+				array(
+					'class'=> 'my-drop-down',
+					'options'=>array(
+						'4'=>array(
+							'selected'=>"selected",
+							)
+						)
+				     )
+				);
+		?>
+
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'platform_id'); ?>
-		<?php echo $form->textField($model,'platform_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'device_id'); ?>
-		<?php echo $form->textField($model,'device_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'ndownloads'); ?>
-		<?php echo $form->textField($model,'ndownloads'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'disabled_comments'); ?>
-		<?php echo $form->textArea($model,'disabled_comments',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>

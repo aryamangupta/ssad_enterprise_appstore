@@ -32,6 +32,7 @@ class Users extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+	public $role_search;
 	public function tableName()
 	{
 		return 'users';
@@ -45,6 +46,7 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+//			array('role.role','length','max'=>64),
 			array('email, password, first_name, last_name, phone_number, role_id, activation_key, status', 'required'),
 			array('role_id', 'numerical', 'integerOnly'=>true),
 			array('email, password, first_name, last_name, activation_key, reset_password_key', 'length', 'max'=>128),
@@ -53,7 +55,7 @@ class Users extends CActiveRecord
 			array('reset_password_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, email, password, first_name, last_name, phone_number, role_id, create_date, modified_date, activation_key, status, reset_password_key, reset_password_date', 'safe', 'on'=>'search'),
+			array('id, role_search, email, password, first_name, last_name, phone_number, role_id, create_date, modified_date, activation_key, status, reset_password_key, reset_password_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -114,7 +116,8 @@ class Users extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		$criteria->with = array('role');
+		$criteria->compare('role.role',$this->role_search,true);	
 		$criteria->compare('id',$this->id);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('password',$this->password,true);

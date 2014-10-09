@@ -3,12 +3,12 @@
 /* @var $model Checklists */
 
 $this->breadcrumbs=array(
-	'Checklists'=>array('index'),
+	'Checklists'=>array('admin'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List Checklists', 'url'=>array('index')),
+//	array('label'=>'List Checklists', 'url'=>array('index')),
 	array('label'=>'Manage Checklists', 'url'=>array('admin')),
 );
 ?>

@@ -3,12 +3,12 @@
 /* @var $model Categories */
 
 $this->breadcrumbs=array(
-	'Categories'=>array('index'),
+	'Categories'=>array('admin'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Categories', 'url'=>array('index')),
+//	array('label'=>'List Categories', 'url'=>array('index')),
 	array('label'=>'Create Categories', 'url'=>array('create')),
 );
 
@@ -45,16 +45,23 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
 		'title',
-		'parent_id',
-		'status',
-		'description',
-		'create_date',
-		/*
-		'modified_date',
-		*/
+//		'parent_id',
+          /*      array(
+                        'name'=>'title',
+                        'header'=>'Parent category',
+                        'filter'=>CHtml::activeTextField($model,'parent_search'),
+                ),
+*/
 		array(
+                        'name'=>'status',
+                        'header'=>'Status',
+                        'value' => '($data->status==1 ? "Activated" : "Deactivated")',
+                ),
+		'description',
+	/*	'create_date',
+		'modified_date',
+	*/	array(
 			'class'=>'CButtonColumn',
 		),
 	),

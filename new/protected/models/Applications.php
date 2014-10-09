@@ -33,6 +33,9 @@ class Applications extends CActiveRecord
 	 * @return string the associated database table name
 	 */
 	public $logo;	
+	public $platform_search;
+        public $device_search;	
+	public $category_search;
 	public function tableName()
 	{
 		return 'applications';
@@ -46,6 +49,9 @@ class Applications extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('platform.name','length','max'=>64),
+			array('category.title','length','max'=>64),
+			array('device.type','length','max'=>64),
 			array('name, description, logo', 'required'),
 			array('user_id, category_id, platform_id, device_id, ndownloads', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>128),
@@ -54,7 +60,7 @@ class Applications extends CActiveRecord
 			array('logo','safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, user_id, category_id, description, status, logo, platform_id, device_id, ndownloads, disabled_comments', 'safe', 'on'=>'search'),
+			array('id,platform.name,platform_search,device.type,device_search,category_search,category.title, name, user_id, category_id, description, status, logo, platform_id, device_id, ndownloads, disabled_comments', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -115,19 +121,29 @@ class Applications extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('category_id',$this->category_id);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('status',$this->status,true);
-		$criteria->compare('logo',$this->logo,true);
-		$criteria->compare('platform_id',$this->platform_id);
-		$criteria->compare('device_id',$this->device_id);
-		$criteria->compare('ndownloads',$this->ndownloads);
-		$criteria->compare('disabled_comments',$this->disabled_comments,true);
-
+		$criteria->together = true;
+		$criteria->with=array('device','platform','category');//=>array('select'=>'versions.version','joinType'=>'INNER JOIN'));
+//		$criteria->addCondition('id = versions.application_id');
+//		$criteria->together = true;
+		$temp = Users::model()->findbyPk(Yii::app()->user->id);
+		
+		if( $temp->role_id != 1 )
+			$criteria->condition='t.user_id ='.Yii::app()->user->id;
+		$criteria->compare('device.type',$this->device_search,true);
+//		$criteria->compare('versions.version',$this->versions_search,true);
+		$criteria->compare('platform.name',$this->platform_search,true);
+		$criteria->compare('category.title',$this->category_search,true);
+		$criteria->compare('t.id',$this->id);
+		$criteria->compare('t.name',$this->name,true);
+		$criteria->compare('t.user_id',$this->user_id);
+		$criteria->compare('t.category_id',$this->category_id);
+		$criteria->compare('t.description',$this->description,true);
+		$criteria->compare('t.status',$this->status,true);
+		$criteria->compare('t.logo',$this->logo,true);
+		$criteria->compare('t.platform_id',$this->platform_id);
+		$criteria->compare('t.device_id',$this->device_id);
+		$criteria->compare('t.ndownloads',$this->ndownloads);
+		$criteria->compare('t.disabled_comments',$this->disabled_comments,true);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

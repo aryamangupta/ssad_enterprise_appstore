@@ -3,12 +3,12 @@
 /* @var $model Users */
 
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
+	'Users'=>array('admin'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List Users', 'url'=>array('index')),
+//	array('label'=>'List Users', 'url'=>array('index')),
 	array('label'=>'Manage Users', 'url'=>array('admin')),
 );
 ?>

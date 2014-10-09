@@ -3,7 +3,26 @@
 /* @var $model Applications */
 /* @var $form CActiveForm */
 ?>
+ <style type="text/css">          
+           div#gender {
+                    margin-top:20px;
+                    margin-left:200px;
+           }      
 
+           div#gender label
+           {
+                   font-weight: bold;
+                   font-size: 0.9em;
+                   float:left;
+                   margin-left:2px;
+                   text-align:left;
+                   width:100px;
+            }
+div#gender input
+{
+    float:left;
+}
+</style>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -39,12 +58,8 @@
 				),
 			array(
 				'class'=> 'my-drop-down',
-				'options'=>array(
-					'1'=>array(
-						'selected'=>"selected",
-						)
-					)
-			     )
+			   'prompt'=> 'Select',
+  )
 			);
 	?>
 
@@ -62,6 +77,26 @@
 		<?php echo $form->fileField($model,'logo'); ?>
 		<?php echo $form->error($model,'logo'); ?>
 	</div>
+	<div class="row">
+                <?php echo $form->labelEx($media,'type'); ?>
+            <div id="gender">
+            <?php
+                echo $form->radioButtonList($media, 'type',
+                    array(  'Image' => 'Image',
+                            'Video' => 'Video'
+                            ) ,
+			array('separator'=>''));
+            ?>
+            </div>
+                <?php echo $form->error($media,'type'); ?>
+        </div>
+
+        <div class="row">
+                <?php echo $form->labelEx($media,'filename'); ?>
+                <?php echo $form->fileField($media,'filename',array('size'=>60,'maxlength'=>128)); ?>
+                <?php echo $form->error($media,'filename'); ?>
+        </div>
+
 
 	<div class="row">
 	<?php  	
@@ -75,11 +110,13 @@
                         ),
                         array(
                                 'class'=> 'my-drop-down',
-                                'options'=>array(
-                                        '4'=>array(
-                                                'selected'=>"selected",
-                                        )
-                                )
+             //                   'options'=>array(
+               //                         '4'=>array(
+                 ///                               'selected'=>"selected",
+                    //                    )
+                      //          )
+				'prompt'=> 'Select',
+
                         )
                 );
         ?>
@@ -100,12 +137,8 @@
                         ),
                         array(
                                 'class'=> 'my-drop-down',
-                                'options'=>array(
-                                        '4'=>array(
-                                                'selected'=>"selected",
-                                        )
-                                )
-                        )
+                       'prompt'=> 'Select',
+ )
                 );
         ?>
 
@@ -140,6 +173,8 @@
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($entry->isNewRecord && $model->isNewRecord ? 'Create' : 'Save'); ?>
+	       <?php echo CHtml::button('Cancel', array('submit' => array('admin'))); ?>
+
 	</div>
 
 <?php $this->endWidget(); ?>

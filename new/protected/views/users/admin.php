@@ -3,12 +3,11 @@
 /* @var $model Users */
 
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
+	'Users'=>array('admin'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Users', 'url'=>array('index')),
 	array('label'=>'Create Users', 'url'=>array('create')),
 );
 
@@ -45,11 +44,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'email',
-		'password',
 		'first_name',
 		'last_name',
+		
+		'email',
+		array(
+			'name' => 'role.role',
+			'header' => 'Profile',
+			'filter'=>CHtml::activeTextField($model,'role_search'),
+
+		),
+			
+		'password',
 		'phone_number',
 		/*
 		'role_id',
@@ -60,6 +66,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'reset_password_key',
 		'reset_password_date',
 		*/
+			
 		array(
 			'class'=>'CButtonColumn',
 		),

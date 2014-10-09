@@ -14,7 +14,7 @@ class ChangePasswordFormController extends Controller{
 				array(
 					'allow',
 					'actions'=>array('ChangePassword'),
-					'roles'=>array('developer'),
+					'roles'=>array('@'),
 				     ),
 			    );
 	}
@@ -30,6 +30,7 @@ class ChangePasswordFormController extends Controller{
 			if($model->currentPassword === Users::model()->findByPk(Yii::app()->user->id)->password)
 			{
 				$temp->password = $model->newPassword;
+				$temp->reset_password_date =   date_create()->format('Y-m-d H:i:s');
 				$temp->update();
 				$this->redirect( Yii::app()->user->returnUrl );
 			}
