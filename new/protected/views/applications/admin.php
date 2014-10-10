@@ -105,7 +105,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'buttons'=>array(
 				'update'=>array(
 					'label'=>'Update details',
-					'url'=>'Yii::app()->createUrl("/applications/update", array("id"=>$data->id))',
+					'url'=>'Yii::app()->createUrl("/applications/updateApp", array("id"=>$data->id))',
 							'visible'=>"Yii::app()->user->checkAccess('createApp')",
 					),
 				'delete' => array(

@@ -59,7 +59,7 @@ div#gender input
 			array(
 				'class'=> 'my-drop-down',
 			   'prompt'=> 'Select',
-  )
+  			)
 			);
 	?>
 
@@ -138,7 +138,7 @@ div#gender input
                         array(
                                 'class'=> 'my-drop-down',
                        'prompt'=> 'Select',
- )
+ 			)
                 );
         ?>
 

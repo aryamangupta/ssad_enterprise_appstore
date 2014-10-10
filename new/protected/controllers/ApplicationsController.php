@@ -31,7 +31,7 @@ class ApplicationsController extends Controller
 					'roles'=>array('developer'),
 				     ),
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-					'actions'=>array('view','delete','admin','index','update', 'pendingdev','pendingqa'),
+					'actions'=>array('view','delete','admin','index','update'),
 					'roles'=>array('admin'),
 				     ),
 				array('deny',
@@ -79,27 +79,44 @@ class ApplicationsController extends Controller
 			$model->logo = 	CUploadedFile::getInstance($model,'logo');
 			$entry->file_name = CUploadedFile::getInstance($entry,'file_name');
 			$entry->status_id = 1; //default
+		//	echo 'hello';
 			$media->status = '0';		
 			if($model->save()){
+				//		echo 'hello';
 				$model->logo->saveAs(Yii::app()->basePath.'/../images/'.$model->logo);
 				$entry->application_id = $model->id;
 				$media->application_id = $model->id;
-				//	$entry->application_id = 4;
 				if ( $entry->save() ){
 					$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
 					if ( $media->save()){
 						$media->filename->saveAs(Yii::app()->basePath.'/../code/'.$media->filename);
+						$this->redirect(Yii::app()->createUrl('/applications/view', array('id' => $model->id)));
 					}
-					
-					$this->redirect(array('view&id='.$model->id));
+					else{
+						$this->render('create',array(
+									'model'=>$model,'entry'=>$entry,'media'=>$media
+									));
+						echo "Invalid Media File";
+					}
+
 				}
+				else{
+					$this->render('create',array(
+								'model'=>$model,'entry'=>$entry,'media'=>$media
+								));
+					echo "Invalid code file";
+
+
+				}
+
 			}
+
 		}
 		else{
 			$this->render('create',array(
-				'model'=>$model,'entry'=>$entry,'media'=>$media
+						'model'=>$model,'entry'=>$entry,'media'=>$media
 						));
-		
+
 		}
 	}
 	public function actionUpdateApp($id = 0)
@@ -130,7 +147,7 @@ class ApplicationsController extends Controller
 		}
 	}
 
-	public function actionPendingdev(){
+/*	public function actionPendingdev(){
 
 		$model=new Applications('search');
 		$model->unsetAttributes();  // clear any default values
@@ -140,10 +157,10 @@ class ApplicationsController extends Controller
 		$this->render('admin',array(
 					'model'=>$model,
 					));
-	
+
 	}
 
-	/**
+*/	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
@@ -170,36 +187,36 @@ class ApplicationsController extends Controller
 					'model'=>$model,
 					));
 	}
-/*	public function actionUpdateApp(){
+	/*	public function actionUpdateApp(){
 		$model = new Applications;
 		$entry = new Versions;
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		if(isset($_POST['Applications']) && isset($_POST['Versions']))
-		{
+	// Uncomment the following line if AJAX validation is needed
+	// $this->performAjaxValidation($model);
+	if(isset($_POST['Applications']) && isset($_POST['Versions']))
+	{
 
-			$model->attributes = $_POST['Applications'];
-			$entry->attributes = $_POST['Versions'];
-			$entry->reviewer_id = 1; //default admin
-			$entry->create_date = date_create()->format('Y-m-d H:i:s');
+	$model->attributes = $_POST['Applications'];
+	$entry->attributes = $_POST['Versions'];
+	$entry->reviewer_id = 1; //default admin
+	$entry->create_date = date_create()->format('Y-m-d H:i:s');
 
-			$entry->file_name = CUPloadedFile::getInstance($entry,'file_name');
-			$entry->status_id = 1; //default
-			$entry->application_id = $model->id;
-			//	$entry->application_id = 4;
-			if ( $entry->save() ){
-				$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-				$this->redirect(Yii::app()->user->returnUrl);
-			}
-		}
-	
-		else{
-			$this->render('updateApp',array(
-				'model'=>$model,'entry'=>$entry,
-						));
-			echo 'hello';
-		
-		}
+	$entry->file_name = CUPloadedFile::getInstance($entry,'file_name');
+	$entry->status_id = 1; //default
+	$entry->application_id = $model->id;
+	//	$entry->application_id = 4;
+	if ( $entry->save() ){
+	$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
+	$this->redirect(Yii::app()->user->returnUrl);
+	}
+	}
+
+	else{
+	$this->render('updateApp',array(
+	'model'=>$model,'entry'=>$entry,
+	));
+	echo 'hello';
+
+	}
 	}	
 	/**
 	 * Deletes a particular model.
