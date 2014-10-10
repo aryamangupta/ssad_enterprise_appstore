@@ -34,6 +34,10 @@ class ApplicationsController extends Controller
 					'actions'=>array('view','delete','admin','index','update'),
 					'roles'=>array('admin'),
 				     ),
+				array('allow', // allow authenticated user to perform 'create' and 'update' actions
+					'actions'=>array('view','delete','admin','index','update','toReview'),
+					'roles'=>array('qa analyst'),
+				     ),     
 				array('deny',
 					'users'=>array('*'),
 				     )
@@ -164,6 +168,16 @@ class ApplicationsController extends Controller
 
 			}
 	}
+<<<<<<< HEAD
+	
+	
+	
+	public function actionToReview()
+	{
+		$this->render('toReview');
+	}
+	/**
+=======
 
 		/*	public function actionPendingdev(){
 
@@ -178,7 +192,12 @@ class ApplicationsController extends Controller
 
 			}
 
+<<<<<<< HEAD:source/protected/controllers/ApplicationsController.php
 	 */	/**
+=======
+*/	/**
+>>>>>>> 3201e28fe25572d165f68f7f23e4808d351df357
+>>>>>>> b1da9fc80b5886b94f832824727f651c4d717e43:new/protected/controllers/ApplicationsController.php
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
@@ -203,7 +222,7 @@ class ApplicationsController extends Controller
 
 		$this->render('update',array(
 					'model'=>$model,
-					));
+				));
 	}
 	/*	public function actionUpdateApp(){
 		$model = new Applications;
@@ -218,6 +237,28 @@ class ApplicationsController extends Controller
 	$entry->reviewer_id = 1; //default admin
 	$entry->create_date = date_create()->format('Y-m-d H:i:s');
 
+<<<<<<< HEAD
+			$entry->file_name = CUPloadedFile::getInstance($entry,'file_name');
+			$entry->status_id = 1; //default
+			$entry->application_id = $model->id;
+			//	$entry->application_id = 4;
+			if ( $entry->save() ){
+				$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
+				$this->redirect(Yii::app()->user->returnUrl);
+			}
+		}
+	
+		else{
+			$this->render('updateApp',array(
+				'model'=>$model,'entry'=>$entry,
+						));
+			echo 'hello';
+		
+		}
+	}
+	*/
+	
+=======
 	$entry->file_name = CUPloadedFile::getInstance($entry,'file_name');
 	$entry->status_id = 1; //default
 	$entry->application_id = $model->id;
@@ -236,11 +277,13 @@ class ApplicationsController extends Controller
 
 	}
 	}	
+>>>>>>> 3201e28fe25572d165f68f7f23e4808d351df357
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
+	 
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
@@ -261,7 +304,7 @@ class ApplicationsController extends Controller
 					));
 	}
 
-	/**
+	/**	
 	 * Manages all models.
 	 */
 	public function actionAdmin()
@@ -287,7 +330,10 @@ class ApplicationsController extends Controller
 	{
 		$model=Applications::model()->findByPk($id);
 		if($model===null)
+		{
+			echo 'Hello';	
 			throw new CHttpException(404,'The requested page does not exist.');
+		}	
 		return $model;
 	}
 
