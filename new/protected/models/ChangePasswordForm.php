@@ -23,7 +23,7 @@ class ChangePasswordForm extends CFormModel
     );
   }
   
-  public function compareCurrentPassword($attribute='',$params='')
+  public function compareCurrentPassword($attribute,$params)
   {
     if( $this->currentPassword !== $this->_user->password )
     {
@@ -42,7 +42,7 @@ class ChangePasswordForm extends CFormModel
     return array(
       'currentPassword'=>'Current Password',
       'newPassword'=>'New Password',
-      'newPassword_repeat'=>'New Password ( Repeat )',
+      'newPassword_repeat'=>'New Password Repeat',
     );
   }
   

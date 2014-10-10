@@ -56,14 +56,14 @@
 							array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 							array('label'=>'Contact', 'url'=>array('/site/contact')),
 							array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-	
-
-							array('label'=>'Manage Users', 'url'=>array('/users', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
-                                array('label'=>'Manage Categories', 'url'=>array('/categories', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
-                                array('label'=>'Manage Checklists', 'url'=>array('/checklists', 'view'=>'create'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+							
+							array('label'=>'Edit Profile', 'url'=>Yii::app()->createUrl('users/update',array('id'=>Yii::app()->user->id)),'visible'=>!Yii::app()->user->isGuest),
+					
+							array('label'=>'Manage Users', 'url'=>array('/users/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+                                array('label'=>'Manage Categories', 'url'=>array('/categories/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+                                array('label'=>'Manage Checklists', 'url'=>array('/checklists/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
                                 array('label'=>'Upload App', 'url'=>array('/applications/create'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
-                                array('label'=>'View Apps', 'url'=>array('/applications', 'view'=>'view'), 'visible'=>Yii::app()->user->checkAccess('Create')),
-                                array('label'=>'Update App', 'url'=>array('/applications/updateApp'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
+                                array('label'=>'Manage Apps', 'url'=>array('/applications/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
 
                                 array('label'=>'Change Password', 'url'=>array('/changePasswordForm/changePassword'),  'visible'=>!Yii::app()->user->isGuest),
 

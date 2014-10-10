@@ -1,3 +1,4 @@
+
 <?php
 class ChangePasswordFormController extends Controller{
 
@@ -14,7 +15,7 @@ class ChangePasswordFormController extends Controller{
 				array(
 					'allow',
 					'actions'=>array('ChangePassword'),
-					'roles'=>array('developer'),
+					'roles'=>array('@'),
 				     ),
 			    );
 	}
@@ -27,13 +28,21 @@ class ChangePasswordFormController extends Controller{
 		{
 			$model->attributes=$_POST['ChangePasswordForm'];
 			$temp = Users::model()->findByPk(Yii::app()->user->id);
-			if($model->currentPassword === Users::model()->findByPk(Yii::app()->user->id)->password)
+			if($model->currentPassword === $temp->password)
 			{
-				$temp->password = $model->newPassword;
-				$temp->update();
-				$this->redirect( Yii::app()->user->returnUrl );
+				if($model->newPassword == $model->newPassword_repeat){
+					$temp->password = $model->newPassword;
+					$temp->reset_password_date =   date_create()->format('Y-m-d H:i:s');
+					$temp->update();
+					$this->redirect( Yii::app()->user->returnUrl );
+				}
+				else{
+					$this->render('changePassword',array('model'=>$model));
+					echo 'Passwords do not match';
+				}
 			}
 			else{
+				$this->render('changePassword',array('model'=>$model));
 				echo 'wrong password';
 			}
 		}
@@ -43,3 +52,4 @@ class ChangePasswordFormController extends Controller{
 	}
 }
 
+?>

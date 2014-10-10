@@ -3,12 +3,12 @@
 /* @var $model Checklists */
 
 $this->breadcrumbs=array(
-	'Checklists'=>array('index'),
+	'Checklists'=>array('admin'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Checklists', 'url'=>array('index')),
+//	array('label'=>'List Checklists', 'url'=>array('index')),
 	array('label'=>'Create Checklists', 'url'=>array('create')),
 );
 
@@ -45,10 +45,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+//		'id',
 		'title',
 		'description',
-		'status',
+		array(
+                        'name'=>'status',
+                        'header'=>'Status',
+                        'value' => '($data->status==1 ? "Activated" : "Deactivated")',
+                ),
 		'create_date',
 		'modified_date',
 		array(

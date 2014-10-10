@@ -31,11 +31,11 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status',array('size'=>1,'maxlength'=>1)); ?>
-		<?php echo $form->error($model,'status'); ?>
-	</div>
+         <div class="row">
+                <?php echo $form->labelEx($model,'status'); ?>
+                <?php echo $form->dropDownList($model,'status',array('prompt'=>'Select',1=>'Activate',0=>'Deactivate')); ?>
+                <?php echo $form->error($model,'status'); ?>
+        </div>
 
 
 	<div class="row buttons">

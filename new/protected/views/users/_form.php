@@ -61,11 +61,7 @@
 			),
 			array(
 				'class'=> 'my-drop-down',
-				'options'=>array(
-					'4'=>array(
-						'selected'=>"selected",
-					)
-				)
+				'prompt'=> 'Select',
 			)
 		);
 	?>
@@ -73,31 +69,31 @@
 
 	</div>
 
-
+<!---
 	<div class="row">
 		<?php echo $form->labelEx($model,'activation_key'); ?>
 		<?php echo $form->textField($model,'activation_key',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'activation_key'); ?>
 	</div>
-
+--!>
 	<div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->dropDownList($model,'status',array('prompt'=> 'Select','1'=>'Activate','0'=>'Deactivate'));
+		?>
 		<?php echo $form->error($model,'status'); ?>
 	</div>
-
+<!---
 	<div class="row">
 		<?php echo $form->labelEx($model,'reset_password_key'); ?>
 		<?php echo $form->textField($model,'reset_password_key',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'reset_password_key'); ?>
 	</div>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'reset_password_date'); ?>
 		<?php echo $form->textField($model,'reset_password_date'); ?>
 		<?php echo $form->error($model,'reset_password_date'); ?>
 	</div>
-
+---!>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

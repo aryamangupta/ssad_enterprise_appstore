@@ -3,36 +3,37 @@
 /* @var $model Users */
 
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
-	$model->id,
+	'Users'=>array('admin'),
+	$model->first_name,
 );
 
 $this->menu=array(
-	array('label'=>'List Users', 'url'=>array('index')),
-	array('label'=>'Create Users', 'url'=>array('create')),
-	array('label'=>'Update Users', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Users', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Users', 'url'=>array('admin')),
+	array('label'=>'Create Users', 'url'=>array('create'),'visible'=>Yii::app()->user->checkAccess('Create')),
+	array('label'=>'Update Profile', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Delete Account', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage Users', 'url'=>array('admin'),'visible'=>Yii::app()->user->checkAccess('Create')),
 );
 ?>
 
-<h1>View Users #<?php echo $model->id; ?></h1>
+<h1>View Profile : <?php echo $model->first_name; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
 		'email',
-		'password',
 		'first_name',
 		'last_name',
 		'phone_number',
-		'role_id',
+        	array(
+                        'name' => 'role.role',
+                        'header' => 'Profile',
+                        'filter'=>CHtml::activeTextField($model,'role_search'),
+
+                ),
+
+
 		'create_date',
 		'modified_date',
-		'activation_key',
-		'status',
-		'reset_password_key',
 		'reset_password_date',
 	),
 )); ?>

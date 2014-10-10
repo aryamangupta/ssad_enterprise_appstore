@@ -8,6 +8,9 @@
         // See class documentation of CActiveForm for details on this.
         'enableAjaxValidation'=>false,
 )); ?>
+
+<br>
+<br>
 <form id="changePasswordForm-form"  autocomplete="off" action="/yii/new/index.php?r=changePasswordForm/changePassword" method="post">
  <input type="text" name="user" value="chose" style="display: none" />
     <div class="row">
@@ -27,6 +30,10 @@
 
     <div class="row submit">
         <?php echo CHtml::submitButton('Change password',array('confirm'=>'Are you sure?')); ?>
+	<?php echo CHtml::button('Cancel', array('submit' => array('users/view&id='.Yii::app()->user->id))); ?>
+
+
+
     </div>
 
 <?php $this->endWidget(); ?>

@@ -63,8 +63,8 @@ class MediaFiles extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'application_id' => 'Application',
-			'type' => 'Type',
-			'filename' => 'Filename',
+			'type' => 'Media file type :',
+			'filename' => 'Media File :',
 			'status' => 'Status',
 			'create_date' => 'Create Date',
 		);

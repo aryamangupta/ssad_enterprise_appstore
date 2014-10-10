@@ -32,6 +32,11 @@ class UsersController extends Controller
                                 'actions'=>array('view','admin','delete','index','create','update'),
                                 'roles'=>array('admin'),
                         ),
+			 array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                                'actions'=>array('update','view'),
+                                'roles'=>array('developer'),
+                        ),
+                        
                         array('deny',  // deny all users
                                 'users'=>array('*'),
                         ),
@@ -63,11 +68,15 @@ class UsersController extends Controller
 		{
 			$model->attributes=$_POST['Users'];
 			$model->create_date = date_create()->format('Y-m-d H:i:s');
+			$model->modified_date= date_create()->format('Y-m-d H:i:s');
+			$model->modified_date= date_create()->format('Y-m-d H:i:s');
+		 	$model->reset_password_date =	date_create()->format('Y-m-d H:i:s');
 
+			$model->activation_key = 0;
 			if($model->save()){
 				$auth = Yii::app()->authManager;
 				$auth->assign(Roles::model()->findByPk($model->role_id)->role,$model->id);
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin','id'=>$model->id));
 			}
 		}
 
@@ -91,6 +100,8 @@ class UsersController extends Controller
 		if(isset($_POST['Users']))
 		{
 			$model->attributes=$_POST['Users'];
+			$model->modified_date= date_create()->format('Y-m-d H:i:s');
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

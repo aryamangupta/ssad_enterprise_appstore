@@ -24,6 +24,9 @@ class Categories extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+
+
+	public $parent_search;
 	public function tableName()
 	{
 		return 'categories';
@@ -37,13 +40,14 @@ class Categories extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('title','length','max'=>64),
 			array('title, description', 'required'),
 			array('parent_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>128),
 			array('status', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, parent_id, status, description, create_date, modified_date', 'safe', 'on'=>'search'),
+			array('id, parent_search, title, parent_id, status, description, create_date, modified_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -96,7 +100,9 @@ class Categories extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		$criteria->together = true;
+                $criteria->with=array('applications');	
+		$criteria->compare('title',$this->parent_search,true);
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('parent_id',$this->parent_id);

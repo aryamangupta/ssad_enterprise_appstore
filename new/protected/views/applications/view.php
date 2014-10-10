@@ -3,34 +3,60 @@
 /* @var $model Applications */
 
 $this->breadcrumbs=array(
-	'Applications'=>array('index'),
-	$model->name,
-);
+		'Applications'=>array('admin'),
+		$model->name,
+		);
 
 $this->menu=array(
-	array('label'=>'List Applications', 'url'=>array('index')),
-	array('label'=>'Create Applications', 'url'=>array('create')),
-	array('label'=>'Update Applications', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Applications', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Applications', 'url'=>array('admin')),
-);
+		array('label'=>'Create Applications', 'url'=>array('create')),
+		array('label'=>'Update Applications', 'url'=>array('updateApp', 'id'=>$model->id)),
+		array('label'=>'Manage Applications', 'url'=>array('admin')),
+		);
 ?>
 
-<h1>View Applications #<?php echo $model->id; ?></h1>
+<h1>View Application : <?php echo $model->name; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'name',
-		'user_id',
-		'category_id',
-		'description',
-		'status',
-		'logo',
-		'platform_id',
-		'device_id',
-		'ndownloads',
-		'disabled_comments',
-	),
-)); ?>
+			'data'=>$model,
+			'attributes'=>array(
+				'name',
+				'description',
+				'logo',
+				array(
+					'name'=>'category.title',
+					'header'=> 'Category',
+					'filter'=>CHtml::activeTextField($model,'category_search'),
+				     ),
+				array(
+					'name'=>'status',
+					'header'=>'Status',
+					'value' => '($data->status==1 ? "Activated" : "Deactivated")',
+				     ),
+				array(
+					'name'=>'platform.name',
+					'header'=>'Platform',
+					'filter'=>CHtml::activeTextField($model,'platform_search'),
+				     ),
+				array(
+						'name'=>'device.type',
+						'header'=>'Device type',
+						'filter'=>CHtml::activeTextField($model,'device_search'),
+				     ),
+				array(
+						'name'=>'logo',
+						'header'=>'Logo',
+						'type'=>'raw',
+						//                      'value'=> 'CHtml::link($data->logo,array('applications/downloadLogo')',
+
+						'value' => 'CHtml::link($data->logo,"http://". $_SERVER["SERVER_NAME"] ."/yii/new/images/".$data->logo)',
+						//                      'value' => 'CHtml::link($data->logo,"http://". $_SERVER["SERVER_NAME"] .Yii::app()->request->baseUrl . * . $data->logo)'
+						),
+
+				'ndownloads',
+				'disabled_comments',
+
+
+
+
+						),
+				     )); ?>

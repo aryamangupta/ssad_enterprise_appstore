@@ -64,6 +64,7 @@ class ChecklistsController extends Controller
 		if(isset($_POST['Checklists']))
 		{
 			$model->attributes=$_POST['Checklists'];
+			$model->modified_date = date_create()->format('Y-m-d H:i:s');
 		        $model->create_date = date_create()->format('Y-m-d H:i:s');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -82,13 +83,13 @@ class ChecklistsController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Checklists']))
 		{
 			$model->attributes=$_POST['Checklists'];
+			$model->modified_date = date_create()->format('Y-m-d H:i:s');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

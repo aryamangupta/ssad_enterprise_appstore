@@ -63,42 +63,68 @@ class ApplicationsController extends Controller
 	{
 		$model = new Applications;
 		$entry = new Versions;
+		$media = new MediaFiles;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		if(isset($_POST['Applications']) && isset($_POST['Versions']))
+		if(isset($_POST['Applications']) && isset($_POST['Versions']) && isset($_POST['MediaFiles']))
 		{
 
 			$model->attributes = $_POST['Applications'];
 			$entry->attributes = $_POST['Versions'];
+			$media->attributes = $_POST['MediaFiles'];
 			$model->user_id = Yii::app()->user->id;
 			$model->status = 0 ;//default
 			$entry->reviewer_id = 1; //default admin
 			$model->ndownloads  = 0 ;//default
 			$model->disabled_comments = "Not approved by reviewer";
-			$entry->create_date = date_create()->format('Y-m-d H:i:s');
+			$entry->create_date = date_create()->format('Y-m-d H:i:s');;
+			$media->create_date = date_create()->format('Y-m-d H:i:s');
 
 			$model->logo = 	CUploadedFile::getInstance($model,'logo');
 			$entry->file_name = CUploadedFile::getInstance($entry,'file_name');
 			$entry->status_id = 1; //default
+		//	echo 'hello';
+			$media->status = '0';		
 			if($model->save()){
+				//		echo 'hello';
 				$model->logo->saveAs(Yii::app()->basePath.'/../images/'.$model->logo);
 				$entry->application_id = $model->id;
-				//	$entry->application_id = 4;
+				$media->application_id = $model->id;
 				if ( $entry->save() ){
 					$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-					$this->redirect(Yii::app()->user->returnUrl);
+					if ( $media->save()){
+						$media->filename->saveAs(Yii::app()->basePath.'/../code/'.$media->filename);
+						$this->redirect(Yii::app()->createUrl('/applications/view', array('id' => $model->id)));
+					}
+					else{
+						$this->render('create',array(
+									'model'=>$model,'entry'=>$entry,'media'=>$media
+									));
+						echo "Invalid Media File";
+					}
+
 				}
+				else{
+					$this->render('create',array(
+								'model'=>$model,'entry'=>$entry,'media'=>$media
+								));
+					echo "Invalid code file";
+
+
+				}
+
 			}
+
 		}
 		else{
 			$this->render('create',array(
-				'model'=>$model,'entry'=>$entry,
+						'model'=>$model,'entry'=>$entry,'media'=>$media
 						));
-		
+
 		}
 	}
-	public function actionUpdateApp()
-	{
+	public function actionUpdateApp($id = 0)
+	{	
 		$model = new Applications;
 		$entry = new Versions;
 		// Uncomment the following line if AJAX validation is needed
@@ -119,11 +145,12 @@ class ApplicationsController extends Controller
 		}
 		else{
 			$this->render('updateApp',array(
-						'model'=>$model,'entry'=>$entry,
+						'id'=>$id,'model'=>$model,'entry'=>$entry,
 						));
 
 		}
 	}
+<<<<<<< HEAD
 	
 	
 	
@@ -132,10 +159,31 @@ class ApplicationsController extends Controller
 		$this->render('toReview');
 	}
 	/**
+=======
+
+/*	public function actionPendingdev(){
+
+		$model=new Applications('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Applications']))
+			$model->attributes=$_GET['Applications'];
+
+		$this->render('admin',array(
+					'model'=>$model,
+					));
+
+	}
+
+*/	/**
+>>>>>>> 3201e28fe25572d165f68f7f23e4808d351df357
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
+
+
+
+
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
@@ -154,19 +202,20 @@ class ApplicationsController extends Controller
 					'model'=>$model,
 				));
 	}
-/*	public function actionUpdateApp(){
+	/*	public function actionUpdateApp(){
 		$model = new Applications;
 		$entry = new Versions;
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		if(isset($_POST['Applications']) && isset($_POST['Versions']))
-		{
+	// Uncomment the following line if AJAX validation is needed
+	// $this->performAjaxValidation($model);
+	if(isset($_POST['Applications']) && isset($_POST['Versions']))
+	{
 
-			$model->attributes = $_POST['Applications'];
-			$entry->attributes = $_POST['Versions'];
-			$entry->reviewer_id = 1; //default admin
-			$entry->create_date = date_create()->format('Y-m-d H:i:s');
+	$model->attributes = $_POST['Applications'];
+	$entry->attributes = $_POST['Versions'];
+	$entry->reviewer_id = 1; //default admin
+	$entry->create_date = date_create()->format('Y-m-d H:i:s');
 
+<<<<<<< HEAD
 			$entry->file_name = CUPloadedFile::getInstance($entry,'file_name');
 			$entry->status_id = 1; //default
 			$entry->application_id = $model->id;
@@ -187,6 +236,26 @@ class ApplicationsController extends Controller
 	}
 	*/
 	
+=======
+	$entry->file_name = CUPloadedFile::getInstance($entry,'file_name');
+	$entry->status_id = 1; //default
+	$entry->application_id = $model->id;
+	//	$entry->application_id = 4;
+	if ( $entry->save() ){
+	$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
+	$this->redirect(Yii::app()->user->returnUrl);
+	}
+	}
+
+	else{
+	$this->render('updateApp',array(
+	'model'=>$model,'entry'=>$entry,
+	));
+	echo 'hello';
+
+	}
+	}	
+>>>>>>> 3201e28fe25572d165f68f7f23e4808d351df357
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.

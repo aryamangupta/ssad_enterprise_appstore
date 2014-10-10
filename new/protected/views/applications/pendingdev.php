@@ -4,13 +4,11 @@
 
 $this->breadcrumbs=array(
 	'Applications'=>array('admin'),
-	'Manage',
+	'Pending from developers',
 );
 
 $this->menu=array(
-	array('label'=>'Update Applications', 'url'=>array('updateApp'),'visible'=>Yii::app()->user->checkAccess('createApp')),
-	array('label'=>'Create Applications', 'url'=>array('create') ,'visible'=>Yii::app()->user->checkAccess('createApp') ),
-	array('label'=>'Pending App (Developer)', 'url'=>array('pendingdev') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
+	array('label'=>'Manage Applications', 'url'=>array('admin') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
 	array('label'=>'Pending App (Reviewer)', 'url'=>array('create') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
 
 
@@ -105,7 +103,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'buttons'=>array(
 				'update'=>array(
 					'label'=>'Update details',
-					'url'=>'Yii::app()->createUrl("/applications/updateApp", array("id"=>$data->id))',
+					'url'=>'Yii::app()->createUrl("/applications/update", array("id"=>$data->id))',
 							'visible'=>"Yii::app()->user->checkAccess('createApp')",
 					),
 				'delete' => array(

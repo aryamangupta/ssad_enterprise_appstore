@@ -33,7 +33,7 @@
 			array(
 				'class'=> 'my-drop-down',
 				'options'=>array(
-					'1'=>array(
+					$id=>array(
 						'selected'=>"selected",
 						)
 					)
@@ -71,8 +71,13 @@
 		<?php echo $form->error($entry,'version'); ?>
 	</div>
 
+</br>
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($entry->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($entry->isNewRecord ? 'Update' : 'Save'); ?>
+	        <?php echo CHtml::button('Cancel', array('submit' => array('admin'))); ?>
+
+
+
 	</div>
 
 <?php $this->endWidget(); ?>

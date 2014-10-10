@@ -33,6 +33,9 @@ class Applications extends CActiveRecord
 	 * @return string the associated database table name
 	 */
 	public $logo;	
+	public $platform_search;
+	public $device_search;	
+	public $category_search;
 	public function tableName()
 	{
 		return 'applications';
@@ -46,16 +49,19 @@ class Applications extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, logo', 'required'),
-			array('user_id, category_id, platform_id, device_id, ndownloads', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>128),
-			array('status', 'length', 'max'=>1),
-			array('logo', 'file', 'types'=>'jpeg,jpg,gif,png'),
-			array('logo','safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, name, user_id, category_id, description, status, logo, platform_id, device_id, ndownloads, disabled_comments', 'safe', 'on'=>'search'),
-		);
+				//			array('platform.name','length','max'=>64),
+				//			array('category.title','length','max'=>64),
+				//			array('device.type','length','max'=>64),
+				array('name, description, logo', 'required'),
+				array('user_id, category_id, platform_id, device_id, ndownloads', 'numerical', 'integerOnly'=>true),
+				array('name', 'length', 'max'=>128),
+				array('status', 'length', 'max'=>1),
+				array('logo', 'file', 'types'=>'jpeg,jpg,gif,png'),
+				array('logo','safe'),
+				// The following rule is used by search().
+				// @todo Please remove those attributes that should not be searched.
+				array('id,platform.name,platform_search,device.type,device_search,category_search,category.title, name, user_id, category_id, description, status, logo, platform_id, device_id, ndownloads, disabled_comments', 'safe', 'on'=>'search'),
+			    );
 	}
 
 	/**
@@ -66,16 +72,16 @@ class Applications extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'applicationDownloads' => array(self::HAS_MANY, 'ApplicationDownloads', 'application_id'),
-			'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
-			'platform' => array(self::BELONGS_TO, 'Platforms', 'platform_id'),
-			'device' => array(self::BELONGS_TO, 'Devices', 'device_id'),
-			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
-			'comments' => array(self::HAS_MANY, 'Comments', 'application_id'),
-			'mediaFiles' => array(self::HAS_MANY, 'MediaFiles', 'application_id'),
-			'ratings' => array(self::HAS_MANY, 'Ratings', 'application_id'),
-			'versions' => array(self::HAS_MANY, 'Versions', 'application_id'),
-		);
+				'applicationDownloads' => array(self::HAS_MANY, 'ApplicationDownloads', 'application_id'),
+				'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
+				'platform' => array(self::BELONGS_TO, 'Platforms', 'platform_id'),
+				'device' => array(self::BELONGS_TO, 'Devices', 'device_id'),
+				'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
+				'comments' => array(self::HAS_MANY, 'Comments', 'application_id'),
+				'mediaFiles' => array(self::HAS_MANY, 'MediaFiles', 'application_id'),
+				'ratings' => array(self::HAS_MANY, 'Ratings', 'application_id'),
+				'versions' => array(self::HAS_MANY, 'Versions', 'application_id'),
+			    );
 	}
 
 	/**
@@ -84,18 +90,18 @@ class Applications extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'user_id' => 'User',
-			'category_id' => 'Category',
-			'description' => 'Description',
-			'status' => 'Status',
-			'logo' => 'Logo',
-			'platform_id' => 'Platform',
-			'device_id' => 'Device',
-			'ndownloads' => 'Ndownloads',
-			'disabled_comments' => 'Disabled Comments',
-		);
+				'id' => 'ID',
+				'name' => 'Name',
+				'user_id' => 'User',
+				'category_id' => 'Category',
+				'description' => 'Description',
+				'status' => 'Status',
+				'logo' => 'Logo',
+				'platform_id' => 'Platform',
+				'device_id' => 'Device',
+				'ndownloads' => 'Ndownloads',
+				'disabled_comments' => 'Disabled Comments',
+			    );
 	}
 
 	/**
@@ -115,22 +121,32 @@ class Applications extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+		$criteria->together = true;
+		$criteria->with=array('device','platform','category');
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('category_id',$this->category_id);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('status',$this->status,true);
-		$criteria->compare('logo',$this->logo,true);
-		$criteria->compare('platform_id',$this->platform_id);
-		$criteria->compare('device_id',$this->device_id);
-		$criteria->compare('ndownloads',$this->ndownloads);
-		$criteria->compare('disabled_comments',$this->disabled_comments,true);
+		$temp = Users::model()->findbyPk(Yii::app()->user->id);
+		if( $temp->role_id != 1 )
+		{
+			$criteria->condition='t.user_id ='.Yii::app()->user->id;
+		}
 
+		$criteria->compare('device.type',$this->device_search,true);
+		$criteria->compare('platform.name',$this->platform_search,true);
+		$criteria->compare('category.title',$this->category_search,true);
+		$criteria->compare('t.id',$this->id);
+		$criteria->compare('t.name',$this->name,true);
+		$criteria->compare('t.user_id',$this->user_id);
+		$criteria->compare('t.category_id',$this->category_id);
+		$criteria->compare('t.description',$this->description,true);
+		$criteria->compare('t.status',$this->status,true);
+		$criteria->compare('t.logo',$this->logo,true);
+		$criteria->compare('t.platform_id',$this->platform_id);
+		$criteria->compare('t.device_id',$this->device_id);
+		$criteria->compare('t.ndownloads',$this->ndownloads);
+		$criteria->compare('t.disabled_comments',$this->disabled_comments,true);
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
+					'criteria'=>$criteria,
+					));
 	}
 
 	/**
