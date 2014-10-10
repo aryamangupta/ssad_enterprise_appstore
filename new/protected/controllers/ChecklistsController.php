@@ -157,6 +157,7 @@ class ChecklistsController extends Controller
 	 * Performs the AJAX validation.
 	 * @param Checklists $model the model to be validated
 	 */
+	
 	protected function performAjaxValidation($model)
 	{
 		if(isset($_POST['ajax']) && $_POST['ajax']==='checklists-form')

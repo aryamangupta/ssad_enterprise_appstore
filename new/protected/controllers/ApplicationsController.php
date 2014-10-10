@@ -34,6 +34,10 @@ class ApplicationsController extends Controller
 					'actions'=>array('view','delete','admin','index','update'),
 					'roles'=>array('admin'),
 				     ),
+				array('allow', // allow authenticated user to perform 'create' and 'update' actions
+					'actions'=>array('view','delete','admin','index','update','toReview'),
+					'roles'=>array('qa analyst'),
+				     ),     
 				array('deny',
 					'users'=>array('*'),
 				     )
@@ -120,6 +124,13 @@ class ApplicationsController extends Controller
 
 		}
 	}
+	
+	
+	
+	public function actionToReview()
+	{
+		$this->render('toReview');
+	}
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -141,7 +152,7 @@ class ApplicationsController extends Controller
 
 		$this->render('update',array(
 					'model'=>$model,
-					));
+				));
 	}
 /*	public function actionUpdateApp(){
 		$model = new Applications;
@@ -173,12 +184,15 @@ class ApplicationsController extends Controller
 			echo 'hello';
 		
 		}
-	}	
+	}
+	*/
+	
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
+	 
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
@@ -199,7 +213,7 @@ class ApplicationsController extends Controller
 					));
 	}
 
-	/**
+	/**	
 	 * Manages all models.
 	 */
 	public function actionAdmin()
@@ -225,7 +239,10 @@ class ApplicationsController extends Controller
 	{
 		$model=Applications::model()->findByPk($id);
 		if($model===null)
+		{
+			echo 'Hello';	
 			throw new CHttpException(404,'The requested page does not exist.');
+		}	
 		return $model;
 	}
 
