@@ -62,20 +62,19 @@
 	<div class="row">
 		<?php echo $form->labelEx($entry,'file_name'); ?>
 		<?php echo $form->fileField($entry,'file_name',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($entry,'file_name'); ?>
+	
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($entry,'version'); ?>
 		<?php echo $form->textField($entry,'version',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($entry,'version'); ?>
+	
 	</div>
 
 </br>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($entry->isNewRecord ? 'Update' : 'Save'); ?>
-	        <?php echo CHtml::button('Cancel', array('submit' => array('admin'))); ?>
-
+	
 
 
 	</div>

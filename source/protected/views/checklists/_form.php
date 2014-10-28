@@ -29,9 +29,25 @@
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'description'); ?>
+		</div>
+	<div class = "row">
+		<?php
+		echo $form->labelEx($entry,'category_id');
+		echo $form->dropDownList(
+				$entry,'category_id',
+				CHtml::listData(
+					Categories::model()->findAll(),
+					'id',
+					'title'
+					),
+				array(
+					'class'=> 'my-drop-down',
+					'prompt'=> 'Select',
+				     )
+				);
+		?>
 	</div>
-
-         <div class="row">
+ <div class="row">
                 <?php echo $form->labelEx($model,'status'); ?>
                 <?php echo $form->dropDownList($model,'status',array('prompt'=>'Select',1=>'Activate',0=>'Deactivate')); ?>
                 <?php echo $form->error($model,'status'); ?>

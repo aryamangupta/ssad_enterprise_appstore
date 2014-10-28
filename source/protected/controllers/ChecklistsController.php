@@ -57,21 +57,27 @@ class ChecklistsController extends Controller
 	public function actionCreate()
 	{
 		$model=new Checklists;
-
+		$entry = new ChecklistCategoryMap;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Checklists']))
-		{
+		{	
+		
 			$model->attributes=$_POST['Checklists'];
+			$entry->attributes = $_POST['ChecklistCategoryMap'];
+		
 			$model->modified_date = date_create()->format('Y-m-d H:i:s');
 		        $model->create_date = date_create()->format('Y-m-d H:i:s');
-			if($model->save())
+			if($model->save()){
+				$entry->checklist_id = $model->id;
+				if($entry->save())
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$model,'entry'=>$entry,
 		));
 	}
 
@@ -158,7 +164,6 @@ class ChecklistsController extends Controller
 	 * Performs the AJAX validation.
 	 * @param Checklists $model the model to be validated
 	 */
-	
 	protected function performAjaxValidation($model)
 	{
 		if(isset($_POST['ajax']) && $_POST['ajax']==='checklists-form')

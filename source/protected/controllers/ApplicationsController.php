@@ -30,14 +30,15 @@ class ApplicationsController extends Controller
 					'actions'=>array('index','view','create','admin','updateApp'),
 					'roles'=>array('developer'),
 				     ),
+				array('allow',  // allow all users to perform 'index' and 'view' actions
+					'actions'=>array('index','view','admin',),
+					'roles'=>array('qa analyst'),
+				     ),
+
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-					'actions'=>array('view','delete','admin','index','update'),
+					'actions'=>array('view','delete','admin','index','update','pendingdev','pendingrev'),
 					'roles'=>array('admin'),
 				     ),
-				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-					'actions'=>array('view','delete','admin','index','update','toReview'),
-					'roles'=>array('qa analyst'),
-				     ),     
 				array('deny',
 					'users'=>array('*'),
 				     )
@@ -50,10 +51,77 @@ class ApplicationsController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-					'model'=>$this->loadModel($id),
+		$temp = Users::model()->findbyPk(Yii::app()->user->id);
+		if ( $temp->role_id == 3 ){
+			$entry =  Versions::model()->findByAttributes(array('application_id' => $id));	
+			if(isset($_POST['button1']))
+			{
+				$entry->status_id = 5;
+				$entry->update();
+				$this->render('admin',array(
+							'model'=>$this->loadModel($id),
+							));
+
+			}
+			if(isset($_POST['button2']))
+			{
+				$entry->status_id = 7;
+				$entry->update();
+				$this->render('admin',array(
+							'model'=>$this->loadModel($id),
+							));
+
+
+			}	
+			else{
+			$this->render('view',array(
+						'model'=>$this->loadModel($id),
 					));
+		}
+	
+		}
+			if ( $temp->role_id == 1 ){
+			$entry =  Versions::model()->findByAttributes(array('application_id' => $id));	
+			$app = Applications::model()->findByAttributes(array('id' => $id));	
+			if(isset($_POST['button1']))
+			{
+				if ( $entry->status_id == 1 )
+					$entry->status_id = 2;
+				else{
+					$entry->status_id = 6;	
+					$app->status = 1;
+				}
+				$entry->update();
+				$app->update();
+				$this->render('admin',array(
+							'model'=>$this->loadModel($id),
+							));
+
+			}
+			if(isset($_POST['button2']))
+			{
+				$entry->status_id = 7;
+				$entry->update();
+				$this->render('admin',array(
+							'model'=>$this->loadModel($id),
+							));
+
+
+			}	
+			else{
+			$this->render('view',array(
+						'model'=>$this->loadModel($id),
+					));
+		}
+	
+		}
+		else{
+			$this->render('view',array(
+						'model'=>$this->loadModel($id),
+					));
+		}
 	}
+
 
 	/**
 	 * Creates a new model.
@@ -69,9 +137,9 @@ class ApplicationsController extends Controller
 		// $this->performAjaxValidation($model);
 		if(isset($_POST['Applications']) && isset($_POST['Versions']) && isset($_POST['MediaFiles']))
 		{
-
-			$model->attributes = $_POST['Applications'];
 			$entry->attributes = $_POST['Versions'];
+	
+			$model->attributes = $_POST['Applications'];
 			$media->attributes = $_POST['MediaFiles'];
 			$model->user_id = Yii::app()->user->id;
 			$model->status = 0 ;//default
@@ -86,13 +154,11 @@ class ApplicationsController extends Controller
 			$media->filename = CUploadedFile::getInstance($media,'filename');
 
 			$entry->status_id = 1; //default
-			//	echo 'hello';
 			$media->status = '0';	
 			$test = 1;
 			if ( $model->save() ){
 				$media->application_id = $model->id;
 				$entry->application_id =$model->id;
-				//			$model->save();
 				if ( $media->save() && $entry->save() ) {
 					$model->logo->saveAs(Yii::app()->basePath.'/../images/'.$model->logo);
 					$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
@@ -100,7 +166,6 @@ class ApplicationsController extends Controller
 					$this->redirect(Yii::app()->createUrl('/applications/view', array('id' => $model->id)));
 				}
 				else {
-//					echo 'Error saving app';
 					$this->render('create',array(
 								'model'=>$model,'entry'=>$entry,'media'=>$media
 								));
@@ -127,7 +192,7 @@ class ApplicationsController extends Controller
 
 	}
 	catch(Exception $e){
-		var_dump($e->getmessage());
+	?><br><h1><?php	echo "Application with name already exists!" ; ?> </h1><?php
 				$this->render('create',array(
 						'model'=>$model,'entry'=>$entry,'media'=>$media
 						));
@@ -168,36 +233,8 @@ class ApplicationsController extends Controller
 
 			}
 	}
-<<<<<<< HEAD
-	
-	
-	
-	public function actionToReview()
-	{
-		$this->render('toReview');
-	}
-	/**
-=======
 
-		/*	public function actionPendingdev(){
-
-			$model=new Applications('search');
-			$model->unsetAttributes();  // clear any default values
-			if(isset($_GET['Applications']))
-			$model->attributes=$_GET['Applications'];
-
-			$this->render('admin',array(
-			'model'=>$model,
-			));
-
-			}
-
-<<<<<<< HEAD:source/protected/controllers/ApplicationsController.php
-	 */	/**
-=======
-*/	/**
->>>>>>> 3201e28fe25572d165f68f7f23e4808d351df357
->>>>>>> b1da9fc80b5886b94f832824727f651c4d717e43:new/protected/controllers/ApplicationsController.php
+	 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
@@ -222,68 +259,13 @@ class ApplicationsController extends Controller
 
 		$this->render('update',array(
 					'model'=>$model,
-				));
+					));
 	}
-	/*	public function actionUpdateApp(){
-		$model = new Applications;
-		$entry = new Versions;
-	// Uncomment the following line if AJAX validation is needed
-	// $this->performAjaxValidation($model);
-	if(isset($_POST['Applications']) && isset($_POST['Versions']))
-	{
-
-	$model->attributes = $_POST['Applications'];
-	$entry->attributes = $_POST['Versions'];
-	$entry->reviewer_id = 1; //default admin
-	$entry->create_date = date_create()->format('Y-m-d H:i:s');
-
-<<<<<<< HEAD
-			$entry->file_name = CUPloadedFile::getInstance($entry,'file_name');
-			$entry->status_id = 1; //default
-			$entry->application_id = $model->id;
-			//	$entry->application_id = 4;
-			if ( $entry->save() ){
-				$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-				$this->redirect(Yii::app()->user->returnUrl);
-			}
-		}
-	
-		else{
-			$this->render('updateApp',array(
-				'model'=>$model,'entry'=>$entry,
-						));
-			echo 'hello';
-		
-		}
-	}
-	*/
-	
-=======
-	$entry->file_name = CUPloadedFile::getInstance($entry,'file_name');
-	$entry->status_id = 1; //default
-	$entry->application_id = $model->id;
-	//	$entry->application_id = 4;
-	if ( $entry->save() ){
-	$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-	$this->redirect(Yii::app()->user->returnUrl);
-	}
-	}
-
-	else{
-	$this->render('updateApp',array(
-	'model'=>$model,'entry'=>$entry,
-	));
-	echo 'hello';
-
-	}
-	}	
->>>>>>> 3201e28fe25572d165f68f7f23e4808d351df357
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	 
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
@@ -304,7 +286,7 @@ class ApplicationsController extends Controller
 					));
 	}
 
-	/**	
+	/**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
@@ -318,7 +300,28 @@ class ApplicationsController extends Controller
 					'model'=>$model,
 					));
 	}
+	public function actionPendingdev()
+	{
+		$model=new Applications('searchpendingdev');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Applications']))
+			$model->attributes=$_GET['Applications'];
 
+		$this->render('pendingdev',array(
+					'model'=>$model,
+					));
+	}
+	public function actionPendingrev()
+	{
+		$model=new Applications('searchpendingrev');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Applications']))
+			$model->attributes=$_GET['Applications'];
+
+		$this->render('pendingrev',array(
+					'model'=>$model,
+					));
+	}
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -330,10 +333,7 @@ class ApplicationsController extends Controller
 	{
 		$model=Applications::model()->findByPk($id);
 		if($model===null)
-		{
-			echo 'Hello';	
 			throw new CHttpException(404,'The requested page does not exist.');
-		}	
 		return $model;
 	}
 

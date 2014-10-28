@@ -42,7 +42,7 @@ div#gender input
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'name'); ?>
+		
 	</div>
 
 
@@ -68,14 +68,14 @@ div#gender input
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'description'); ?>
+		
 	</div>
 
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'logo'); ?>
 		<?php echo $form->fileField($model,'logo'); ?>
-		<?php echo $form->error($model,'logo'); ?>
+		
 	</div>
 	<div class="row">
                 <?php echo $form->labelEx($media,'type'); ?>
@@ -94,7 +94,7 @@ div#gender input
         <div class="row">
                 <?php echo $form->labelEx($media,'filename'); ?>
                 <?php echo $form->fileField($media,'filename',array('size'=>60,'maxlength'=>128)); ?>
-                <?php echo $form->error($media,'filename'); ?>
+      
         </div>
 
 
@@ -157,23 +157,23 @@ div#gender input
 //	'enableAjaxValidation'=>false,
 //)); ?>
 
-	<?php //echo $form->errorSummary($entry); ?>
+	<?php echo $form->errorSummary($entry); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($entry,'file_name'); ?>
 		<?php echo $form->fileField($entry,'file_name',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($entry,'file_name'); ?>
+
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($entry,'version'); ?>
 		<?php echo $form->textField($entry,'version',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($entry,'version'); ?>
+
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($entry->isNewRecord && $model->isNewRecord ? 'Create' : 'Save'); ?>
-	       <?php echo CHtml::button('Cancel', array('submit' => array('admin'))); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	    
 
 	</div>
 

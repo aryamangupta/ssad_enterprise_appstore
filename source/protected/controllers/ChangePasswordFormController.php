@@ -36,17 +36,19 @@ class ChangePasswordFormController extends Controller{
 					$temp->update();
 					$this->redirect( Yii::app()->user->returnUrl );
 				}
-				else{
+				else{?>
+					<br><h1><?php echo 'New passwords do not match'; ?></h1><?php
 					$this->render('changePassword',array('model'=>$model));
-					echo 'Passwords do not match';
+					
 				}
 			}
-			else{
+			else{?><br><h1><?php 
+				echo 'Wrong Password'; ?></h1><?php
 				$this->render('changePassword',array('model'=>$model));
-				echo 'wrong password';
+				
 			}
 		}
-		else{
+			else{
 			$this->render('changePassword',array('model'=>$model));
 		}
 	}

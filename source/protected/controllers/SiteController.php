@@ -27,11 +27,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-	//	echo 'hello';
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$temp = Categories::model()->findAll();
-		//echo $temp->findByPk(1);
 		$this->render('index');
 	}
 
@@ -57,9 +54,9 @@ class SiteController extends Controller
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
 		{
+			$model->attributes=$_POST['ContactForm'];
 			if($model->validate())
 			{
-			$model->attributes=$_POST['ContactForm'];
 				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
 				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
 				$headers="From: $name <{$model->email}>\r\n".

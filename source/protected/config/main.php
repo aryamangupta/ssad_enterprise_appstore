@@ -7,8 +7,8 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
-
+	'name'=>'APP8IT',
+	'theme'=>'bootstrap',
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -38,7 +38,7 @@ return array(
 //			'class'=>'MyWebUser',
 		),
 		// uncomment the following to enable URLs in path-format
-	
+		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -47,7 +47,7 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		/*
+		*//*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),*/
@@ -57,7 +57,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=appstore',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'arya0048',
+			'password' => 'root',
 			'charset' => 'utf8',
 		),
 	        'authManager'=> array(

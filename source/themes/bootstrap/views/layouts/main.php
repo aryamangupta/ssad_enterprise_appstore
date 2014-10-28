@@ -2,21 +2,26 @@
 	Yii::app()->clientscript
 		// use it when you need it!
 		/*
-		->registerCssFile( Yii::app()->theme->baseUrl . '/css/bootstrap.css' )
-		->registerCssFile( Yii::app()->theme->baseUrl . '/css/bootstrap-responsive.css' )
+		->registerCssFile( Yii::app()->baseUrl . '/css/bootstrap.css' )
+		->registerCssFile( Yii::app()->baseUrl . '/css/bootstrap-responsive.css' )
+	//	->registerCssFile( Yii::app()->baseUrl . '/css/shop-homepage.css' )
 		->registerCoreScript( 'jquery' )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-transition.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-alert.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-modal.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-dropdown.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-scrollspy.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-tab.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-tooltip.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-popover.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-button.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-collapse.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-carousel.js', CClientScript::POS_END )
-		->registerScriptFile( Yii::app()->theme->baseUrl . '/js/bootstrap-typeahead.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-transition.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-alert.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-modal.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-dropdown.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-scrollspy.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-tab.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-tooltip.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-popover.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-button.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap.min.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/jquery-1.11.0.js', CClientScript::POS_END )
+		//>registerScriptFile( Yii::app()->baseUrl . '/js/shop-homepage.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-collapse.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-carousel.js', CClientScript::POS_END )
+		->registerScriptFile( Yii::app()->baseUrl . '/js/bootstrap-typeahead.js', CClientScript::POS_END )
 		*/
 ?>
 <!DOCTYPE html>
@@ -30,15 +35,39 @@
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <!-- Le styles -->
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/style.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/bootstrap1/css/bootstrap.min.css" media="screen, projection" >	
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/style.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
 <!-- Le fav and touch icons -->
-</head>
+
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+
+    <!-- Custom styles for this template -->
+    <!--link href="justified-nav.css" rel="stylesheet"-->
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--script src="ie-emulation-modes-warning.js"></script-->
+  </head>
+
+
+
 
 <body>
 
-	<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -46,9 +75,18 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="#"><?php echo "Appstore" ?></a>
+				<a class="brand "  href="#"><?php echo Yii::app()->name ?></a>
 				<div class="nav-collapse">
-					<?php $this->widget('zii.widgets.CMenu',array(
+					
+
+
+      <div class="masthead">
+        
+       
+
+
+
+<?php $this->widget('zii.widgets.CMenu',array(
 						'htmlOptions' => array( 'class' => 'nav' ),
 						'activeCssClass'	=> 'active',
 						'items'=>array(
@@ -72,13 +110,29 @@
 						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 						),
 					)); ?>
+
 					
+
+
+</div>
+
+
+
+
+
+		
 				</div><!--/.nav-collapse -->
 			</div>
 		</div>
 	</div>
 	
+
+	
+
 	<div class="cont">
+
+
+
 	<div class="container-fluid">
 	  <?php if(isset($this->breadcrumbs)):?>
 			<?php $this->widget('zii.widgets.CBreadcrumbs', array(
@@ -95,9 +149,46 @@
 	
 	<?php echo $content ?>
 	
-	
 	</div><!--/.fluid-container-->
+
+	</div>
+
+	<div class="extra">
+	  <div class="container">
+		<div class="row">
+			
+			</div> <!-- /row -->
+		</div> <!-- /container -->
 	</div>
 	
+	<div class="footer">
+	  <div class="container">
+		<div class="row">
+			<div id="footer-copyright" class="col-md-6">
+				About us | Contact us | Terms & Conditions
+			</div> <!-- /span6 -->
+			<div id="footer-terms" class="col-md-6">
+				copyright©App8IT. .
+			</div> <!-- /.span6 -->
+		 </div> <!-- /row -->
+	  </div> <!-- /container -->
+	</div>
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

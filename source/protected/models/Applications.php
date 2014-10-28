@@ -36,6 +36,7 @@ class Applications extends CActiveRecord
 	public $platform_search;
 	public $device_search;	
 	public $category_search;
+	public $shikha;
 	public function tableName()
 	{
 		return 'applications';
@@ -52,7 +53,7 @@ class Applications extends CActiveRecord
 				//			array('platform.name','length','max'=>64),
 				//			array('category.title','length','max'=>64),
 				//			array('device.type','length','max'=>64),
-				array('name, description, logo', 'required'),
+				array('name, description, logo,platform_id,device_id,category_id', 'required'),
 				array('user_id, category_id, platform_id, device_id, ndownloads', 'numerical', 'integerOnly'=>true),
 				array('name', 'length', 'max'=>128),
 				array('status', 'length', 'max'=>1),
@@ -85,7 +86,7 @@ class Applications extends CActiveRecord
 						'skipOnError'=>true,
 						'message'=>'Category compulsory!',
 				     ),
-				array(	'version', 'exist',
+			/*	array(	'version', 'exist',
 						'allowEmpty'=>false,
 						//				'on'=>'create,update',
 						'attributeName'=>'id',
@@ -93,8 +94,7 @@ class Applications extends CActiveRecord
 						'skipOnError'=>true,
 						'message'=>'Version compulsory!',
 				     ),
-
-
+*/
 				);
 	}
 
@@ -156,14 +156,18 @@ class Applications extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 		$criteria->together = true;
-		$criteria->with=array('device','platform','category');
+		$criteria->with=array('versions','device','platform','category');
 
 		$temp = Users::model()->findbyPk(Yii::app()->user->id);
-		if( $temp->role_id != 1 )
+	
+		
+		if( $temp->role_id == 2 )
 		{
 			$criteria->condition='t.user_id ='.Yii::app()->user->id;
 		}
-
+		if ( $temp->role_id == 3 ){
+			$criteria->compare('versions.status_id',2);
+		}
 		$criteria->compare('device.type',$this->device_search,true);
 		$criteria->compare('platform.name',$this->platform_search,true);
 		$criteria->compare('category.title',$this->category_search,true);
@@ -182,7 +186,66 @@ class Applications extends CActiveRecord
 					'criteria'=>$criteria,
 					));
 	}
+public function searchpendingdev()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
 
+		$criteria=new CDbCriteria;
+		$criteria->together = true;
+		
+		$criteria->with=array('versions','device','platform','category');
+
+	//	$temp = Users::model()->findbyPk(Yii::app()->user->id);
+		
+		$criteria->compare('versions.status_id',1);
+		$criteria->compare('device.type',$this->device_search,true);
+		$criteria->compare('platform.name',$this->platform_search,true);
+		$criteria->compare('category.title',$this->category_search,true);
+		$criteria->compare('t.id',$this->id);
+		$criteria->compare('t.name',$this->name,true);
+		$criteria->compare('t.user_id',$this->user_id);
+		$criteria->compare('t.category_id',$this->category_id);
+		$criteria->compare('t.description',$this->description,true);
+		$criteria->compare('t.status',$this->status,true);
+		$criteria->compare('t.logo',$this->logo,true);
+		$criteria->compare('t.platform_id',$this->platform_id);
+		$criteria->compare('t.device_id',$this->device_id);
+		$criteria->compare('t.ndownloads',$this->ndownloads);
+		$criteria->compare('t.dissabled_comments',$this->disabled_comments,true);
+		return new CActiveDataProvider($this, array(
+					'criteria'=>$criteria,
+					));
+	}
+	public function searchpendingrev()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+		$criteria->together = true;
+		
+		$criteria->with=array('versions','device','platform','category');
+
+	//	$temp = Users::model()->findbyPk(Yii::app()->user->id);
+		
+		$criteria->compare('versions.status_id',5);
+		$criteria->compare('device.type',$this->device_search,true);
+		$criteria->compare('platform.name',$this->platform_search,true);
+		$criteria->compare('category.title',$this->category_search,true);
+		$criteria->compare('t.id',$this->id);
+		$criteria->compare('t.name',$this->name,true);
+		$criteria->compare('t.user_id',$this->user_id);
+		$criteria->compare('t.category_id',$this->category_id);
+		$criteria->compare('t.description',$this->description,true);
+		$criteria->compare('t.status',$this->status,true);
+		$criteria->compare('t.logo',$this->logo,true);
+		$criteria->compare('t.platform_id',$this->platform_id);
+		$criteria->compare('t.device_id',$this->device_id);
+		$criteria->compare('t.ndownloads',$this->ndownloads);
+		$criteria->compare('t.dissabled_comments',$this->disabled_comments,true);
+		return new CActiveDataProvider($this, array(
+					'criteria'=>$criteria,
+					));
+	}
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

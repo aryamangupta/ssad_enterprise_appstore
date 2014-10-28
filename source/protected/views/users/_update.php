@@ -42,7 +42,6 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 
-		<?php echo CHtml::button('Cancel', array('submit' => array('view&id='.$model->id))); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

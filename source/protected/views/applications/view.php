@@ -8,14 +8,30 @@ $this->breadcrumbs=array(
 		);
 
 $this->menu=array(
-		array('label'=>'Create Applications', 'url'=>array('create')),
-		array('label'=>'Update Applications', 'url'=>array('updateApp', 'id'=>$model->id)),
+		array('label'=>'Create Applications', 'url'=>array('create'), 'visible'=>Yii::app()->user->checkAccess('reviewApp')),
+		array('label'=>'Update Applications', 'url'=>array('updateApp', 'id'=>$model->id), 'visible'=>Yii::app()->user->checkAccess('reviewApp')),
 		array('label'=>'Manage Applications', 'url'=>array('admin')),
 		);
 ?>
 
 <h1>View Application : <?php echo $model->name; ?></h1>
 
+<?php  $x =  ChecklistCategoryMap::model()->findAll();
+$count = 1;
+$a = "";
+$b = "";
+foreach ($x as $y): 
+if( $y->category_id==$model->category_id){
+$z=Checklists::model()->findByPk($y->checklist_id);
+ $a= $a  . $count . "." . ($z->title)."<br>" ;
+	$count = $count + 1;
+	
+} 
+
+endforeach; 
+
+$b=($a);
+?>
 <?php $this->widget('zii.widgets.CDetailView', array(
 			'data'=>$model,
 			'attributes'=>array(
@@ -54,9 +70,22 @@ $this->menu=array(
 
 				'ndownloads',
 				'disabled_comments',
-
+				array('name'=>'Checklist', 'header'=>'Checklist',
+					 'value'=>  $b),
 
 
 
 			),
 	)); ?>
+	<br>
+<?php
+    $temp = Users::model()->findbyPk(Yii::app()->user->id);
+	if ( $temp->role_id == 1 || $temp->role_id == 3 ){
+echo CHtml::beginForm(Yii::app()->createUrl('applications/view&id='.$model->id),'post');
+?>
+        <div class="row buttons">
+                <?php echo CHtml::submitButton('Approve',array('name'=>'button1')); ?>
+               <?php echo CHtml::submitButton('Reject', array('name'=>'button2')); ?>
+
+        </div>
+<?php echo CHtml::endForm(); }?>

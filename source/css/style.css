@@ -6,7 +6,10 @@
  *
  * Designed by Nachi
  */
- 
+div.hover{
+	
+} 
+
 body {
 	padding-top: 40px;
 
@@ -84,8 +87,8 @@ fieldset {
 form label{
 float: left;
 width: 140px;
-padding-top: 5px;
-text-align: right;
+padding-top: 3px;
+text-align: left;
 }
 form div {
 display:block;
@@ -189,8 +192,8 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   display: inline-block;
-  height: 18px;
-  padding: 4px;
+  height: 28px;
+  padding-left: 1%;
   margin-bottom: 9px;
   font-size: 13px;
   line-height: 18px;

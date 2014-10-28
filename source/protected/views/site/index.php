@@ -7,21 +7,8 @@
 ?>
     <div class="container">
 
-        <div class="row">
-			
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-    
-                <div class="list-group navbar">
-                <ul>
-                <?php $temp = Categories::model()->findAll(); ?>
-                <?php foreach ($temp as $x): ?>
-                <li>	<a href="#" class="list-group-item"><?= $x->title;?></a></li>
-                 <?php endforeach; ?>
-               </ul> </div>
-            </div>
 
-<div class="col-md-9">
+	<div class="col-md-12">
 
                 <div class="row carousel-holder">
 
@@ -34,62 +21,132 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+<?php $image = (Yii::app()->baseUrl.'/images/app1.jpg') ; ?>
+                                    <img class="slide-image" src="<?= $image ?>" alt="" style="width:100%;height:40%">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+<?php $image = (Yii::app()->baseUrl.'/images/app2.jpg') ; ?>
+                                    <img class="slide-image" src="<?= $image ?>" alt=""style="width:100%;height:40%" >
                                 </div>
+
+<?php $image = (Yii::app()->baseUrl.'/images/banner1.jpg') ; ?>
                                 <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                    <img class="slide-image" src="<?= $image ?>" alt="" style="width:100%;height:40%">
                                 </div>
                             </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
+                                               </div>
                     </div>
 
                 </div>
 
+	
+	</div>
+
+<div class="container">
+			<div class="row">
+        
+			
+            
+                <div class="col-md-9" >
+	
+	<?php $temp = Applications::model()->findAll(); ?>
+		<?php $y=0; ?>
+                <?php foreach ($temp as $x): ?>
+			<?php if($y == 5){?>
+			<?php	break; }?>
+			<?php if( $x->status == 1){?>
+			<?php $y=$y+1;?>	
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+				<?php $image = (Yii::app()->baseUrl.'/images/'.$x->logo) ; ?>
+				
+                            <img src= "<?= $image; ?>"  alt="" style="width:50%;height:40%">
+                            <div class="caption">
+                                <!--<h4 class="pull-right">$64.99</h4>-->
+                                <h4><a href="#"><?= $x->name;?></a>
+                                </h4>
+																<div style="width: 30; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
+                                <p><?= $x->description;?>.</p>
+																</div>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right"><?php $count=0; ?><?php $rev = Comments::model()->findAll();//findByAttributes(array('application_id'=>$x->id , 'status'=>1 )); ?>
+                <?php foreach ($rev as $z): ?>
+			<?php if( $z->application_id == $x->id && $z->status == 1){?>
+			<?php $count+=1;}?>
+		<?php endforeach; ?><?= $count?>	 reviews</p>
+                 reviews</p>
+                                <p>
+				
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+		<?php } ?>
+	 <?php endforeach; ?>
+                     
+
+                    
+            </div>
+<div class="col-md-3">
+                <p class="lead">Categories</p>
+    
+                <div class="list-group navbar">
+                <ul style="list-style:none">
+                <?php $temp = Categories::model()->findAll(); ?>
+                <?php foreach ($temp as $x): ?>
+                <li>	<a href="<?= '#'.$x->title;?>"href="#" class="list-group-item"><?= $x->title;?></a></li>
+                 <?php endforeach; ?>
+                </ul> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+<div class="container">
+
+<?php $temp = Categories::model()->findAll(); ?>
+<?php foreach ($temp as $category): ?>
+
+
+<h2><a id="<?= $category->title;?>" class="column"><?= $category->title;?></a></h2>
+              
+       
                 <div class="row">
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+	<?php $app = Applications::model()->findAll();//findByAttributes(array('category_id'=>$category->id , 'status'=>1 )); ?>
+		<?php $y=0; ?>
+                <?php foreach ($app as $x): ?>
+			<?php if($y == 5){?>
+			<?php	break; }?>
+			<?php if( $x->status == 1 && $x->category_id == $category->id){?>
+			<?php $y=$y+1;?>	
+                    <div class="col-sm-2 col-lg-2 col-md-2">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+				<?php $image = (Yii::app()->baseUrl.'/images/'.$x->logo) ; ?>
+				
+                            <img src= "<?= $image; ?>"  alt="" style="width:40%;height:20%">
                             <div class="caption">
-                                <h4 class="pull-right">$24.99</h4>
-                                <h4><a href="#">First Product</a>
+                                <h4><a href="#"><?= $x->name;?></a>
                                 </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                               
                             </div>
                             <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
+                                <p class="pull-right"><?php $rev = Comments::model()->findAll();//findByAttributes(array('application_id'=>$x->id , 'status'=>1 )); ?>
+		<?php $y=0; ?>
+                <?php foreach ($rev as $z): ?>
+			<?php if( $z->application_id == $x->id && $z->status == 1){?>
+			<?php $y=$y+1;}?>
+		<?php endforeach; ?><?= $y?>	 reviews</p>
                                 <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$64.99</h4>
-                                <h4><a href="#">Second Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">12 reviews</p>
-                                <p>
+				
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
@@ -99,95 +156,23 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$74.99</h4>
-                                <h4><a href="#">Third Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">31 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$84.99</h4>
-                                <h4><a href="#">Fourth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">6 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4><a href="#">Fifth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+		<?php } ?>
+	 <?php endforeach; ?>
+                     
 
                     
             </div>
 
-        </div>
+        
 
-    </div>
+   
+
+<?php endforeach; ?>
+       
+</div>
     <!-- /.container -->
 
-    <div class="container">
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
-
-    </div>
+  
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.0 -->
@@ -196,7 +181,11 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+  <div class="container">
 
+      
+
+       
 </div>
 
 

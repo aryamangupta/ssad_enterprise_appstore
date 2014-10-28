@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Manage Applications', 'url'=>array('admin') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
-	array('label'=>'Pending App (Reviewer)', 'url'=>array('create') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
+	array('label'=>'Pending App (Reviewer)', 'url'=>array('pendingrev') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
 
 
 );
@@ -47,7 +47,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	$inactive = 'inactive'; 
 	$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'applications-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->searchpendingdev(),
 	'filter'=>$model,
 	'columns'=>array(
 		
