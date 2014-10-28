@@ -18,18 +18,17 @@ $this->menu=array(
 
 <?php  $x =  ChecklistCategoryMap::model()->findAll();
 $count = 1;
-$a = "";
+$a = "<ul>";
 $b = "";
 foreach ($x as $y): 
 if( $y->category_id==$model->category_id){
 $z=Checklists::model()->findByPk($y->checklist_id);
- $a= $a  . $count . "." . ($z->title)."<br>" ;
-	$count = $count + 1;
-	
+ $a= $a."<li>" . ($z->title)."</li>" ;
+
 } 
 
 endforeach; 
-
+$a = $a."</ul>";
 $b=($a);
 ?>
 <?php $this->widget('zii.widgets.CDetailView', array(
@@ -70,14 +69,16 @@ $b=($a);
 
 				'ndownloads',
 				'disabled_comments',
-				array('name'=>'Checklist', 'header'=>'Checklist',
-					 'value'=>  $b),
+		//		array('name'=>'Checklist', 'header'=>'Checklist',
+		//			 'value'=>  $b),
 
 
 
 			),
 	)); ?>
 	<br>
+<h4> Checklists : </h4>
+<?php echo $b ?>
 <?php
     $temp = Users::model()->findbyPk(Yii::app()->user->id);
 	if ( $temp->role_id == 1 || $temp->role_id == 3 ){

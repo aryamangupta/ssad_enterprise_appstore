@@ -60,7 +60,7 @@ class UsersController extends Controller
 	public function actionCreate()
 	{
 		$model=new Users;
-
+		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -70,14 +70,27 @@ class UsersController extends Controller
 			$model->create_date = date_create()->format('Y-m-d H:i:s');
 			$model->modified_date= date_create()->format('Y-m-d H:i:s');
 			$model->modified_date= date_create()->format('Y-m-d H:i:s');
-		 	$model->reset_password_date =	date_create()->format('Y-m-d H:i:s');
-
+			$model->reset_password_date =	date_create()->format('Y-m-d H:i:s');
+			$temp = [];
+			$count = 0;
+			foreach ($model->activation_key as $y):
+				$temp[$count] = $y;$count += 1;
+			endforeach;
+			
 			$model->activation_key = 0;
 			if($model->save()){
 				$auth = Yii::app()->authManager;
 				$auth->assign(Roles::model()->findByPk($model->role_id)->role,$model->id);
+				foreach( $temp as $t ):
+					$revCat = new CategoryReviewerMapping;
+					$revCat->user_id = $model->id;
+					$revCat->category_id = $t;
+					$revCat->save();
+				
+				endforeach;
 				$this->redirect(array('admin','id'=>$model->id));
 			}
+			else{ $model->delete();}
 		}
 
 		$this->render('create',array(

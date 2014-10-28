@@ -74,21 +74,29 @@ class ApplicationsController extends Controller
 
 			}	
 			else{
-			$this->render('view',array(
-						'model'=>$this->loadModel($id),
-					));
+				$this->render('view',array(
+							'model'=>$this->loadModel($id),
+							));
+			}
+
 		}
-	
-		}
-			if ( $temp->role_id == 1 ){
+		if ( $temp->role_id == 1 ){
+			$newEntry = new Versions;
+			$newEntry->application_id = $id;
+			$newEntry->file_name = $entry->file_name;
+			$newEntry->version = $entry->version;
+			$newEntry->create_date = date_create()->format('Y-m-d H:i:s');
+			$newEntry->reviewer_id = 1;
+
 			$entry =  Versions::model()->findByAttributes(array('application_id' => $id));	
 			$app = Applications::model()->findByAttributes(array('id' => $id));	
 			if(isset($_POST['button1']))
 			{
-				if ( $entry->status_id == 1 )
-					$entry->status_id = 2;
+				if ( $entry->status_id == 1 ){
+					$newEntry->status_id = 5;
+				}
 				else{
-					$entry->status_id = 6;	
+					$newEntry->status_id = 6;	
 					$app->status = 1;
 				}
 				$entry->update();
@@ -96,6 +104,7 @@ class ApplicationsController extends Controller
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
 							));
+				$newEntry->save();
 
 			}
 			if(isset($_POST['button2']))
@@ -106,19 +115,19 @@ class ApplicationsController extends Controller
 							'model'=>$this->loadModel($id),
 							));
 
-
+				$newEntry->save();
 			}	
 			else{
-			$this->render('view',array(
-						'model'=>$this->loadModel($id),
-					));
-		}
-	
+				$this->render('view',array(
+							'model'=>$this->loadModel($id),
+							));
+			}
+
 		}
 		else{
 			$this->render('view',array(
 						'model'=>$this->loadModel($id),
-					));
+						));
 		}
 	}
 
@@ -156,7 +165,7 @@ class ApplicationsController extends Controller
 			$entry->status_id = 1; //default
 			$media->status = '0';	
 			$test = 1;
-			if ( $model->save() ){
+			if ( $model->save()  ){
 				$media->application_id = $model->id;
 				$entry->application_id =$model->id;
 				if ( $media->save() && $entry->save() ) {
@@ -166,6 +175,9 @@ class ApplicationsController extends Controller
 					$this->redirect(Yii::app()->createUrl('/applications/view', array('id' => $model->id)));
 				}
 				else {
+					$model->delete();
+					$media->delete();
+					$entry->delete();	
 					$this->render('create',array(
 								'model'=>$model,'entry'=>$entry,'media'=>$media
 								));
@@ -175,6 +187,7 @@ class ApplicationsController extends Controller
 
 
 			else {
+				
 				$this->render('create',array(
 							'model'=>$model,'entry'=>$entry,'media'=>$media
 							));

@@ -3,9 +3,12 @@
 /* @var $model Users */
 /* @var $form CActiveForm */
 ?>
-
+<?php  
+  $baseUrl = Yii::app()->baseUrl; 
+  $cs = Yii::app()->getClientScript();
+  $cs->registerScriptFile($baseUrl.'/js/myscript.js');
+?>
 <div class="form">
-
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'users-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
@@ -62,6 +65,7 @@
 			array(
 				'class'=> 'my-drop-down',
 				'prompt'=> 'Select',
+				'onchange'=>'return muFun(this.value)',
 			)
 		);
 	?>
@@ -69,13 +73,29 @@
 
 	</div>
 
-<!---
-	<div class="row">
-		<?php echo $form->labelEx($model,'activation_key'); ?>
-		<?php echo $form->textField($model,'activation_key',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'activation_key'); ?>
-	</div>
---!>
+<div id="TLID_DIV" style="display:none">
+  <div class="row">
+                <?php
+                echo $form->labelEx($model,'activation_key');
+                echo $form->checkBoxList(
+                        $model,'activation_key',
+                        CHtml::listData(
+                                Categories::model()->findAll(),
+                                'id',
+                                'title'
+                        ),
+                        array(
+                              //  'class'=> 'my-drop-down',
+               //                 'prompt'=>'Select',
+				'separator'=>'',
+  	//			'template'=>'<tr><td >{label}</td><td>{input}</td></tr>'
+
+
+                        )
+                );
+        ?>
+</div>
+</div>
 	<div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>
 		<?php echo $form->dropDownList($model,'status',array('prompt'=> 'Select','1'=>'Activate','0'=>'Deactivate'));
