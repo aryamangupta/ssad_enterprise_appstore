@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 		);
 
 $this->menu=array(
-		array('label'=>'Create Applications', 'url'=>array('create'), 'visible'=>Yii::app()->user->checkAccess('reviewApp')),
-		array('label'=>'Update Applications', 'url'=>array('updateApp', 'id'=>$model->id), 'visible'=>Yii::app()->user->checkAccess('reviewApp')),
+		array('label'=>'Create Applications', 'url'=>array('create'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
+		array('label'=>'Update Applications', 'url'=>array('updateApp', 'id'=>$model->id), 'visible'=>Yii::app()->user->checkAccess('createApp')),
 		array('label'=>'Manage Applications', 'url'=>array('admin')),
 		);
 ?>

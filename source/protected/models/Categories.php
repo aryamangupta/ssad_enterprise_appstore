@@ -110,7 +110,6 @@ class Categories extends CActiveRecord
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('modified_date',$this->modified_date,true);
-
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

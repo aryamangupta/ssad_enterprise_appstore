@@ -6926,3 +6926,1009 @@ Stack trace:
 REQUEST_URI=/finalcopy/index.php?r=users/create
 HTTP_REFERER=http://localhost/finalcopy/index.php?r=users/create
 ---
+2014/10/28 17:20:58 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (158)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 17:23:14 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (160)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 17:23:19 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (160)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 17:24:19 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (160)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 17:54:11 [error] [php] Undefined variable: entry (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:87)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=4
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (87)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 17:55:04 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:87)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=4
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (87)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 17:55:09 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:87)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=4
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (87)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 17:55:58 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:85)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=4
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (85)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:15:33 [error] [php] Invalid argument supplied for foreach() (/Users/newuser/Sites/finalcopy/protected/controllers/UsersController.php:76)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): UsersController->runAction()
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): UsersController->filterAccessControl()
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): UsersController->runActionWithFilters()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): UsersController->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=users/create
+in /Users/newuser/Sites/finalcopy/protected/controllers/UsersController.php (76)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:18:25 [error] [exception.CException] exception 'CException' with message 'Property "Users.user_id" is not defined.' in /Users/newuser/Sites/finalcopy/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/db/ar/CActiveRecord.php(145): CComponent->__get('user_id')
+#1 /Users/newuser/Sites/finalcopy/protected/controllers/UsersController.php(76): CActiveRecord->__get('user_id')
+#2 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(49): UsersController->actionCreate()
+#3 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('create')
+#12 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('users/create')
+#13 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/finalcopy/index.php?r=users/create
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=users/create
+---
+2014/10/28 18:21:24 [error] [php] Invalid argument supplied for foreach() (/Users/newuser/Sites/finalcopy/protected/controllers/UsersController.php:77)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): UsersController->runAction()
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): UsersController->filterAccessControl()
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): UsersController->runActionWithFilters()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): UsersController->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=users/create
+in /Users/newuser/Sites/finalcopy/protected/controllers/UsersController.php (77)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:32:17 [error] [php] Array to string conversion (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:119)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=11
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (119)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:36:15 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (175)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:37:37 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (175)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:42:26 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:87)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=9
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (87)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:42:40 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:87)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=9
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (87)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:43:59 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:91)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=9
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (91)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:44:00 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:91)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=9
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (91)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:46:28 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:112)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=11
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (112)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:48:11 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:112)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=12
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (112)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:49:58 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (176)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:52:24 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:112)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=11
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (112)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 18:53:45 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:116)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=11
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (116)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 19:06:46 [error] [php] Trying to get property of non-object (/Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php:107)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#10 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=11
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (107)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 19:49:54 [error] [php] Undefined offset: 0 (/Users/newuser/Sites/finalcopy/protected/models/Applications.php:208)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/CBaseController.php(95): ApplicationsController->renderInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(869): ApplicationsController->renderFile()
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(782): ApplicationsController->renderPartial()
+#3 /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php(362): ApplicationsController->render()
+#4 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(49): ApplicationsController->actionPendingdev()
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#10 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#13 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#14 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/pendingdev
+in /Users/newuser/Sites/finalcopy/protected/models/Applications.php (208)
+in /Users/newuser/Sites/finalcopy/protected/views/applications/pendingdev.php (50)
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (362)
+2014/10/28 19:54:38 [error] [php] Undefined offset: 0 (/Users/newuser/Sites/finalcopy/protected/models/Applications.php:201)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/CBaseController.php(95): ApplicationsController->renderInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(869): ApplicationsController->renderFile()
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(782): ApplicationsController->renderPartial()
+#3 /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php(362): ApplicationsController->render()
+#4 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(49): ApplicationsController->actionPendingdev()
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#10 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#13 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#14 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/pendingdev
+in /Users/newuser/Sites/finalcopy/protected/models/Applications.php (201)
+in /Users/newuser/Sites/finalcopy/protected/views/applications/pendingdev.php (50)
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (362)
+2014/10/28 20:03:29 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Login Required' in /Users/newuser/Sites/finalcopy/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('pendingdev')
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/pe...')
+#10 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/finalcopy/index.php?Applications%5Bname%5D=a&Applications%5Bdescription%5D=&Applications%5Bstatus%5D=&Applications%5Bdevice_search%5D=&Applications%5Bcategory_search%5D=&Applications%5Bplatform_search%5D=&Applications%5Blogo%5D=&Applications_page=1&ajax=applications-grid&r=applications%2Fpendingdev
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/pendingdev
+---
+2014/10/28 20:03:33 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Login Required' in /Users/newuser/Sites/finalcopy/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('pendingdev')
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/pe...')
+#10 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/finalcopy/index.php?Applications%5Bname%5D=a&Applications%5Bdescription%5D=&Applications%5Bstatus%5D=&Applications%5Bdevice_search%5D=&Applications%5Bcategory_search%5D=&Applications%5Bplatform_search%5D=&Applications%5Blogo%5D=&Applications_page=1&ajax=applications-grid&r=applications%2Fpendingdev
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/pendingdev
+---
+2014/10/28 20:03:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Login Required' in /Users/newuser/Sites/finalcopy/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#2 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#7 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('pendingdev')
+#9 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/pe...')
+#10 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/finalcopy/index.php?Applications%5Bname%5D=a&Applications%5Bdescription%5D=s&Applications%5Bstatus%5D=&Applications%5Bdevice_search%5D=&Applications%5Bcategory_search%5D=&Applications%5Bplatform_search%5D=&Applications%5Blogo%5D=&Applications_page=1&ajax=applications-grid&r=applications%2Fpendingdev
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/pendingdev
+---
+2014/10/28 20:12:44 [warning] [application] Failed to set unsafe attribute "device_search" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (358)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 20:12:44 [warning] [application] Failed to set unsafe attribute "category_search" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (358)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 20:12:44 [warning] [application] Failed to set unsafe attribute "platform_search" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (358)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 20:12:44 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (358)
+in /Users/newuser/Sites/finalcopy/index.php (13)
+2014/10/28 20:14:41 [error] [php] Undefined variable: t (/Users/newuser/Sites/finalcopy/protected/models/Applications.php:213)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/CBaseController.php(95): ApplicationsController->renderInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(869): ApplicationsController->renderFile()
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(782): ApplicationsController->renderPartial()
+#3 /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php(362): ApplicationsController->render()
+#4 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(49): ApplicationsController->actionPendingdev()
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#10 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#13 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#14 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/pendingdev
+in /Users/newuser/Sites/finalcopy/protected/models/Applications.php (213)
+in /Users/newuser/Sites/finalcopy/protected/views/applications/pendingdev.php (50)
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (362)
+2014/10/28 20:14:50 [error] [php] Undefined variable: t (/Users/newuser/Sites/finalcopy/protected/models/Applications.php:213)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/CBaseController.php(95): ApplicationsController->renderInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(869): ApplicationsController->renderFile()
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(782): ApplicationsController->renderPartial()
+#3 /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php(362): ApplicationsController->render()
+#4 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(49): ApplicationsController->actionPendingdev()
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#10 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#13 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#14 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/pendingdev
+in /Users/newuser/Sites/finalcopy/protected/models/Applications.php (213)
+in /Users/newuser/Sites/finalcopy/protected/views/applications/pendingdev.php (50)
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (362)
+2014/10/28 20:14:53 [error] [php] Undefined variable: t (/Users/newuser/Sites/finalcopy/protected/models/Applications.php:213)
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/CBaseController.php(95): ApplicationsController->renderInternal()
+#1 /Users/newuser/Sites/finalcopy/framework/web/CController.php(869): ApplicationsController->renderFile()
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(782): ApplicationsController->renderPartial()
+#3 /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php(362): ApplicationsController->render()
+#4 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(49): ApplicationsController->actionPendingdev()
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#10 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#13 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#14 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Users/newuser/Sites/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/finalcopy/index.php?r=applications/pendingdev
+in /Users/newuser/Sites/finalcopy/protected/models/Applications.php (213)
+in /Users/newuser/Sites/finalcopy/protected/views/applications/pendingdev.php (50)
+in /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php (362)
+2014/10/28 20:26:45 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('update')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('users/update')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=users/update&id=19
+HTTP_REFERER=http://localhost/finalcopy/index.php
+---
+2014/10/28 20:26:47 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('update')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('users/update')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=users/update&id=19
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=changePasswordForm/changePassword
+---
+2014/10/28 20:26:52 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('update')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('users/update')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=users/update&id=19
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=site/index
+---
+2014/10/28 20:26:56 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('update')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('users/update')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=users/update&id=19
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=site/contact
+---
+2014/10/28 20:27:00 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('update')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('users/update')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=users/update&id=19
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=changePasswordForm/changePassword
+---
+2014/10/28 20:27:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('update')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('users/update')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=users/update&id=19
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=changePasswordForm/changePassword
+---
+2014/10/28 20:27:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('update')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('users/update')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=users/update&id=19
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=changePasswordForm/changePassword
+---
+2014/10/28 20:27:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('update')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('users/update')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=users/update&id=19
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=changePasswordForm/changePassword
+---
+2014/10/28 20:31:04 [error] [exception.CException] exception 'CException' with message 'Property "Versions.role_id" is not defined.' in /Users/newuser/Sites/finalcopy/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/db/ar/CActiveRecord.php(145): CComponent->__get('role_id')
+#1 /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php(90): CActiveRecord->__get('role_id')
+#2 [internal function]: ApplicationsController->actionView('13')
+#3 /Users/newuser/Sites/finalcopy/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ApplicationsController), Array)
+#4 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ApplicationsController), Object(ReflectionMethod), Array)
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('view')
+#14 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/vi...')
+#15 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=13
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/admin
+---
+2014/10/28 20:31:17 [error] [exception.CException] exception 'CException' with message 'Property "Versions.role_id" is not defined.' in /Users/newuser/Sites/finalcopy/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/db/ar/CActiveRecord.php(145): CComponent->__get('role_id')
+#1 /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php(90): CActiveRecord->__get('role_id')
+#2 [internal function]: ApplicationsController->actionView('13')
+#3 /Users/newuser/Sites/finalcopy/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ApplicationsController), Array)
+#4 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ApplicationsController), Object(ReflectionMethod), Array)
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('view')
+#14 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/vi...')
+#15 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=13
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/view&id=13
+---
+2014/10/28 20:31:35 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('create')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/cr...')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=applications/create
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/pendingrev
+---
+2014/10/28 20:31:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('create')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/cr...')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=applications/create
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/pendingrev
+---
+2014/10/28 20:32:38 [error] [exception.CException] exception 'CException' with message 'Property "Versions.role_id" is not defined.' in /Users/newuser/Sites/finalcopy/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/db/ar/CActiveRecord.php(145): CComponent->__get('role_id')
+#1 /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php(90): CActiveRecord->__get('role_id')
+#2 [internal function]: ApplicationsController->actionView('11')
+#3 /Users/newuser/Sites/finalcopy/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ApplicationsController), Array)
+#4 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ApplicationsController), Object(ReflectionMethod), Array)
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('view')
+#14 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/vi...')
+#15 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=11
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/admin
+---
+2014/10/28 20:32:39 [error] [exception.CException] exception 'CException' with message 'Property "Versions.role_id" is not defined.' in /Users/newuser/Sites/finalcopy/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/db/ar/CActiveRecord.php(145): CComponent->__get('role_id')
+#1 /Users/newuser/Sites/finalcopy/protected/controllers/ApplicationsController.php(90): CActiveRecord->__get('role_id')
+#2 [internal function]: ApplicationsController->actionView('11')
+#3 /Users/newuser/Sites/finalcopy/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ApplicationsController), Array)
+#4 /Users/newuser/Sites/finalcopy/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ApplicationsController), Object(ReflectionMethod), Array)
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('view')
+#14 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/vi...')
+#15 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/finalcopy/index.php?r=applications/view&id=11
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/view&id=11
+---
+2014/10/28 20:36:26 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(282): CController->run('create')
+#8 /Users/newuser/Sites/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/cr...')
+#9 /Users/newuser/Sites/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/finalcopy/index.php?r=applications/create
+HTTP_REFERER=http://localhost/finalcopy/index.php?r=applications/pendingrev
+---
+2014/10/29 10:14:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/html/yii/finalcopy/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/html/yii/finalcopy/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/html/yii/finalcopy/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/html/yii/finalcopy/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/html/yii/finalcopy/framework/base/CApplication.php(450): CModule->getComponent('db')
+#4 /var/www/html/yii/finalcopy/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /var/www/html/yii/finalcopy/framework/db/ar/CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 /var/www/html/yii/finalcopy/framework/db/ar/CActiveRecord.php(1469): CActiveRecord->getCommandBuilder()
+#7 /var/www/html/yii/finalcopy/protected/views/site/index.php(52): CActiveRecord->findAll()
+#8 /var/www/html/yii/finalcopy/framework/web/CBaseController.php(126): require('/var/www/html/y...')
+#9 /var/www/html/yii/finalcopy/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/html/y...', NULL, true)
+#10 /var/www/html/yii/finalcopy/framework/web/CController.php(869): CBaseController->renderFile('/var/www/html/y...', NULL, true)
+#11 /var/www/html/yii/finalcopy/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#12 /var/www/html/yii/finalcopy/protected/controllers/SiteController.php(32): CController->render('index')
+#13 /var/www/html/yii/finalcopy/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#14 /var/www/html/yii/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#15 /var/www/html/yii/finalcopy/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#16 /var/www/html/yii/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(282): CController->run('')
+#18 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#19 /var/www/html/yii/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#20 /var/www/html/yii/finalcopy/index.php(13): CApplication->run()
+#21 {main}
+REQUEST_URI=/yii/finalcopy/
+---
+2014/10/29 10:14:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /var/www/html/yii/finalcopy/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/html/yii/finalcopy/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/html/yii/finalcopy/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/html/yii/finalcopy/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/html/yii/finalcopy/framework/base/CApplication.php(450): CModule->getComponent('db')
+#4 /var/www/html/yii/finalcopy/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /var/www/html/yii/finalcopy/framework/db/ar/CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 /var/www/html/yii/finalcopy/framework/db/ar/CActiveRecord.php(1469): CActiveRecord->getCommandBuilder()
+#7 /var/www/html/yii/finalcopy/protected/views/site/index.php(52): CActiveRecord->findAll()
+#8 /var/www/html/yii/finalcopy/framework/web/CBaseController.php(126): require('/var/www/html/y...')
+#9 /var/www/html/yii/finalcopy/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/html/y...', NULL, true)
+#10 /var/www/html/yii/finalcopy/framework/web/CController.php(869): CBaseController->renderFile('/var/www/html/y...', NULL, true)
+#11 /var/www/html/yii/finalcopy/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#12 /var/www/html/yii/finalcopy/protected/controllers/SiteController.php(32): CController->render('index')
+#13 /var/www/html/yii/finalcopy/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#14 /var/www/html/yii/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#15 /var/www/html/yii/finalcopy/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#16 /var/www/html/yii/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(282): CController->run('')
+#18 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#19 /var/www/html/yii/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#20 /var/www/html/yii/finalcopy/index.php(13): CApplication->run()
+#21 {main}
+REQUEST_URI=/yii/finalcopy/
+---
+2014/10/29 10:15:43 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(282): CController->run('create')
+#8 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/cr...')
+#9 /var/www/html/yii/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/finalcopy/index.php?r=applications/create
+HTTP_REFERER=http://localhost/yii/finalcopy/index.php?r=applications/pendingrev
+---
+2014/10/29 10:15:51 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(282): CController->run('create')
+#8 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/cr...')
+#9 /var/www/html/yii/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/finalcopy/index.php?r=applications/create
+HTTP_REFERER=http://localhost/yii/finalcopy/index.php?r=applications/pendingrev
+---
+2014/10/29 10:19:15 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (192)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 10:19:19 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (192)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 10:20:07 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (192)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 10:20:40 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (192)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 10:20:40 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Hello kity' for key 'name'. The SQL statement executed was: INSERT INTO `applications` (`status`, `name`, `category_id`, `description`, `platform_id`, `device_id`, `user_id`, `ndownloads`, `disabled_comments`, `logo`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9).
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (209)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 10:20:55 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (192)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 10:21:10 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (192)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 10:21:49 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (192)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 10:22:06 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (192)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 10:36:04 [error] [php] Object of class Categories could not be converted to string (/var/www/html/yii/finalcopy/protected/models/Categories.php:113)
+Stack trace:
+#0 /var/www/html/yii/finalcopy/framework/web/CBaseController.php(95): CategoriesController->renderInternal()
+#1 /var/www/html/yii/finalcopy/framework/web/CController.php(869): CategoriesController->renderFile()
+#2 /var/www/html/yii/finalcopy/framework/web/CController.php(782): CategoriesController->renderPartial()
+#3 /var/www/html/yii/finalcopy/protected/controllers/CategoriesController.php(140): CategoriesController->render()
+#4 /var/www/html/yii/finalcopy/framework/web/actions/CInlineAction.php(49): CategoriesController->actionAdmin()
+#5 /var/www/html/yii/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(133): CategoriesController->runAction()
+#7 /var/www/html/yii/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/html/yii/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /var/www/html/yii/finalcopy/framework/web/filters/CInlineFilter.php(58): CategoriesController->filterAccessControl()
+#10 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /var/www/html/yii/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /var/www/html/yii/finalcopy/framework/web/CController.php(265): CategoriesController->runActionWithFilters()
+#13 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(282): CategoriesController->run()
+#14 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /var/www/html/yii/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /var/www/html/yii/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/finalcopy/index.php?r=categories/admin
+in /var/www/html/yii/finalcopy/protected/models/Categories.php (113)
+in /var/www/html/yii/finalcopy/protected/views/categories/admin.php (45)
+in /var/www/html/yii/finalcopy/protected/controllers/CategoriesController.php (140)
+2014/10/29 10:37:13 [error] [php] Trying to get property of non-object (/var/www/html/yii/finalcopy/protected/models/Categories.php:114)
+Stack trace:
+#0 /var/www/html/yii/finalcopy/framework/web/CBaseController.php(95): CategoriesController->renderInternal()
+#1 /var/www/html/yii/finalcopy/framework/web/CController.php(869): CategoriesController->renderFile()
+#2 /var/www/html/yii/finalcopy/framework/web/CController.php(782): CategoriesController->renderPartial()
+#3 /var/www/html/yii/finalcopy/protected/controllers/CategoriesController.php(140): CategoriesController->render()
+#4 /var/www/html/yii/finalcopy/framework/web/actions/CInlineAction.php(49): CategoriesController->actionAdmin()
+#5 /var/www/html/yii/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(133): CategoriesController->runAction()
+#7 /var/www/html/yii/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/html/yii/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /var/www/html/yii/finalcopy/framework/web/filters/CInlineFilter.php(58): CategoriesController->filterAccessControl()
+#10 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /var/www/html/yii/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /var/www/html/yii/finalcopy/framework/web/CController.php(265): CategoriesController->runActionWithFilters()
+#13 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(282): CategoriesController->run()
+#14 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /var/www/html/yii/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /var/www/html/yii/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/finalcopy/index.php?r=categories/admin
+in /var/www/html/yii/finalcopy/protected/models/Categories.php (114)
+in /var/www/html/yii/finalcopy/protected/views/categories/admin.php (45)
+in /var/www/html/yii/finalcopy/protected/controllers/CategoriesController.php (140)
+2014/10/29 10:40:42 [error] [php] Trying to get property of non-object (/var/www/html/yii/finalcopy/protected/models/Categories.php:114)
+Stack trace:
+#0 /var/www/html/yii/finalcopy/framework/web/CBaseController.php(95): CategoriesController->renderInternal()
+#1 /var/www/html/yii/finalcopy/framework/web/CController.php(869): CategoriesController->renderFile()
+#2 /var/www/html/yii/finalcopy/framework/web/CController.php(782): CategoriesController->renderPartial()
+#3 /var/www/html/yii/finalcopy/protected/controllers/CategoriesController.php(140): CategoriesController->render()
+#4 /var/www/html/yii/finalcopy/framework/web/actions/CInlineAction.php(49): CategoriesController->actionAdmin()
+#5 /var/www/html/yii/finalcopy/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(133): CategoriesController->runAction()
+#7 /var/www/html/yii/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/html/yii/finalcopy/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /var/www/html/yii/finalcopy/framework/web/filters/CInlineFilter.php(58): CategoriesController->filterAccessControl()
+#10 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /var/www/html/yii/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#12 /var/www/html/yii/finalcopy/framework/web/CController.php(265): CategoriesController->runActionWithFilters()
+#13 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(282): CategoriesController->run()
+#14 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /var/www/html/yii/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /var/www/html/yii/finalcopy/index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/finalcopy/index.php?r=categories/admin
+in /var/www/html/yii/finalcopy/protected/models/Categories.php (114)
+in /var/www/html/yii/finalcopy/protected/views/categories/admin.php (45)
+in /var/www/html/yii/finalcopy/protected/controllers/CategoriesController.php (140)
+2014/10/29 11:27:04 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/html/yii/finalcopy/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/html/yii/finalcopy/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /var/www/html/yii/finalcopy/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/html/yii/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/html/yii/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/html/yii/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/html/yii/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(282): CController->run('create')
+#8 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/cr...')
+#9 /var/www/html/yii/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/html/yii/finalcopy/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/yii/finalcopy/index.php?r=applications/create
+HTTP_REFERER=http://localhost/yii/finalcopy/index.php?r=applications/view&id=110
+---
+2014/10/29 11:31:04 [warning] [application] Failed to set unsafe attribute "logo" of "Applications".
+in /var/www/html/yii/finalcopy/protected/controllers/ApplicationsController.php (337)
+in /var/www/html/yii/finalcopy/index.php (13)
+2014/10/29 11:38:52 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/html/yii/finalcopy/framework/web/CController.php:1118
+Stack trace:
+#0 /var/www/html/yii/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#1 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 /var/www/html/yii/finalcopy/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/html/yii/finalcopy/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/html/yii/finalcopy/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/html/yii/finalcopy/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/html/yii/finalcopy/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/html/yii/finalcopy/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(282): CController->run('delete')
+#9 /var/www/html/yii/finalcopy/framework/web/CWebApplication.php(141): CWebApplication->runController('checklists/dele...')
+#10 /var/www/html/yii/finalcopy/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/html/yii/finalcopy/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/yii/finalcopy/index.php?r=checklists/delete&id=2
+HTTP_REFERER=http://localhost/yii/finalcopy/index.php?r=checklists/admin
+---

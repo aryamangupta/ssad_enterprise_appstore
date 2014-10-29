@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Manage Applications', 'url'=>array('admin') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
-	array('label'=>'Pending App (Reviewer)', 'url'=>array('create') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
+	array('label'=>'Pending App (Developer)', 'url'=>array('pendingdev') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
 
 
 );

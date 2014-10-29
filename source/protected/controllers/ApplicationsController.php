@@ -31,7 +31,7 @@ class ApplicationsController extends Controller
 					'roles'=>array('developer'),
 				     ),
 				array('allow',  // allow all users to perform 'index' and 'view' actions
-					'actions'=>array('index','view','admin',),
+					'actions'=>array('index','view','admin','pendingrev'),
 					'roles'=>array('qa analyst'),
 				     ),
 
@@ -51,26 +51,42 @@ class ApplicationsController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$temp = Users::model()->findbyPk(Yii::app()->user->id);
-		if ( $temp->role_id == 3 ){
-			$entry =  Versions::model()->findByAttributes(array('application_id' => $id));	
+		$user = Users::model()->findbyPk(Yii::app()->user->id);
+		$entry_versions =  Versions::model()->findAllByAttributes(array('application_id' => $id));
+		$t = 0;
+		foreach( $entry_versions as $temp ):
+			if ( $temp->id > $t )// && ($temp->status_id != 2))
+			$t = $temp->id;
+		endforeach;
+		$entry_versions =  Versions::model()->findbyPk($t);	
+		if ( $user->role_id == 3 && $entry_versions->status_id == 2 ){
+			$newEntry_admin = new Versions;
+			$newEntry_admin->application_id = $id;
+			$newEntry_admin->version = $entry_versions->version;
+			$newEntry_admin->create_date = date_create()->format('Y-m-d H:i:s');
+			$newEntry_admin->reviewer_id = 1;
+			$newEntry_admin->file_name = $entry_versions->file_name;
 			if(isset($_POST['button1']))
 			{
-				$entry->status_id = 5;
-				$entry->update();
+				$entry_versions->status_id = 3;
+				$entry_versions->update();
+				$newEntry_admin->status_id = 5;	
+				$newEntry_admin->save();
+
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
 							));
 
 			}
-			if(isset($_POST['button2']))
+			else if(isset($_POST['button2']))
 			{
-				$entry->status_id = 7;
-				$entry->update();
+				$entry_versions->status_id = 4;
+				$entry_versions->update();	
+				$newEntry_admin->status_id = 7;	
+				$newEntry_admin->save();
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
 							));
-
 
 			}	
 			else{
@@ -80,42 +96,53 @@ class ApplicationsController extends Controller
 			}
 
 		}
-		if ( $temp->role_id == 1 ){
-			$newEntry = new Versions;
-			$newEntry->application_id = $id;
-			$newEntry->file_name = $entry->file_name;
-			$newEntry->version = $entry->version;
-			$newEntry->create_date = date_create()->format('Y-m-d H:i:s');
-			$newEntry->reviewer_id = 1;
-
-			$entry =  Versions::model()->findByAttributes(array('application_id' => $id));	
+		if ( $user->role_id == 1 &&( $entry_versions->status_id == 1 || $entry_versions->status_id == 5)){
 			$app = Applications::model()->findByAttributes(array('id' => $id));	
 			if(isset($_POST['button1']))
 			{
-				if ( $entry->status_id == 1 ){
-					$newEntry->status_id = 5;
+				if ( $entry_versions->status_id == 1 ){	
+					$newEntry_rev = new Versions;
+					$newEntry_rev->status_id = 2;
+					$newEntry_rev->application_id = $id;
+					$newEntry_rev->file_name = $entry_versions->file_name;
+					$newEntry_rev->version = $entry_versions->version;
+					$newEntry_rev->create_date = date_create()->format('Y-m-d H:i:s');
+					$cats =  CategoryReviewerMapping::model()->findAllByAttributes(array('category_id' => $app->category_id));
+					$rev = [];
+					$count = 0;
+					foreach($cats as $x):
+						$rev[$x->user_id] = 0;
+					$count+=1;	
+					endforeach;
+
+					$category =  Versions::model()->findAllByAttributes(array('status_id' => 2));
+					foreach($category as $x):
+						if( array_key_exists($x->reviewer_id , $rev)){
+							$rev[$x->reviewer_id] += 1;
+						}
+					endforeach;
+					$rev = array_keys($rev, min($rev));
+					$newEntry_rev->reviewer_id = $rev[0];
+					$newEntry_rev->save();
 				}
 				else{
-					$newEntry->status_id = 6;	
 					$app->status = 1;
+					$entry_versions->status_id = 6;
+					$entry_versions->update();
+					$app->update();
 				}
-				$entry->update();
-				$app->update();
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
 							));
-				$newEntry->save();
-
 			}
 			if(isset($_POST['button2']))
 			{
-				$entry->status_id = 7;
-				$entry->update();
+				$entry_versions->status_id = 7;
+				$entry_versions->update();
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
 							));
 
-				$newEntry->save();
 			}	
 			else{
 				$this->render('view',array(

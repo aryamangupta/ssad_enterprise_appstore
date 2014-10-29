@@ -37,7 +37,11 @@ class UsersController extends Controller
                                 'roles'=>array('developer'),
                         ),
                         
-                        array('deny',  // deny all users
+                  array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                                'actions'=>array('update','view'),
+                                'roles'=>array('qa analyst'),
+                        ),
+                      array('deny',  // deny all users
                                 'users'=>array('*'),
                         ),
                 );
@@ -73,10 +77,12 @@ class UsersController extends Controller
 			$model->reset_password_date =	date_create()->format('Y-m-d H:i:s');
 			$temp = [];
 			$count = 0;
-			foreach ($model->activation_key as $y):
-				$temp[$count] = $y;$count += 1;
-			endforeach;
-			
+			if( $model->role_id == 3 ){
+				foreach ($model->activation_key as $y):
+					$temp[$count] = $y;
+					$count += 1;
+				endforeach;
+			}
 			$model->activation_key = 0;
 			if($model->save()){
 				$auth = Yii::app()->authManager;

@@ -37,6 +37,7 @@ class Applications extends CActiveRecord
 	public $device_search;	
 	public $category_search;
 	public $shikha;
+	public $t;
 	public function tableName()
 	{
 		return 'applications';
@@ -196,12 +197,25 @@ public function searchpendingdev()
 		$criteria->with=array('versions','device','platform','category');
 
 	//	$temp = Users::model()->findbyPk(Yii::app()->user->id);
-		
-		$criteria->compare('versions.status_id',1);
+/*		$temp = Versions::model()->findAllByAttributes(array('application_id' => $this->id));
+		//echo $temp[0]->id;
+		echo $this->id;
+		$t = -1;
+		foreach( $temp as $x ):
+				echo $x->id;
+				if( $x->id > $t){
+					$t = $x->id;
+				}
+		endforeach;
+	//	$temp = Versions::model()->findbyPk($t);
+		//$t = $temp[0]->id;
+*/		$criteria->compare('versions.status_id',1);
+//		$criteria->compare('versions.id',$t);
 		$criteria->compare('device.type',$this->device_search,true);
 		$criteria->compare('platform.name',$this->platform_search,true);
 		$criteria->compare('category.title',$this->category_search,true);
 		$criteria->compare('t.id',$this->id);
+		$criteria->compare('t.status',0);
 		$criteria->compare('t.name',$this->name,true);
 		$criteria->compare('t.user_id',$this->user_id);
 		$criteria->compare('t.category_id',$this->category_id);
