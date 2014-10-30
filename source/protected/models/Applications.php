@@ -162,12 +162,13 @@ class Applications extends CActiveRecord
 		$temp = Users::model()->findbyPk(Yii::app()->user->id);
 	
 		
-		if( $temp->role_id == 2 )
+		if( $temp->role_id == 2 )// developer should only see his own apps
 		{
 			$criteria->condition='t.user_id ='.Yii::app()->user->id;
 		}
-		if ( $temp->role_id == 3 ){
-			$criteria->compare('versions.status_id',2);
+		if ( $temp->role_id == 3 ){// reviewer
+			$criteria->condition='versions.reviewer_id ='.Yii::app()->user->id;
+			$criteria->compare('versions.status_id',1);
 		}
 		$criteria->compare('device.type',$this->device_search,true);
 		$criteria->compare('platform.name',$this->platform_search,true);

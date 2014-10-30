@@ -59,20 +59,15 @@ class ApplicationsController extends Controller
 			$t = $temp->id;
 		endforeach;
 		$entry_versions =  Versions::model()->findbyPk($t);	
-		if ( $user->role_id == 3 && $entry_versions->status_id == 2 ){
-			$newEntry_admin = new Versions;
-			$newEntry_admin->application_id = $id;
-			$newEntry_admin->version = $entry_versions->version;
-			$newEntry_admin->create_date = date_create()->format('Y-m-d H:i:s');
-			$newEntry_admin->reviewer_id = 1;
-			$newEntry_admin->file_name = $entry_versions->file_name;
+		$app = Applications::model()->findByAttributes(array('id' => $id));	
+		if ( $user->role_id == 3 && $entry_versions->status_id == 1 ){
+
 			if(isset($_POST['button1']))
 			{
-				$entry_versions->status_id = 3;
+				$entry_versions->status_id = 2;
 				$entry_versions->update();
-				$newEntry_admin->status_id = 5;	
-				$newEntry_admin->save();
-
+				$app->status=1;
+				$app->update();
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
 							));
@@ -80,10 +75,8 @@ class ApplicationsController extends Controller
 			}
 			else if(isset($_POST['button2']))
 			{
-				$entry_versions->status_id = 4;
+				$entry_versions->status_id = 3;
 				$entry_versions->update();	
-				$newEntry_admin->status_id = 7;	
-				$newEntry_admin->save();
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
 							));
@@ -96,48 +89,22 @@ class ApplicationsController extends Controller
 			}
 
 		}
-		if ( $user->role_id == 1 &&( $entry_versions->status_id == 1 || $entry_versions->status_id == 5)){
-			$app = Applications::model()->findByAttributes(array('id' => $id));	
+		else if ( $user->role_id == 1){
+
 			if(isset($_POST['button1']))
 			{
-				if ( $entry_versions->status_id == 1 ){	
-					$newEntry_rev = new Versions;
-					$newEntry_rev->status_id = 2;
-					$newEntry_rev->application_id = $id;
-					$newEntry_rev->file_name = $entry_versions->file_name;
-					$newEntry_rev->version = $entry_versions->version;
-					$newEntry_rev->create_date = date_create()->format('Y-m-d H:i:s');
-					$cats =  CategoryReviewerMapping::model()->findAllByAttributes(array('category_id' => $app->category_id));
-					$rev = [];
-					$count = 0;
-					foreach($cats as $x):
-						$rev[$x->user_id] = 0;
-					$count+=1;	
-					endforeach;
+				$app->status = 1;
+				$entry_versions->status_id = 4;
+				$entry_versions->update();
+				$app->update();
 
-					$category =  Versions::model()->findAllByAttributes(array('status_id' => 2));
-					foreach($category as $x):
-						if( array_key_exists($x->reviewer_id , $rev)){
-							$rev[$x->reviewer_id] += 1;
-						}
-					endforeach;
-					$rev = array_keys($rev, min($rev));
-					$newEntry_rev->reviewer_id = $rev[0];
-					$newEntry_rev->save();
-				}
-				else{
-					$app->status = 1;
-					$entry_versions->status_id = 6;
-					$entry_versions->update();
-					$app->update();
-				}
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
 							));
 			}
 			if(isset($_POST['button2']))
 			{
-				$entry_versions->status_id = 7;
+				$entry_versions->status_id = 5;
 				$entry_versions->update();
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
@@ -165,79 +132,98 @@ class ApplicationsController extends Controller
 	 */
 	public function actionCreate()
 	{
-	try{
-		$model = new Applications;
-		$entry = new Versions;
-		$media = new MediaFiles;
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		if(isset($_POST['Applications']) && isset($_POST['Versions']) && isset($_POST['MediaFiles']))
-		{
-			$entry->attributes = $_POST['Versions'];
-	
-			$model->attributes = $_POST['Applications'];
-			$media->attributes = $_POST['MediaFiles'];
-			$model->user_id = Yii::app()->user->id;
-			$model->status = 0 ;//default
-			$entry->reviewer_id = 1; //default admin
-			$model->ndownloads  = 0 ;//default
-			$model->disabled_comments = "Not approved by reviewer";
-			$entry->create_date = date_create()->format('Y-m-d H:i:s');;
-			$media->create_date = date_create()->format('Y-m-d H:i:s');
+		try{
+			$model = new Applications;
+			$entry = new Versions;
+			$media = new MediaFiles;
+			// Uncomment the following line if AJAX validation is needed
+			// $this->performAjaxValidation($model);
+			if(isset($_POST['Applications']) && isset($_POST['Versions']) && isset($_POST['MediaFiles']))
+			{
+				$entry->attributes = $_POST['Versions'];
 
-			$model->logo = 	CUploadedFile::getInstance($model,'logo');
-			$entry->file_name = CUploadedFile::getInstance($entry,'file_name');
-			$media->filename = CUploadedFile::getInstance($media,'filename');
+				$model->attributes = $_POST['Applications'];
+				$media->attributes = $_POST['MediaFiles'];
+				$model->user_id = Yii::app()->user->id;
+				$model->status = 0 ;//default
 
-			$entry->status_id = 1; //default
-			$media->status = '0';	
-			$test = 1;
-			if ( $model->save()  ){
-				$media->application_id = $model->id;
-				$entry->application_id =$model->id;
-				if ( $media->save() && $entry->save() ) {
-					$model->logo->saveAs(Yii::app()->basePath.'/../images/'.$model->logo);
-					$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-					$media->filename->saveAs(Yii::app()->basePath.'/../code/'.$media->filename);
-					$this->redirect(Yii::app()->createUrl('/applications/view', array('id' => $model->id)));
+				$model->ndownloads  = 0 ;//default
+				$model->disabled_comments = "Not approved by reviewer";
+				$entry->create_date = date_create()->format('Y-m-d H:i:s');;
+				$media->create_date = date_create()->format('Y-m-d H:i:s');
+
+				$model->logo = 	CUploadedFile::getInstance($model,'logo');
+				$entry->file_name = CUploadedFile::getInstance($entry,'file_name');
+				$media->filename = CUploadedFile::getInstance($media,'filename');
+				$entry->reviewer_id=1;
+				$entry->status_id = 1; //default
+				$media->status = '0';	
+				$test = 1;
+				if ( $model->save()  ){
+					$media->application_id = $model->id;
+					$entry->application_id =$model->id;
+					if ( $media->save() && $entry->save() ) {
+						$model->logo->saveAs(Yii::app()->basePath.'/../images/'.$model->logo);
+						$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
+						$media->filename->saveAs(Yii::app()->basePath.'/../code/'.$media->filename);
+
+						$cats =  CategoryReviewerMapping::model()->findAllByAttributes(array('category_id' => $model->category_id));
+						$rev = [];
+						$count = 0;
+						foreach($cats as $x):
+							$rev[$x->user_id] = 0;
+						$count+=1;	
+						endforeach;
+
+						$category = Versions::model()->findAllByAttributes(array('status_id' => 1));
+						foreach($category as $x):
+							if( array_key_exists($x->reviewer_id , $rev)){
+								$rev[$x->reviewer_id] += 1;
+							}
+						endforeach;
+						$rev = array_keys($rev, min($rev));
+						$entry->reviewer_id = $rev[0];				
+						$entry->update();
+						$this->redirect(Yii::app()->createUrl('/applications/view', array('id' => $model->id)));
+
+					}
+					else {
+						$model->delete();
+						$media->delete();
+						$entry->delete();	
+						$this->render('create',array(
+									'model'=>$model,'entry'=>$entry,'media'=>$media
+									));
+					}
+
 				}
+
+
 				else {
-					$model->delete();
-					$media->delete();
-					$entry->delete();	
+
 					$this->render('create',array(
 								'model'=>$model,'entry'=>$entry,'media'=>$media
 								));
 				}
 
+
+
 			}
-
-
-			else {
-				
+			else{
 				$this->render('create',array(
 							'model'=>$model,'entry'=>$entry,'media'=>$media
 							));
+
 			}
 
-
-
 		}
-		else{
-			$this->render('create',array(
-						'model'=>$model,'entry'=>$entry,'media'=>$media
-						));
-
-		}
-
-	}
-	catch(Exception $e){
-	?><br><h1><?php	echo "Application with name already exists!" ; ?> </h1><?php
+		catch(Exception $e){
+			?><br><h1><?php	echo "Application with name already exists!" ; ?> </h1><?php
 				$this->render('create',array(
-						'model'=>$model,'entry'=>$entry,'media'=>$media
-						));
+							'model'=>$model,'entry'=>$entry,'media'=>$media
+							));
 
-	}
+		}
 	}
 	public function actionUpdateApp($id = 0)
 	{	

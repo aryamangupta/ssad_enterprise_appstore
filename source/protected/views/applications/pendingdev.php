@@ -4,12 +4,11 @@
 
 $this->breadcrumbs=array(
 	'Applications'=>array('admin'),
-	'Pending from developers',
+	'Waiting for review',
 );
 
 $this->menu=array(
 	array('label'=>'Manage Applications', 'url'=>array('admin') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
-	array('label'=>'Pending App (Reviewer)', 'url'=>array('pendingrev') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
 
 
 );

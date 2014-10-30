@@ -45,20 +45,23 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'application_id',
-		'file_name',
+		'appName',
+		'appStatus',
+		'reviewerEmail',
+		'versionStatus',
+/*		array(
+                    //    'name'=>'status',
+                        'header'=>'Status',
+                        'value' => '($data->application->status==1 ? "Activated" : "Deactivated")',
+                    //    'filter'=>CHtml::activeTextField($model,'versions_search'),
+                     ),*/
 		'version',
-		'create_date',
-		'status_id',
-		/*
-		'reviewer_id',
-		'activity',
 		'comment',
-		*/
+	  
+			'create_date',
 		array(
 			'class'=>'CButtonColumn',
 		),
 	),
 )); ?>
-<?php $this->renderPartial('_form', array('entry'=>$entry)); ?>
+<?php //$this->renderPartial('_form', array('model'=>$model)); ?>

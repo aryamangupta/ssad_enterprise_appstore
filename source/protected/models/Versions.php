@@ -25,11 +25,65 @@ class Versions extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+	private $_appName = null;
+	private $_versionStatus = null;
+	private $_reviewerEmail = null;
+	private $_appStatus = null;
+	private $reviewer_search;
 	public function tableName()
 	{
 		return 'versions';
 	}
+	public function getAppStatus()
+	{
+		if ($this->_appStatus === null && $this->application !== null)
+		{
+			$this->_appStatus = $this->application->status;
+		}
+		return $this->_appStatus;
+	}
+	public function setAppStatus($value)
+	{
+		$this->_appStatus = $value;
+	}
+	public function getReviewerEmail()
+	{
+		if ($this->_reviewerEmail === null && $this->reviewer !== null)
+		{
+			$this->_reviewerEmail = $this->reviewer->email;
+		}
+		return $this->_reviewerEmail;
+	}
+	public function setReviewerEmail($value)
+	{
+		$this->_reviewerEmail = $value;
+	}
 
+	public function getVersionStatus()
+
+	{
+		if ($this->_versionStatus === null && $this->status !== null)
+		{
+			$this->_versionStatus = $this->status->status;
+		}
+		return $this->_versionStatus;
+	}
+	public function setVersionStatus($value)
+	{
+		$this->_versionStatus = $value;
+	}
+	public function getAppName()
+	{
+		if ($this->_appName === null && $this->application !== null)
+		{
+			$this->_appName = $this->application->name;
+		}
+		return $this->_appName;
+	}
+	public function setAppName($value)
+	{
+		$this->_appName = $value;
+	}
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -44,7 +98,7 @@ class Versions extends CActiveRecord
 			array('activity', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, application_id, file_name, version, create_date, status_id, reviewer_id, activity, comment', 'safe', 'on'=>'search'),
+			array('id,reviewer.email,versionStatus,reviewerEmail,appName,appStatus, application_id, file_name, version, create_date, status_id, reviewer_id, activity, comment', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +125,7 @@ class Versions extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'application_id' => 'Application',
+		
 			'file_name' => 'File Name',
 			'version' => 'Version',
 			'create_date' => 'Create Date',
@@ -98,8 +153,14 @@ class Versions extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		$criteria->with = array('application','status','reviewer');
+		$criteria->compare('reviewer.email',$this->reviewerEmail,true);
+		$criteria->compare('application.status',$this->appStatus,true);
+		$criteria->compare('status.status',$this->versionStatus,true);
+		$criteria->compare('application.name',$this->appName,true);
 		$criteria->compare('id',$this->id);
+		$criteria->compare('reviewer_search',$this->reviewer_search,true);
+   //		$criteria->compare('status.status',$this->appStatus,true);
 		$criteria->compare('application_id',$this->application_id);
 		$criteria->compare('file_name',$this->file_name,true);
 		$criteria->compare('version',$this->version,true);

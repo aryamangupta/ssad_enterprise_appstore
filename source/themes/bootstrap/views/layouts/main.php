@@ -102,7 +102,7 @@
                                 array('label'=>'Manage Categories', 'url'=>array('/categories/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
                                 array('label'=>'Manage Checklists', 'url'=>array('/checklists/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
                                 array('label'=>'Upload App', 'url'=>array('/applications/create'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
-                                array('label'=>'Manage Apps', 'url'=>array('/applications/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+                                array('label'=>'Manage Apps', 'url'=>array('/versions/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
 
                                 array('label'=>'Change Password', 'url'=>array('/changePasswordForm/changePassword'),  'visible'=>!Yii::app()->user->isGuest),
 
