@@ -133,8 +133,8 @@ class Applications extends CActiveRecord
 				'status' => 'Status',
 				'logo' => 'Logo',
 				'platform_id' => 'Platform',
-				'device_id' => 'Device',
-				'ndownloads' => 'Ndownloads',
+				'device_id' => 'Device Type',
+				'ndownloads' => 'Number of downloads',
 				'disabled_comments' => 'Disabled Comments',
 			    );
 	}

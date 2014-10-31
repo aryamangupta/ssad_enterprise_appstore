@@ -51,14 +51,22 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		
+
+		array(
+			'name'=>'logo',
+			'header'=>'Logo',
+			'type'=>'raw',
+
+			'value' =>'CHtml::image(Yii::app()->baseUrl ."/images/" .$data->logo,"",array("width"=>"50px", "height"=>"50px"))',
+		     ), 
+			
 		'name',
 		'description',
 		//'status',
 		 array(
                         'name'=>'status',
                         'header'=>'Status',
-			'value' => '($data->status==1 ? "Activated" : "Deactivated")',
+			'value' => '($data->status==1 ? CHtml::image(Yii::app()->baseUrl ."/images/active.png" ): CHtml::image(Yii::app()->baseUrl ."/images/inactive.jpg"))',
                 //        'filter'=>CHtml::activeTextField($model,'versions_search'),
                      ),
 
@@ -87,21 +95,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 				'header'=>'Platform',
 				'filter'=>CHtml::activeTextField($model,'platform_search'),
 		     ),
-		array(
-			'name'=>'logo',
-			'header'=>'Logo',
-			'type'=>'raw',
-//			'value'=> 'CHtml::link($data->logo,array('applications/downloadLogo')',
-
-			'value' => 'CHtml::link($data->logo,"http://". $_SERVER["SERVER_NAME"] ."/yii/new/images/".$data->logo)',
-//			'value' => 'CHtml::link($data->logo,"http://". $_SERVER["SERVER_NAME"] .Yii::app()->request->baseUrl . * . $data->logo)'
-			'htmlOptions'=>array('width'=>'40'),
-		     ), 
-		array(
+	array(
 			'class'=>'CButtonColumn',
 
-			'template'=>'{view}{update}{delete}',
+			'template'=>'{view}{update}{delete}{history}',
 			'buttons'=>array(
+				'history' => array (
+                                        'label'=>'View History',
+                                        'url' =>'Yii::app()->createUrl("/versions/viewall",array("id"=>$data->id))',
+                                        'imageUrl'=>Yii::app()->baseUrl.'/images/history.gif',
+                                ),
+
 				'update'=>array(
 					'label'=>'Update details',
 					'url'=>'Yii::app()->createUrl("/applications/updateApp", array("id"=>$data->id))',

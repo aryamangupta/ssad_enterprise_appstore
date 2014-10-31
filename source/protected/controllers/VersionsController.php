@@ -32,7 +32,7 @@ class VersionsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin'),
+				'actions'=>array('create','update','admin','viewall'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -55,6 +55,21 @@ class VersionsController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+
+	public function actionViewall($id)
+	{
+		$versions = Versions::model()->findAllByAttributes(array('application_id'=>$id));
+		
+		foreach( $versions as $version ):
+		$this->render('viewall',array(
+				'model'=>$this->loadModel($version->id),'versions'=>$versions
+		));
+			echo "hello";
+			break;
+		endforeach;	
+	}
+
+
 
 	/**
 	 * Creates a new model.

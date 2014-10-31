@@ -14,8 +14,14 @@ $this->menu=array(
 		);
 ?>
 
-<h1>View Application : <?php echo $model->name; ?></h1>
+<h1>
+<?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/'.$model->logo,
+							"this is alt tag of image",
+							array("width"=>"50px" ,"height"=>"50px"));
 
+echo "   ".$model->name;				 ?>
+
+</h1>
 <?php  $x =  ChecklistCategoryMap::model()->findAll();
 $count = 1;
 $a = "<ul>";
@@ -34,9 +40,9 @@ $b=($a);
 <?php $this->widget('zii.widgets.CDetailView', array(
 			'data'=>$model,
 			'attributes'=>array(
-				'name',
+//				'name',
 				'description',
-				'logo',
+//				'logo',
 				array(
 					'name'=>'category.title',
 					'header'=> 'Category',
@@ -57,19 +63,19 @@ $b=($a);
 					'header'=>'Device type',
 					'filter'=>CHtml::activeTextField($model,'device_search'),
 				     ),
-				array(
-						'name'=>'logo',
-						'header'=>'Logo',
-						'type'=>'raw',
-						//                      'value'=> CHtml::link($data->logo,array('applications/downloadLogo'),
-
-						'value' => CHtml::link($model->logo,"http://". $_SERVER["SERVER_NAME"] ."/yii/new/images/".$model->logo),
-						//                      'value' => 'CHtml::link($data->logo,"http://". $_SERVER["SERVER_NAME"] .Yii::app()->request->baseUrl . * . $data->logo)'
-						),
+//				array(
+//						'name'=>'logo',
+//						'header'=>'Logo',
+//						'type'=>'raw',
+//
+///						'value'=>CHtml::image(Yii::app()->request->baseUrl.'/images/'.$model->logo,
+///							"this is alt tag of image",
+//							array("width"=>"50px" ,"height"=>"50px")),
+//				     ),
 
 				'ndownloads',
 				'disabled_comments',
-		//		array('name'=>'Checklist', 'header'=>'Checklist',
+				//		array('name'=>'Checklist', 'header'=>'Checklist',
 		//			 'value'=>  $b),
 
 
@@ -78,7 +84,9 @@ $b=($a);
 	)); ?>
 	<br>
 <h4> Checklists : </h4>
-<?php echo $b ?>
+<?php echo $b;
+
+?>
 <?php
     $temp = Users::model()->findbyPk(Yii::app()->user->id);
 	if ( $temp->role_id == 1 || $temp->role_id == 3 ){

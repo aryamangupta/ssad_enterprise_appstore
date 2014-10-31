@@ -140,9 +140,9 @@ public function getVersionStatus()
 			'id' => 'ID',
 			'application_id' => 'Application',
 		
-			'file_name' => 'File Name',
+			'file_name' => 'File',
 			'version' => 'Version',
-			'create_date' => 'Create Date',
+			'create_date' => 'Upload Date',
 			'status_id' => 'Status',
 			'reviewer_id' => 'Reviewer',
 			'activity' => 'Activity',
