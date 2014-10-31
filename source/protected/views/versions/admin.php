@@ -8,8 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Versions', 'url'=>array('index')),
-	array('label'=>'Create Versions', 'url'=>array('create')),
+
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -47,9 +46,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'appName',
 		'appStatus',
+		'reviewerName',
 		'reviewerEmail',
 		'versionStatus',
-/*		array(
+	/*		array(
                     //    'name'=>'status',
                         'header'=>'Status',
                         'value' => '($data->application->status==1 ? "Activated" : "Deactivated")',
@@ -61,6 +61,26 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'create_date',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view}{update}{delete}',
+                        'buttons'=>array(
+                                'update'=>array(
+                                        'label'=>'Update details',
+                                        'url'=>'Yii::app()->createUrl("/applications/updateApp", array("id"=>$data->id))',
+                                                        'visible'=>"Yii::app()->user->checkAccess('createApp')",
+                                        ),
+                                'delete' => array(
+                                        'label'=>'Delete',
+                                        'url'=>'Yii::app()->createUrl("/applications/delete", array("id"=>$data->id)',
+                                                'visible'=>"Yii::app()->user->checkAccess('Create')",
+                                                ),
+                                        ),
+
+
+                                //              'updateButtonUrl'=>'Yii::app()->createUrl("/applications/updateApp", array("id" => $data->id))',
+                                
+
+
+
 		),
 	),
 )); ?>

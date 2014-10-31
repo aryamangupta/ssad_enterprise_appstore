@@ -12,11 +12,13 @@
 
 <br>
 <br>
-<form id="changePasswordForm-form"  autocomplete="off" action="<?php Yii::app()->baseUrl.'/index.php?r=changePasswordForm/changePassword' ?>" method="post">
+<form id="changePasswordForm-form"  autocomplete="off" action="<?php Yii::app()->baseUrl.'/index.php?r=changePasswordForm/changePassword&id='.$id ?>" method="post">
  <input type="text" name="user" value="chose" style="display: none" />
     <div class="row">
-        <?php echo CHtml::activeLabel($model,'currentPassword'); ?>
-        <?php echo CHtml::activePasswordField($model,'currentPassword') ?>
+	<?php //admin does not need current password to change other users' password ?>
+	<?php  $user = Users::model()->findByPk(Yii::app()->user->id);?>
+        <?php if($user->role_id != 1 ) echo CHtml::activeLabel($model,'currentPassword'); ?>
+        <?php if($user->role_id != 1) echo CHtml::activePasswordField($model,'currentPassword') ?>
     </div>
 
     <div class="row">

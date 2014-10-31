@@ -66,6 +66,8 @@ class CategoriesController extends Controller
 		{
 			$model->attributes=$_POST['Categories'];
 			$model->create_date = date_create()->format('Y-m-d H:i:s');
+			$model->modified_date = date_create()->format('Y-m-d H:i:s');
+
 
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -91,6 +93,7 @@ class CategoriesController extends Controller
 		if(isset($_POST['Categories']))
 		{
 			$model->attributes=$_POST['Categories'];
+			$model->modified_date = date_create()->format('Y-m-d H:i:s');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

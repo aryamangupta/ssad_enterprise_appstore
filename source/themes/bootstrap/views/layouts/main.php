@@ -104,7 +104,7 @@
                                 array('label'=>'Upload App', 'url'=>array('/applications/create'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
                                 array('label'=>'Manage Apps', 'url'=>array('/versions/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
 
-                                array('label'=>'Change Password', 'url'=>array('/changePasswordForm/changePassword'),  'visible'=>!Yii::app()->user->isGuest),
+                                array('label'=>'Change Password', 'url'=>Yii::app()->createUrl('/changePasswordForm/changePassword', array('id'=>Yii::app()->user->id)),  'visible'=>!Yii::app()->user->isGuest),
 
 
 

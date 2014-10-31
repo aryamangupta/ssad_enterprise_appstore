@@ -4,14 +4,10 @@
 
 $this->breadcrumbs=array(
 	'Versions'=>array('index'),
-	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List Versions', 'url'=>array('index')),
-	array('label'=>'Create Versions', 'url'=>array('../applications/create')),
-//	array('label'=>'Update Versions', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Versions', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Delete Version', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Versions', 'url'=>array('admin')),
 );
 ?>

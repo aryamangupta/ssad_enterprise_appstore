@@ -4,15 +4,14 @@
 
 $this->breadcrumbs=array(
 	'Applications'=>array('admin'),
-	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'Upload Applications', 'url'=>array('create')),
+	array('label'=>'Add new Version', 'url'=>array('create')),
 	array('label'=>'Manage Applications', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Application</h1>
+<h1>Add new Version</h1>
 
 <?php $this->renderPartial('_updateForm', array('id'=>$id,'model'=>$model,'entry'=>$entry)); ?>

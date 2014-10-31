@@ -20,14 +20,20 @@ class ChangePasswordFormController extends Controller{
 			    );
 	}
 
-	public function actionChangePassword()
+	public function actionChangePassword($id)
 	{
 		$model = new ChangePasswordForm;
 
 		if(isset($_POST['ChangePasswordForm']))
 		{
 			$model->attributes=$_POST['ChangePasswordForm'];
-			$temp = Users::model()->findByPk(Yii::app()->user->id);
+			$temp = Users::model()->findByPk($id);
+			$user =	Users::model()->findByPk(Yii::app()->user->id);
+			
+			if($user->role_id == 1)
+			{	
+				$model->currentPassword = $temp->password; 
+			}
 			if($model->currentPassword === $temp->password)
 			{
 				if($model->newPassword == $model->newPassword_repeat){
@@ -38,18 +44,18 @@ class ChangePasswordFormController extends Controller{
 				}
 				else{?>
 					<br><h1><?php echo 'New passwords do not match'; ?></h1><?php
-					$this->render('changePassword',array('model'=>$model));
+					$this->render('changePassword',array('model'=>$model,'id'=>$id));
 					
 				}
 			}
 			else{?><br><h1><?php 
 				echo 'Wrong Password'; ?></h1><?php
-				$this->render('changePassword',array('model'=>$model));
+				$this->render('changePassword',array('model'=>$model,'id'=>$id));
 				
 			}
 		}
 			else{
-			$this->render('changePassword',array('model'=>$model));
+			$this->render('changePassword',array('model'=>$model,'id'=>$id));
 		}
 	}
 }

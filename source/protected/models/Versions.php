@@ -30,6 +30,7 @@ class Versions extends CActiveRecord
 	private $_reviewerEmail = null;
 	private $_appStatus = null;
 	private $reviewer_search;
+	private $_reviewerName = null;
 	public function tableName()
 	{
 		return 'versions';
@@ -59,7 +60,20 @@ class Versions extends CActiveRecord
 		$this->_reviewerEmail = $value;
 	}
 
-	public function getVersionStatus()
+	public function getReviewerName()
+	{
+		if ($this->_reviewerName === null && $this->reviewer !== null)
+		{
+			$this->_reviewerName = $this->reviewer->first_name;
+		}
+		return $this->_reviewerName;
+	}
+	public function setReviewerName($value)
+	{
+		$this->_reviewerName = $value;
+	}
+
+public function getVersionStatus()
 
 	{
 		if ($this->_versionStatus === null && $this->status !== null)
@@ -98,7 +112,7 @@ class Versions extends CActiveRecord
 			array('activity', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id,reviewer.email,versionStatus,reviewerEmail,appName,appStatus, application_id, file_name, version, create_date, status_id, reviewer_id, activity, comment', 'safe', 'on'=>'search'),
+			array('id,reviewer.email,versionStatus,reviewerEmail,reviewerName, reviewer.first_name,appName,appStatus, application_id, file_name, version, create_date, status_id, reviewer_id, activity, comment', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -159,6 +173,7 @@ class Versions extends CActiveRecord
 		$criteria->compare('status.status',$this->versionStatus,true);
 		$criteria->compare('application.name',$this->appName,true);
 		$criteria->compare('id',$this->id);
+		$criteria->compare('reviewer.first_name',$this->reviewerName,true);
 		$criteria->compare('reviewer_search',$this->reviewer_search,true);
    //		$criteria->compare('status.status',$this->appStatus,true);
 		$criteria->compare('application_id',$this->application_id);

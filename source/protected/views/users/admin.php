@@ -55,8 +55,16 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 		),
 			
-		'password',
 		'phone_number',
+
+		 array(
+                        'name'=>'status',
+                        'header'=>'Status',
+                        'value' => '($data->status==1 ? "Activated" : "Deactivated")',
+                //        'filter'=>CHtml::activeTextField($model,'versions_search'),
+                     ),
+
+
 		/*
 		'role_id',
 		'create_date',
@@ -69,6 +77,27 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			
 		array(
 			'class'=>'CButtonColumn',
+
+			'template'=>'{view}{update}{delete}{changepwd}',
+                        'buttons'=>array(
+				'changepwd' => array (
+					'label'=>'Change Password',
+					'url' =>'Yii::app()->createUrl("/changePasswordForm/changePassword",array("id"=>$data->id))',
+					'imageUrl'=>Yii::app()->baseUrl.'/images/changePassword.jpeg',
+				),
+                                'update'=>array(
+                                        'label'=>'Update details',
+                                        'url'=>'Yii::app()->createUrl("/applications/updateApp", array("id"=>$data->id))',
+                                                        'visible'=>"Yii::app()->user->checkAccess('createApp')",
+                                        ),
+                                'delete' => array(
+                                        'label'=>'Delete',
+                                        'url'=>'Yii::app()->createUrl("/applications/delete", array("id"=>$data->id)',
+                                                'visible'=>"Yii::app()->user->checkAccess('Create')",
+                                                ),
+                                        ),
+
+
 		),
 	),
 )); ?>

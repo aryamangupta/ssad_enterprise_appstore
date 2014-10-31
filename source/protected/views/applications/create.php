@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Manage Applications', 'url'=>array('admin')),
-	array('label'=>'Update Application', 'url'=>array('updateApp')),
+	array('label'=>'Add new Version', 'url'=>array('updateApp')),
 );
 ?>
 
