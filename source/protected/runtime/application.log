@@ -8855,3 +8855,29 @@ Stack trace:
 REQUEST_URI=/yii/source/index.php?r=changePasswordForm/changePassword&0%5Bid%5D=16
 HTTP_REFERER=http://localhost/yii/source/index.php?r=changePasswordForm/changePassword&0%5Bid%5D=16
 ---
+2014/10/31 15:28:31 [error] [php] Undefined variable: media1 (/var/www/html/yii/source/protected/views/applications/_form.php:95)
+Stack trace:
+#0 /var/www/html/yii/source/framework/web/CController.php(869): ApplicationsController->renderFile()
+#1 /var/www/html/yii/source/protected/views/applications/create.php(18): ApplicationsController->renderPartial()
+#2 /var/www/html/yii/source/framework/web/CBaseController.php(126): require()
+#3 /var/www/html/yii/source/framework/web/CBaseController.php(95): ApplicationsController->renderInternal()
+#4 /var/www/html/yii/source/framework/web/CController.php(869): ApplicationsController->renderFile()
+#5 /var/www/html/yii/source/framework/web/CController.php(782): ApplicationsController->renderPartial()
+#6 /var/www/html/yii/source/protected/controllers/ApplicationsController.php(215): ApplicationsController->render()
+#7 /var/www/html/yii/source/framework/web/actions/CInlineAction.php(49): ApplicationsController->actionCreate()
+#8 /var/www/html/yii/source/framework/web/CController.php(308): CInlineAction->runWithParams()
+#9 /var/www/html/yii/source/framework/web/filters/CFilterChain.php(133): ApplicationsController->runAction()
+#10 /var/www/html/yii/source/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /var/www/html/yii/source/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#12 /var/www/html/yii/source/framework/web/filters/CInlineFilter.php(58): ApplicationsController->filterAccessControl()
+#13 /var/www/html/yii/source/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#14 /var/www/html/yii/source/framework/web/CController.php(291): CFilterChain->run()
+#15 /var/www/html/yii/source/framework/web/CController.php(265): ApplicationsController->runActionWithFilters()
+#16 /var/www/html/yii/source/framework/web/CWebApplication.php(282): ApplicationsController->run()
+#17 /var/www/html/yii/source/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#18 /var/www/html/yii/source/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /var/www/html/yii/source/index.php(13): CWebApplication->run()
+REQUEST_URI=/yii/source/index.php?r=applications/create
+in /var/www/html/yii/source/protected/views/applications/_form.php (95)
+in /var/www/html/yii/source/protected/views/applications/create.php (18)
+in /var/www/html/yii/source/protected/controllers/ApplicationsController.php (215)

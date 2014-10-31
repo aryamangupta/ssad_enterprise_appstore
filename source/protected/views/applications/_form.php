@@ -77,52 +77,52 @@ div#gender input
 		<?php echo $form->fileField($model,'logo'); ?>
 		
 	</div>
-<!--	<div class="row">
-                <?//php echo $form->labelEx($media,'type'); ?>
+	<div class="row">
+                <?php echo $form->labelEx($media,'type'); ?>
             <div id="gender">
             <?php
-               // echo //$form->radioButtonList($media, 'type',
-               //     array(  'Image' => 'Image',
-                   //         'Video' => 'Video'
-                 //           ) ,
-		//	array('separator'=>''));
+                echo $form->radioButtonList($media, 'type',
+                   array(  'Image' => 'Image',
+                            'Video' => 'Video'
+                            ) ,
+			array('separator'=>''));
             ?>
             </div>
-                <?php// echo $form->error($media,'type'); ?>
+                <?php echo $form->error($media,'type'); ?>
         </div>
--->
-        <div class="row" id = "image1">
-                <?php echo $form->labelEx($media1,'filename'); ?>
-                <?php echo $form->fileField($media1,'filename',array('size'=>60,'maxlength'=>128)); ?>
+
+ <!--       <div class="row" id = "image1">
+                <?php echo $form->labelEx($media,'filename'); ?>
+                <?php echo $form->fileField($media,'filename',array('size'=>60,'maxlength'=>128)); ?>
       
         </div>
 
         <div class="row" id = "image2" style="display:none">
-                <?php echo $form->labelEx($media2,'filename'); ?>
-                <?php echo $form->fileField($media2,'filename',array('size'=>60,'maxlength'=>128)); ?>
+                <?php// echo $form->labelEx($media2,'filename'); ?>
+                <?php //echo $form->fileField($media2,'filename',array('size'=>60,'maxlength'=>128)); ?>
       
         </div>
 
        <div class="row" id = "image3" style="display:none">
-                <?php echo $form->labelEx($media3,'filename'); ?>
-                <?php echo $form->fileField($media3,'filename',array('size'=>60,'maxlength'=>128)); ?>
+                <?php //echo $form->labelEx($media3,'filename'); ?>
+                <?php //echo $form->fileField($media3,'filename',array('size'=>60,'maxlength'=>128)); ?>
       
         </div>
 
        <div class="row" id= "image4" style="display:none">
-                <?php echo $form->labelEx($media4,'filename'); ?>
-                <?php echo $form->fileField($media4,'filename',array('size'=>60,'maxlength'=>128)); ?>
+                <?php //echo $form->labelEx($media4,'filename'); ?>
+                <?php //echo $form->fileField($media4,'filename',array('size'=>60,'maxlength'=>128)); ?>
       
         </div>
 
        <div class="row" id = "image5" style="display:none">
-                <?php echo $form->labelEx($media5,'filename'); ?>
-                <?php echo $form->fileField($media5,'filename',array('size'=>60,'maxlength'=>128)); ?>
+                <?php //echo $form->labelEx($media5,'filename'); ?>
+                <?php// echo $form->fileField($media5,'filename',array('size'=>60,'maxlength'=>128)); ?>
       
         </div>
 
 
-
+-->
 	<div class="row">
 	<?php  	
 		echo $form->labelEx($model,'platform_id');
