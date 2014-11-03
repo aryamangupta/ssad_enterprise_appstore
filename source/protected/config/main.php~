@@ -38,8 +38,8 @@ return array(
                 'setFromName' => 'App8it',
                 'setMethod'         => 'GMAIL',
             	'setOptions'        => array(
-                'Username'  => 'admin@gmail.com',
-                'Password'  => '',
+                'Username'  => 'aryaman0048@gmail.com',
+                'Password'  => 'Fearless11',
                 ),
             ),
 		'user'=>array(
