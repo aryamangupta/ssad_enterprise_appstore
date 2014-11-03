@@ -117,8 +117,9 @@ class Users extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 		$criteria->with = array('role');
-		$criteria->addCondition($this->status = 1 || $this->status =0);
-
+//		$criteria->addCondition($this->status = 1 || $this->status =0);
+ 		$criteria->addCondition("t.status <= 2");
+	
 		$criteria->compare('role.role',$this->role_search,true);	
 		$criteria->compare('id',$this->id);
 		$criteria->compare('email',$this->email,true);

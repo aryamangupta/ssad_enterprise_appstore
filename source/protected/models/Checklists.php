@@ -85,7 +85,8 @@ class Checklists extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-  $criteria->addCondition($this->status = 1 || $this->status=0);
+//  $criteria->addCondition($this->status = 1 || $this->status=0);
+		$criteria->addCondition("t.status <= 2");
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);

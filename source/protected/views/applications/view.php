@@ -114,8 +114,17 @@ echo "   ".$model->name;				 ?>
 
 
 <?php
-    $temp = Users::model()->findbyPk(Yii::app()->user->id);
-        if ( $temp->role_id == 1){
+	$temp = Users::model()->findbyPk(Yii::app()->user->id);
+	$versions = Versions::model()->findAllByAttributes(array('application_id'=>$model->id));
+	$flag = 0;
+	foreach($versions as $version ):
+		if($version->status_id == 2 || $version->status_id == 4){
+			$flag = 1;
+
+			break;
+		}
+	endforeach;
+        if ( $temp->role_id == 1 && $flag ){
 	echo CHtml::beginForm(Yii::app()->createUrl('applications/view&id='.$model->id),'post');
 ?>
         <div class="row buttons" style="float:right">

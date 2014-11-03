@@ -181,10 +181,10 @@ class Applications extends CActiveRecord
 		$criteria->addCondition("t.status <= 2");	
 		if( $temp->role_id == 2 )// developer should only see his own apps
 		{
-			$criteria->addInCondition('t.user_id ='.Yii::app()->user->id);
+			$criteria->addCondition('t.user_id',Yii::app()->user->id);
 		}
 		if ( $temp->role_id == 3 ){// reviewer
-			$criteria->addInCondition('versions.reviewer_id',Yii::app()->user->id);
+			$criteria->addCondition('versions.reviewer_id',Yii::app()->user->id);
 			$criteria->compare('versions.status_id',1);
 		}
 		$criteria->compare('device.type',$this->device_search,true);

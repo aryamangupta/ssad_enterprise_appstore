@@ -168,8 +168,9 @@ public function getVersionStatus()
 
 		$criteria=new CDbCriteria;
 		$criteria->with = array('application','status','reviewer');
+		$criteria->addCondition("application.status <= 2");
 
-		$criteria->addCondition(($this->appStatus =1 || $this->appStatus = 0 ) && ( $this->versionStatus !=6));
+//		$criteria->addCondition(($this->appStatus =1 || $this->appStatus = 0 ) && ( $this->versionStatus !=6));
 		$criteria->compare('reviewer.email',$this->reviewerEmail,true);
 		$criteria->compare('application.status',$this->appStatus,true);
 	

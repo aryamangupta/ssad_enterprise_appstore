@@ -85,12 +85,12 @@ class VersionsController extends Controller
 
 		if(isset($_POST['button1']))
 		{
-	/*		if( Yii::app()->user->id == $version->reviewer_id )
+			if( Yii::app()->user->id == $version->reviewer_id )
 				$version->status_id = 2;
 			else
 				$version->status_id = 4;
 
-	*/		$version->update();
+			$version->update();
 			$app->status=1;
 			$app->update();
 			$this->render('view',array(
@@ -100,11 +100,11 @@ class VersionsController extends Controller
 		}
 		else if(isset($_POST['button2']))
 		{
-	/*		if( Yii::app()->user->id == $version->reviewer_id )
+			if( Yii::app()->user->id == $version->reviewer_id )
 				$version->status_id = 3;
 			else
 				$version->status_id = 5;
-	*/		$version->update();      
+			$version->update();      
 			$this->render('view',array(
 						'model'=>$this->loadModel($id),
 						));

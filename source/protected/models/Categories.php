@@ -101,6 +101,9 @@ class Categories extends CActiveRecord
 
 //		$str = $this->status."= 0 OR ".$this->status."= 0 ";
 		$criteria=new CDbCriteria;
+		$criteria->addCondition("t.status <= 2");
+
+
 		$criteria->compare('title',$this->parent_search,true);
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
