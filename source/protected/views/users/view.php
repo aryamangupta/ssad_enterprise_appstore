@@ -31,6 +31,12 @@ $this->menu=array(
 
                 ),
 
+		 array(
+                        'name'=>'status',
+                        'header'=>'App Status',
+                        'value' => $model->status=="1" ? "Activated":"Deactivated",//CHtml::image(Yii::app()->baseUrl ."/images/active.png" ): CHtml::image(Yii::app()->baseUrl ."/images/inactive.jpg"),
+                //        'filter'=>CHtml::activeTextField($model,'versions_search'),
+                     ),
 
 		'create_date',
 		'modified_date',

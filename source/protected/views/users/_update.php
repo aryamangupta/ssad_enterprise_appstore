@@ -38,6 +38,15 @@
 		<?php echo $form->error($model,'phone_number'); ?>
 	</div>
 
+
+	 <div class="row">
+		<?php $user = Users::model()->findbyPk(Yii::app()->user->id);if( $user->role_id == 1) { ?>
+                <?php echo $form->labelEx($model,'status'); ?>
+                <?php echo $form->textField($model,'status',array('size'=>20,'maxlength'=>20)); ?>
+                <?php echo $form->error($model,'status');} ?>
+		
+        </div>
+
 <br>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

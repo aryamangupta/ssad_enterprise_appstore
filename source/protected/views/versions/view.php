@@ -7,8 +7,16 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Delete Version', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+//	array('label'=>'Delete Version', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Versions', 'url'=>array('admin')),
+        array('label'=>'Previous Versions', 'url'=>array('viewall', 'id'=>$model->application_id),'visible'=>Yii::app()->user->checkAccess('Create')),
+        array('label'=>'Previous Versions', 'url'=>array('viewall', 'id'=>$model->application_id),'visible'=>Yii::app()->user->checkAccess('createApp')),
+	 array('label'=>'View Application', 'url'=>array('/applications/view', 'id'=>$model->application_id),'visible'=>Yii::app()->user->checkAccess('createApp')),
+		 array('label'=>'View Application', 'url'=>array('/applications/view', 'id'=>$model->application_id),'visible'=>Yii::app()->user->checkAccess('Create'))
+	
+
+
+
 );
 ?>
 
