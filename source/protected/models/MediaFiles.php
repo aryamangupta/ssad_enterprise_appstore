@@ -37,6 +37,7 @@ class MediaFiles extends CActiveRecord
 			array('type', 'length', 'max'=>5),
 			array('filename', 'length', 'max'=>128),
 			array('status', 'length', 'max'=>1),
+                        array('filename','match','pattern'=>'/^\w+?/','message'=>'file name is invalid'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, application_id, type, filename, status, create_date', 'safe', 'on'=>'search'),

@@ -36,13 +36,11 @@ class Applications extends CActiveRecord
 	public $platform_search;
 	public $device_search;	
 	public $category_search;
-	public $shikha;
 	public $t;
 	public function tableName()
 	{
 		return 'applications';
 	}
-
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -60,6 +58,7 @@ class Applications extends CActiveRecord
 				array('status', 'length', 'max'=>1),
 				array('logo', 'file', 'types'=>'jpeg,jpg,gif,png'),
 				array('logo','safe'),
+                                array('name','match','pattern'=>'/^\w+?/','message'=>'file name is invalid'),
 				// The following rule is used by search().
 				// @todo Please remove those attributes that should not be searched.
 				array('id,platform.name,platform_search,device.type,device_search,category_search,category.title, name, user_id, category_id, description, status, logo, platform_id, device_id, ndownloads, disabled_comments', 'safe', 'on'=>'search'),

@@ -44,7 +44,6 @@ class ApplicationsController extends Controller
 				     )
 			    );
 	}
-
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -61,7 +60,6 @@ class ApplicationsController extends Controller
 		$entry_versions =  Versions::model()->findbyPk($t);	
 		$app = Applications::model()->findByAttributes(array('id' => $id));	
 		if ( $user->role_id == 3 && $entry_versions->status_id == 1 ){
-
 			if(isset($_POST['button1']))
 			{
 				$entry_versions->status_id = 2;
@@ -71,7 +69,6 @@ class ApplicationsController extends Controller
 				$this->render('admin',array(
 							'model'=>$this->loadModel($id),
 							));
-
 			}
 			else if(isset($_POST['button2']))
 			{
@@ -137,7 +134,9 @@ class ApplicationsController extends Controller
 			$entry = new Versions;
 			$media = new MediaFiles;
 			// Uncomment the following line if AJAX validation is needed
-			// $this->performAjaxValidation($model);
+			$this->performAjaxValidation($model);
+                        $this->performAjaxValidation($entry);
+                        $this->performAjaxValidation($media);
 			if(isset($_POST['Applications']) && isset($_POST['Versions']) && isset($_POST['MediaFiles']))
 			{
 				$entry->attributes = $_POST['Versions'];
@@ -162,35 +161,46 @@ class ApplicationsController extends Controller
 				if ( $model->save()  ){
 					$media->application_id = $model->id;
 					$entry->application_id =$model->id;
-					if ( $media->save() && $entry->save() ) {
-						$model->logo->saveAs(Yii::app()->basePath.'/../images/'.$model->logo);
-						$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-						$media->filename->saveAs(Yii::app()->basePath.'/../code/'.$media->filename);
+					if ( $media->save() )
+					{ 
+						if( $entry->save() ) {
+							$model->logo->saveAs(Yii::app()->basePath.'/../images/'.$model->logo);
+							$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
+							$media->filename->saveAs(Yii::app()->basePath.'/../code/'.$media->filename);
 
-						$cats =  CategoryReviewerMapping::model()->findAllByAttributes(array('category_id' => $model->category_id));
-						$rev = [];
-						$count = 0;
-						foreach($cats as $x):
-							$rev[$x->user_id] = 0;
-						$count+=1;	
-						endforeach;
+							$cats =  CategoryReviewerMapping::model()->findAllByAttributes(array('category_id' => $model->category_id));
+							$rev = [];
+							$count = 0;
+							foreach($cats as $x):
+								$rev[$x->user_id] = 0;
+							$count+=1;	
+							endforeach;
 
-						$category = Versions::model()->findAllByAttributes(array('status_id' => 1));
-						foreach($category as $x):
-							if( array_key_exists($x->reviewer_id , $rev)){
-								$rev[$x->reviewer_id] += 1;
-							}
-						endforeach;
-						$rev = array_keys($rev, min($rev));
-						$entry->reviewer_id = $rev[0];				
-						$entry->update();
-						$this->redirect(Yii::app()->createUrl('/applications/view', array('id' => $model->id)));
+							$category = Versions::model()->findAllByAttributes(array('status_id' => 1));
+							foreach($category as $x):
+								if( array_key_exists($x->reviewer_id , $rev)){
+									$rev[$x->reviewer_id] += 1;
+								}
+							endforeach;
+							$rev = array_keys($rev, min($rev));
+							$entry->reviewer_id = $rev[0];				
+							$entry->update();
+							$this->redirect(Yii::app()->createUrl('/applications/view', array('id' => $model->id)));
+
+						}  
+						else {
+							$model->delete();
+							$media->delete();
+							$this->render('create',array(
+										'model'=>$model,'entry'=>$entry,'media'=>$media
+										));
+						}
 
 					}
 					else {
 						$model->delete();
-						$media->delete();
-						$entry->delete();	
+						//	$media->delete();
+						//	$entry->delete();	
 						$this->render('create',array(
 									'model'=>$model,'entry'=>$entry,'media'=>$media
 									));
@@ -218,6 +228,7 @@ class ApplicationsController extends Controller
 
 		}
 		catch(Exception $e){
+			echo $e->getMessage();
 			?><br><h1><?php	echo "Application with name already exists!" ; ?> </h1><?php
 				$this->render('create',array(
 							'model'=>$model,'entry'=>$entry,'media'=>$media
@@ -230,7 +241,8 @@ class ApplicationsController extends Controller
 			$model = new Applications;
 			$entry = new Versions;
 			// Uncomment the following line if AJAX validation is needed
-			// $this->performAjaxValidation($model);
+			$this->performAjaxValidation($model);
+                        $this->performAjaxValidation($entry);
 			if(isset($_POST['Applications']) && isset($_POST['Versions']))
 			{
 				$model->attributes = $_POST['Applications'];
@@ -248,9 +260,7 @@ class ApplicationsController extends Controller
 					$this->render('updateApp',array(
 								'id'=>$id,'model'=>$model,'entry'=>$entry,
 								));
-
 				}
-
 			}
 			else{
 				$this->render('updateApp',array(
@@ -375,4 +385,5 @@ class ApplicationsController extends Controller
 			Yii::app()->end();
 		}
 	}
-		}
+        
+}

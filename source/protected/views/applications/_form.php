@@ -31,7 +31,11 @@ div#gender input
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+        'enableClientValidation'=>true,
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+            ),
+	'enableAjaxValidation'=>true,
 	'htmlOptions'=> array('enctype'=>'multipart/form-data'),
 )); ?>
 
@@ -42,7 +46,7 @@ div#gender input
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>128)); ?>
-		
+		<?php echo $form->error($model,'name'); ?> 
 	</div>
 
 
@@ -64,18 +68,17 @@ div#gender input
 	?>
 
 	</div>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		
+		<?php echo $form->error($model,'description'); ?>
 	</div>
 
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'logo'); ?>
 		<?php echo $form->fileField($model,'logo'); ?>
-		
+		<?php echo $form->error($model,'logo'); ?>
 	</div>
 	<div class="row">
                 <?php echo $form->labelEx($media,'type'); ?>
@@ -89,12 +92,13 @@ div#gender input
             ?>
             </div>
                 <?php echo $form->error($media,'type'); ?>
+                <?php echo $form->error($media,'type'); ?>
         </div>
 
  <!--       <div class="row" id = "image1">
                 <?php echo $form->labelEx($media,'filename'); ?>
                 <?php echo $form->fileField($media,'filename',array('size'=>60,'maxlength'=>128)); ?>
-      
+                <?php echo $form->error($media,'filename'); ?>
         </div>
 
         <div class="row" id = "image2" style="display:none">
@@ -141,15 +145,11 @@ div#gender input
                     //                    )
                       //          )
 				'prompt'=> 'Select',
-
                         )
                 );
+                 echo $form->error($model,'platform_id'); 
         ?>
-
-
-
 	</div>
-
         <div class="row">
         	<?php
                 echo $form->labelEx($model,'device_id');
@@ -165,6 +165,7 @@ div#gender input
                        'prompt'=> 'Select',
  			)
                 );
+                 echo $form->error($model,'device_id'); 
         ?>
 
 	</div>
@@ -187,13 +188,13 @@ div#gender input
 	<div class="row">
 		<?php echo $form->labelEx($entry,'file_name'); ?>
 		<?php echo $form->fileField($entry,'file_name',array('size'=>60,'maxlength'=>128)); ?>
-
+                <?php echo $form->error($entry,'file_name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($entry,'version'); ?>
 		<?php echo $form->textField($entry,'version',array('size'=>60,'maxlength'=>128)); ?>
-
+                <?php echo $form->error($entry,'version'); ?>
 	</div>
 
 	<div class="row buttons">

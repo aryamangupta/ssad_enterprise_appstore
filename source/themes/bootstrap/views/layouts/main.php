@@ -148,6 +148,8 @@
 		<!-- breadcrumbs -->
 	  <?php endif?>
 	
+         <?php $this->widget('Flashes'); ?>       
+              
 	<?php echo $content ?>
 	
 	</div><!--/.fluid-container-->

@@ -43,8 +43,12 @@ class Categories extends CActiveRecord
 			array('title','length','max'=>64),
 			array('title, description', 'required'),
 			array('parent_id', 'numerical', 'integerOnly'=>true),
-			array('title', 'length', 'max'=>128),
-			array('status', 'length', 'max'=>1),
+			array('status', 'boolean','message'=>'Status should be selected'),
+                        array('title', 'length', 'max'=>128),
+                        array('parent','required'),
+                        array('status','required'),
+                        array('title','match','pattern'=>'/^\w+$/','message'=>'Title is invalid please choose another'),
+			//array('status', 'length', 'max'=>1),   not required
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, parent_search, title, parent_id, status, description, create_date, modified_date', 'safe', 'on'=>'search'),

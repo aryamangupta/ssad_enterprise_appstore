@@ -34,7 +34,8 @@ class Checklists extends CActiveRecord
 		return array(
 			array('title, description, create_date, modified_date', 'required'),
 			array('title', 'length', 'max'=>128),
-			array('status', 'length', 'max'=>1),
+			array('status', 'boolean', 'message'=>' Select the Status'),
+                        array('title','match','pattern'=>'/^\w+$/','message'=>'Title is Invalid'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, title, description, status, create_date, modified_date', 'safe', 'on'=>'search'),

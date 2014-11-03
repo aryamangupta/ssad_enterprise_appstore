@@ -9,20 +9,49 @@ class ChangePasswordForm extends CFormModel
   public function rules()
   {
     return array(
-   //   array(
-     //   'currentPassword', 'compareCurrentPassword'
-     // ),
       array(
         'currentPassword, newPassword, newPassword_repeat', 'required',
       ),
       array(
-        'newPassword_repeat', 'compare',
-        'compareAttribute'=>'newPassword',
+        'newPassword_repeat', 'compare','compareAttribute'=>'newPassword','message'=>'Passwords do not match Check again'
       ),
-      
+      array(
+        'currentPassword', 'compare','compareAttribute'=>'newPassword','operator'=>'!=','message'=>'Old and New password are same',  
+      ),
+   //   array(
+     //    'currentPassword','validatePasswordStrenth',
+     // ),
+     // array(
+       //  'newPassword','length','min'=>8,
+        // ), 
+        //array('first_name', 'match', 'pattern' => '/^\w+$/',"message"=>"First Name is invalid"),
+      array('currentPassword','match','pattern' => '/^[a-z]+?/','message'=>'Password should have at least one digitsssssssssssssssssss'),
     );
-  }
-  
+  } 
+  public function validatePasswordStrenth(){
+      $pattern1 ='/*[0-9]*/';
+      $pattern2 ='/*[a-z]*/';
+      $pattern3 ='/*[A-Z]*/';
+      $pattern4 ='/*!\w*/';
+      if(!preg_match($pattern1,$this->currentPassword)){
+              $this->addError($this->currentPassword,"Password should have at least one digit");
+              return;
+      }
+      if(!preg_match($pattern2,$this->currentPassword)){
+              $this->addError($this->currentPassword,"Password should have at least one small letter ");
+              return;
+      }
+      if(!preg_match($pattern3,$this->currentPassword)){
+              $this->addError($this->currentPassword,"Password should have at least one capital letter");
+              return;
+      }
+      if(!preg_match($pattern4,$this->currentPassword)){
+              $this->addError($this->currentPassword,"Password should have at least one special character");
+              return;
+      }
+              
+      }
+    
   public function compareCurrentPassword($attribute,$params)
   {
     if( $this->currentPassword !== $this->_user->password )

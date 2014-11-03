@@ -35,6 +35,10 @@ class VersionsController extends Controller
 				'actions'=>array('create','update','admin','viewall'),
 				'users'=>array('@'),
 			),
+                        array('allow', // allow authenticated user to perform 'create'
+				'actions'=>array('create',),
+				'users'=>array('developer'),
+			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
@@ -80,7 +84,7 @@ class VersionsController extends Controller
 		$entry=new Versions;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 $this->performAjaxValidation($model);
 
 		if(isset($_POST['Versions']))
 		{

@@ -57,7 +57,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=appstore',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'password',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 	        'authManager'=> array(
