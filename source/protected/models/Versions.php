@@ -93,7 +93,7 @@ public function getVersionStatus()
 			$this->_appName = $this->application->name;
 		}
 		return $this->_appName;
-	}   
+	}
 	public function setAppName($value)
 	{
 		$this->_appName = $value;
@@ -110,15 +110,13 @@ public function getVersionStatus()
 			array('application_id, status_id, reviewer_id', 'numerical', 'integerOnly'=>true),
 			array('file_name, version', 'length', 'max'=>128),
 			array('activity', 'length', 'max'=>255),
-                        array('version','match','pattern'=>'/^([0-9]\.)+?/','message'=>'version should be of the type d.d.d where d stands for digit'),
-                        array('file_name','match','pattern'=>'/^\w+\.(apk|iso|txt|ipa)+?/','message'=>'file name can only be .apk .ipa .txt or .iso'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id,reviewer.email,versionStatus,reviewerEmail,reviewerName, reviewer.first_name,appName,appStatus, application_id, file_name, version, create_date, status_id, reviewer_id, activity, comment', 'safe', 'on'=>'search'),
 		);
 	}
 
-        /**
+	/**
 	 * @return array relational rules.
 	 */
 	public function relations()
@@ -147,7 +145,7 @@ public function getVersionStatus()
 			'create_date' => 'Upload Date',
 			'status_id' => 'Status',
 			'reviewer_id' => 'Reviewer',
-			'activity' => 'Activity',
+			'activity' => 'Checked',
 			'comment' => 'Comment',
 		);
 	}
@@ -170,8 +168,11 @@ public function getVersionStatus()
 
 		$criteria=new CDbCriteria;
 		$criteria->with = array('application','status','reviewer');
+
+		$criteria->addCondition(($this->appStatus =1 || $this->appStatus = 0 ) && ( $this->versionStatus !=6));
 		$criteria->compare('reviewer.email',$this->reviewerEmail,true);
 		$criteria->compare('application.status',$this->appStatus,true);
+	
 		$criteria->compare('status.status',$this->versionStatus,true);
 		$criteria->compare('application.name',$this->appName,true);
 		$criteria->compare('id',$this->id);

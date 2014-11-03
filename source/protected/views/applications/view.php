@@ -14,6 +14,25 @@ $this->menu=array(
 		);
 ?>
 
+<div style="float:right"> 
+<?php 
+	$temp = Users::model()->findbyPk(Yii::app()->user->id);
+	if( $model->status == 1  )
+	{
+		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/active.png');
+	}
+	else
+	{
+		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/inactive.jpg');
+	}
+	if ( $temp->role_id == 1)
+		echo CHtml::link($image, array('/applications/updateApp','id'=>$model->id));
+	else
+		echo $image;
+
+?>
+
+</div>
 <h1>
 <?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/'.$model->logo,
 							"this is alt tag of image",
@@ -21,22 +40,17 @@ $this->menu=array(
 
 echo "   ".$model->name;				 ?>
 
+
+<style>
+ .button1 {
+  background:url('echo Yii::app()->request->baseUrl."/images/activejpg"; ');
+  }
+
+</style>
+
+
 </h1>
-<?php  $x =  ChecklistCategoryMap::model()->findAll();
-$count = 1;
-$a = "<ul>";
-$b = "";
-foreach ($x as $y): 
-if( $y->category_id==$model->category_id){
-$z=Checklists::model()->findByPk($y->checklist_id);
- $a= $a."<li>" . ($z->title)."</li>" ;
 
-} 
-
-endforeach; 
-$a = $a."</ul>";
-$b=($a);
-?>
 <?php $this->widget('zii.widgets.CDetailView', array(
 			'data'=>$model,
 			'attributes'=>array(
@@ -83,18 +97,36 @@ $b=($a);
 			),
 	)); ?>
 	<br>
-<h4> Checklists : </h4>
-<?php echo $b;
+<h4> <?php $current_user = Users::model()->findbyPk(Yii::app()->user->id); 
+	if( $current_user->role_id == 3 )
+		
+		echo "Checklists : ";?></h4>
+
+
+<?php  $checklists =  ChecklistCategoryMap::model()->findAllByAttributes(array('category_id'=>$model->category_id));
 
 ?>
+
+<?php //echo $b;
+
+?>
+
+
+
 <?php
     $temp = Users::model()->findbyPk(Yii::app()->user->id);
-	if ( $temp->role_id == 1 || $temp->role_id == 3 ){
-echo CHtml::beginForm(Yii::app()->createUrl('applications/view&id='.$model->id),'post');
+        if ( $temp->role_id == 1){
+	echo CHtml::beginForm(Yii::app()->createUrl('applications/view&id='.$model->id),'post');
 ?>
-        <div class="row buttons">
-                <?php echo CHtml::submitButton('Approve',array('name'=>'button1')); ?>
-               <?php echo CHtml::submitButton('Reject', array('name'=>'button2')); ?>
+        <div class="row buttons" style="float:right">
+               <?php if( $model->status == 0) echo CHtml::submitButton('Activate',array('name'=>'button1','class' => 'button1')); ?>
+               <?php if( $model->status == 1) echo CHtml::submitButton('Deactivate', array('name'=>'button2')); ?>
 
         </div>
-<?php echo CHtml::endForm(); }?>
+<?php   
+	echo CHtml::endForm(); 
+	}
+?>
+
+
+

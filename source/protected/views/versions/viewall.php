@@ -5,9 +5,11 @@
 $this->breadcrumbs=array(
 	'Versions'=>array('index'),
 );
+$app = Applications::model()->findbyPk($versions[0]->application_id);
 
 $this->menu=array(
 	array('label'=>'Add new Version', 'url'=>array('applications/updateApp') ),
+	array('label'=>'View '.$app->name, 'url'=>array('applications/updateApp') ),
 	array('label'=>'Manage Versions', 'url'=>array('applications/admin')),
 );
 ?>

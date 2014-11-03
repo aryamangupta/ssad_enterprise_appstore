@@ -65,7 +65,7 @@ class ChecklistCategoryMapController extends Controller
 		$model=new ChecklistCategoryMap;
 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['ChecklistCategoryMap']))
 		{
@@ -108,7 +108,18 @@ class ChecklistCategoryMapController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+     public function actionDelete($id) 
+        { 
+                $app = $this->loadModel($id); 
+                $app->status=2; 
+                $app->update(); 
+                // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser 
+//              if(!isset($_GET['ajax'])) 
+                        $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin')); 
+        } 
+
+
+/*	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
 

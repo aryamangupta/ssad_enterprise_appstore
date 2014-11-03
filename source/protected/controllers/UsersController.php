@@ -63,45 +63,81 @@ class UsersController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Users;
-		
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+		try{	$model=new Users;
 
-		if(isset($_POST['Users']))
-		{
-			$model->attributes=$_POST['Users'];
-			$model->create_date = date_create()->format('Y-m-d H:i:s');
-			$model->modified_date= date_create()->format('Y-m-d H:i:s');
-			$model->modified_date= date_create()->format('Y-m-d H:i:s');
-			$model->reset_password_date =	date_create()->format('Y-m-d H:i:s');
-			$temp = [];
-			$count = 0;
-			if( $model->role_id == 3 ){
-				foreach ($model->activation_key as $y):
-					$temp[$count] = $y;
-					$count += 1;
-				endforeach;
+			// Uncomment the following line if AJAX validation is needed
+			$this->performAjaxValidation($model);
+
+			if(isset($_POST['Users']))
+			{
+				$model->attributes=$_POST['Users'];
+				$model->create_date = date_create()->format('Y-m-d H:i:s');
+				$model->modified_date= date_create()->format('Y-m-d H:i:s');
+				$model->modified_date= date_create()->format('Y-m-d H:i:s');
+				$model->reset_password_date =	date_create()->format('Y-m-d H:i:s');
+				$temp = array();
+				$count = 0;
+				if( $model->role_id == 3 ){
+
+					if( !empty($model->activation_key ))
+					{		/*	{
+								echo "Categories not Assigned";
+								$this->render('create',array(
+								'model'=>$model,
+								));
+
+								}	
+
+								else
+							 */	foreach ($model->activation_key as $y):
+						$temp[$count] = $y;
+						$count += 1;
+						endforeach;
+						echo "HELL";
+					}
+				}
+				$model->activation_key = 0;
+				if($model->save()){
+					$auth = Yii::app()->authManager;
+					$auth->assign(Roles::model()->findByPk($model->role_id)->role,$model->id);
+					if( empty($temp) )
+					{
+
+						echo "Categories not Assigned";
+						$model->delete();
+						$this->render('create',array(
+									'model'=>$model,
+									));
+
+
+					}
+					else{	
+						foreach( $temp as $t ):
+							$revCat = new CategoryReviewerMapping;
+							$revCat->user_id = $model->id;
+							$revCat->category_id = $t;
+							$revCat->save();
+
+						endforeach;
+						$this->redirect(array('admin','id'=>$model->id));
+					}
+				}				
+				//else{ $model->delete();}
 			}
-			$model->activation_key = 0;
-			if($model->save()){
-				$auth = Yii::app()->authManager;
-				$auth->assign(Roles::model()->findByPk($model->role_id)->role,$model->id);
-				foreach( $temp as $t ):
-					$revCat = new CategoryReviewerMapping;
-					$revCat->user_id = $model->id;
-					$revCat->category_id = $t;
-					$revCat->save();
-				
-				endforeach;
-				$this->redirect(array('admin','id'=>$model->id));
-			}
-			else{ $model->delete();}
+			else
+				$this->render('create',array(
+							'model'=>$model,
+							));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		catch(Exception $e){
+			echo $e->getMessage();
+			?><br><h1><?php	echo "Email already registered!" ; ?> </h1><?php
+				$this->render('create',array(
+							'model'=>$model,
+							));
+
+		}
 	}
 
 	/**

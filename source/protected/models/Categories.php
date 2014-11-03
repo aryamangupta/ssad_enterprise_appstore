@@ -43,12 +43,8 @@ class Categories extends CActiveRecord
 			array('title','length','max'=>64),
 			array('title, description', 'required'),
 			array('parent_id', 'numerical', 'integerOnly'=>true),
-			array('status', 'boolean','message'=>'Status should be selected'),
-                        array('title', 'length', 'max'=>128),
-                        array('parent','required'),
-                        array('status','required'),
-                        array('title','match','pattern'=>'/^\w+$/','message'=>'Title is invalid please choose another'),
-			//array('status', 'length', 'max'=>1),   not required
+			array('title', 'length', 'max'=>128),
+			array('status', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, parent_search, title, parent_id, status, description, create_date, modified_date', 'safe', 'on'=>'search'),
@@ -103,17 +99,14 @@ class Categories extends CActiveRecord
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
+//		$str = $this->status."= 0 OR ".$this->status."= 0 ";
 		$criteria=new CDbCriteria;
-		$criteria->together = true;
-                $criteria->with=array('applications');	
 		$criteria->compare('title',$this->parent_search,true);
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('parent_id',$this->parent_id);
 		$criteria->compare('status',$this->status,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('create_date',$this->create_date,true);
-		$criteria->compare('modified_date',$this->modified_date,true);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

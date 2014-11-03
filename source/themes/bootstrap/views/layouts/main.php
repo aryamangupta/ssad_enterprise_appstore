@@ -91,8 +91,8 @@
 						'activeCssClass'	=> 'active',
 						'items'=>array(
 							array('label'=>'Home', 'url'=>array('/site/index')),
-							array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-							array('label'=>'Contact', 'url'=>array('/site/contact')),
+							//array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+							//array('label'=>'Contact', 'url'=>array('/site/contact')),
 							array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 							
 							array('label'=>'Edit Profile', 'url'=>Yii::app()->createUrl('users/update',array('id'=>Yii::app()->user->id)),'visible'=>!Yii::app()->user->isGuest),
@@ -102,7 +102,9 @@
                                 array('label'=>'Manage Categories', 'url'=>array('/categories/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
                                 array('label'=>'Manage Checklists', 'url'=>array('/checklists/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
                                 array('label'=>'Upload App', 'url'=>array('/applications/create'), 'visible'=>Yii::app()->user->checkAccess('createApp')),
-                                array('label'=>'Manage Apps', 'url'=>array('/versions/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+                                array('label'=>'Manage Versions', 'url'=>array('/versions/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+                       array('label'=>'Manage Apps', 'url'=>array('applications/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
+
 
                                 array('label'=>'Change Password', 'url'=>Yii::app()->createUrl('/changePasswordForm/changePassword', array('id'=>Yii::app()->user->id)),  'visible'=>!Yii::app()->user->isGuest),
 
@@ -148,8 +150,6 @@
 		<!-- breadcrumbs -->
 	  <?php endif?>
 	
-         <?php $this->widget('Flashes'); ?>       
-              
 	<?php echo $content ?>
 	
 	</div><!--/.fluid-container-->

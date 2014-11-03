@@ -34,8 +34,7 @@ class Checklists extends CActiveRecord
 		return array(
 			array('title, description, create_date, modified_date', 'required'),
 			array('title', 'length', 'max'=>128),
-			array('status', 'boolean', 'message'=>' Select the Status'),
-                        array('title','match','pattern'=>'/^\w+$/','message'=>'Title is Invalid'),
+			array('status', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, title, description, status, create_date, modified_date', 'safe', 'on'=>'search'),
@@ -86,6 +85,7 @@ class Checklists extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+  $criteria->addCondition($this->status = 1 || $this->status=0);
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);

@@ -45,35 +45,21 @@ class Users extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-                //validatePhoneNumber is inline defined validator
-                //first_name and last_name should be alphanumerical characters for now checked using pattern
 		return array(
 //			array('role.role','length','max'=>64),
 			array('email, password, first_name, last_name, phone_number, role_id, activation_key, status', 'required'),
 			array('role_id', 'numerical', 'integerOnly'=>true),
-			array('email, first_name, last_name, reset_password_key', 'length', 'max'=>128),
-                        array('email','email'),
-			//array('phone_number', 'length', 'min'=>12,'max'=>12,'message'=>'International format required'),
-                        //array('phone_number','validatePhoneNumber','message'=>'International Format Required'),
-                        array('phone_number', 'match', 'pattern' => '/^\d{12}/',"message"=>"International Format required"),
-                        array('first_name', 'match', 'pattern' => '/^\w+$/',"message"=>"First Name is invalid"),
-                        array('last_name', 'match', 'pattern' => '/^\w+$/',"message"=>"Last Name is invalid"),
+			array('email, password, first_name, last_name, reset_password_key', 'length', 'max'=>128),
+			array('phone_number', 'length', 'max'=>20),
 			array('status', 'length', 'max'=>1),
 			array('reset_password_date', 'safe'),
 			// The following rule is used by search().
+			// @todo Please remove those attributes that should not be searched.
 			array('id, role_search, email, password, first_name, last_name, phone_number, role_id, create_date, modified_date, activation_key, status, reset_password_key, reset_password_date', 'safe', 'on'=>'search'),
 		);
 	}
-            //validatePhoneNumber is inline defined validator
-            //done using other method 
-        public function validatePhoneNumber(){
-            $pattern='/^[0-9]{12}$/';
-            if(!preg_match($pattern,$this->phone_number)){
-                $this->addError($this->phone_number,'Phone Number is required  in International Format');
-            }
-        }
+
 	/**
-         * 
 	 * @return array relational rules.
 	 */
 	public function relations()
@@ -131,6 +117,8 @@ class Users extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 		$criteria->with = array('role');
+		$criteria->addCondition($this->status = 1 || $this->status =0);
+
 		$criteria->compare('role.role',$this->role_search,true);	
 		$criteria->compare('id',$this->id);
 		$criteria->compare('email',$this->email,true);

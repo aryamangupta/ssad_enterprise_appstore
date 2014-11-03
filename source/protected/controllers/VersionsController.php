@@ -35,12 +35,8 @@ class VersionsController extends Controller
 				'actions'=>array('create','update','admin','viewall'),
 				'users'=>array('@'),
 			),
-                        array('allow', // allow authenticated user to perform 'create'
-				'actions'=>array('create',),
-				'users'=>array('developer'),
-			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','viewall'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -55,25 +51,80 @@ class VersionsController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+
+		$model = new Versions;
+		$this->performAjaxValidation($model);
+		$version = Versions::model()->findbyPk($id);
+		if( !empty($version ))
+		$app = Applications::model()->findbyPk($version->application_id);
+
+		if(isset($_POST['Versions']) )
+		{
+			$model->attributes= $_POST['Versions'];
+			$version->activity = '';
+			if ( !empty($model->activity) )  
+			{
+				foreach($model->activity as $temp ):
+											/*	echo $temp;
+												$cat = new ChecklistAnalystMapping;
+												$cat->analyst_id = Yii::app()->user->id;
+												$cat->checklist_id = $temp;
+												$cat->version_id = $version->id;
+												$cat->create_date = date_create()->format('Y-m-d H:i:s');
+												$cat->save();
+												unset($cat);
+				//								echo $cat->id;
+
+							*/
+					$temp = Checklists::model()->findbyPk($temp);
+//					echo $temp->title;
+					$version->activity = $version->activity.','.$temp->title;
+				endforeach;
+			}
+		}	
+
+		if(isset($_POST['button1']))
+		{
+	/*		if( Yii::app()->user->id == $version->reviewer_id )
+				$version->status_id = 2;
+			else
+				$version->status_id = 4;
+
+	*/		$version->update();
+			$app->status=1;
+			$app->update();
+			$this->render('view',array(
+						'model'=>$this->loadModel($id),
+						));
+
+		}
+		else if(isset($_POST['button2']))
+		{
+	/*		if( Yii::app()->user->id == $version->reviewer_id )
+				$version->status_id = 3;
+			else
+				$version->status_id = 5;
+	*/		$version->update();      
+			$this->render('view',array(
+						'model'=>$this->loadModel($id),
+						));
+
+		}
+		else{
+			$this->render('view',array(
+						'model'=>$this->loadModel($id),
+						));
+		}
 	}
 
 	public function actionViewall($id)
 	{
 		$versions = Versions::model()->findAllByAttributes(array('application_id'=>$id));
-		
-		foreach( $versions as $version ):
+
 		$this->render('viewall',array(
-				'model'=>$this->loadModel($version->id),'versions'=>$versions
-		));
-			echo "hello";
-			break;
-		endforeach;	
+					'model'=>$this->loadModel($versions[0]->id),'versions'=>$versions
+					));
 	}
-
-
 
 	/**
 	 * Creates a new model.
@@ -84,7 +135,7 @@ class VersionsController extends Controller
 		$entry=new Versions;
 
 		// Uncomment the following line if AJAX validation is needed
-		 $this->performAjaxValidation($model);
+		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Versions']))
 		{
@@ -127,7 +178,21 @@ class VersionsController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+
+
+     public function actionDelete($id) 
+        { 
+                $app = $this->loadModel($id); 
+                $app = Applications::model()->findbyPk($app->application_id);
+		$app->status=2; 
+		echo $app->name;
+    //            $app->update(); 
+                // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser 
+//              if(!isset($_GET['ajax'])) 
+                        $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin')); 
+        } 
+
+/*	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
 

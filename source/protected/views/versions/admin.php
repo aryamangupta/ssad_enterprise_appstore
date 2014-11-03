@@ -70,7 +70,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                                         ),
                                 'delete' => array(
                                         'label'=>'Delete',
-                                        'url'=>'Yii::app()->createUrl("/applications/delete", array("id"=>$data->id)',
                                                 'visible'=>"Yii::app()->user->checkAccess('Create')",
                                                 ),
                                         ),

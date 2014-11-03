@@ -36,11 +36,28 @@ class Applications extends CActiveRecord
 	public $platform_search;
 	public $device_search;	
 	public $category_search;
+	public $shikha;
 	public $t;
+	private $_categoryTitle;
 	public function tableName()
 	{
 		return 'applications';
 	}
+
+
+ 	public function getcategoryTitle()
+        {
+                if ($this->_categoryTitle === null && $this->category !== null)
+                {
+                        $this->_categoryTitle = $this->category->title;
+                }
+                return $this->_categoryTitle;
+        }
+        public function setcategoryTitle($value)
+        {
+                $this->_categoryTitle = $value;
+        }
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -58,10 +75,9 @@ class Applications extends CActiveRecord
 				array('status', 'length', 'max'=>1),
 				array('logo', 'file', 'types'=>'jpeg,jpg,gif,png'),
 				array('logo','safe'),
-                                array('name','match','pattern'=>'/^\w+?/','message'=>'file name is invalid'),
 				// The following rule is used by search().
 				// @todo Please remove those attributes that should not be searched.
-				array('id,platform.name,platform_search,device.type,device_search,category_search,category.title, name, user_id, category_id, description, status, logo, platform_id, device_id, ndownloads, disabled_comments', 'safe', 'on'=>'search'),
+				array('id,platform.name,platform_search,device.type,device_search,category_search,category.title, categoryTitle, name, user_id, category_id, description, status, logo, platform_id, device_id, ndownloads, disabled_comments', 'safe', 'on'=>'search'),
 				array(	'platform_id', 'exist',
 					'allowEmpty'=>false,
 	//				'on'=>'create,update',
@@ -135,6 +151,9 @@ class Applications extends CActiveRecord
 				'device_id' => 'Device Type',
 				'ndownloads' => 'Number of downloads',
 				'disabled_comments' => 'Disabled Comments',
+				'category.title' => 'Category',
+				'platform.name' => 'Platform',
+				'device.type' => 'Device Type',
 			    );
 	}
 
@@ -159,20 +178,23 @@ class Applications extends CActiveRecord
 		$criteria->with=array('versions','device','platform','category');
 
 		$temp = Users::model()->findbyPk(Yii::app()->user->id);
-	
-		
+		$criteria->addCondition("t.status <= 2");	
 		if( $temp->role_id == 2 )// developer should only see his own apps
 		{
-			$criteria->condition='t.user_id ='.Yii::app()->user->id;
+			$criteria->addInCondition('t.user_id ='.Yii::app()->user->id);
 		}
 		if ( $temp->role_id == 3 ){// reviewer
-			$criteria->condition='versions.reviewer_id ='.Yii::app()->user->id;
+			$criteria->addInCondition('versions.reviewer_id',Yii::app()->user->id);
 			$criteria->compare('versions.status_id',1);
 		}
 		$criteria->compare('device.type',$this->device_search,true);
 		$criteria->compare('platform.name',$this->platform_search,true);
-		$criteria->compare('category.title',$this->category_search,true);
+		$criteria->compare('category.title',$this->categoryTitle,true);
+
+                $criteria->compare('category_search',$this->category_search,true);
+
 		$criteria->compare('t.id',$this->id);
+		$criteria->compare('t.status',$this->status,true);
 		$criteria->compare('t.name',$this->name,true);
 		$criteria->compare('t.user_id',$this->user_id);
 		$criteria->compare('t.category_id',$this->category_id);

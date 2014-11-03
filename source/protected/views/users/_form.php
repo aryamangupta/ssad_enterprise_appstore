@@ -15,7 +15,7 @@
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>true,
+	'enableAjaxValidation'=>false,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -74,34 +74,33 @@
 	</div>
 
 <div id="TLID_DIV" style="display:none">
+	Please assign categories appropriately : <br>
   <div class="row">
                 <?php
-                echo $form->labelEx($model,'activation_key');
+            //    echo $form->labelEx($model,'activation_key');
                 echo $form->checkBoxList(
                         $model,'activation_key',
                         CHtml::listData(
-                                Categories::model()->findAll(),
+                                Categories::model()->findAllByAttributes(array('status'=>'1')),
                                 'id',
                                 'title'
                         ),
-                        array(
-                              //  'class'=> 'my-drop-down',
-               //                 'prompt'=>'Select',
-				'separator'=>'',
-  	//			'template'=>'<tr><td >{label}</td><td>{input}</td></tr>'
-
-
-                        )
+                         array(
+							'separator'=>'<br>',
+							 'template'=>'<div style="padding-left:100px"><div class="row">{label}{input}</div></div>',
+        					
+						)
                 );
         ?>
 </div>
 </div>
 	<div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->radioButtonList($model,'status',array('1'=>'Activate','0'=>'Deactivate'));
+		<?php //echo $form->dropDownList($model,'status',array('prompt'=> 'Select','1'=>'Activate','0'=>'Deactivate'));
+		?>
+				<?php echo $form->radioButtonList($model,'status',array('1'=>'Activate','0'=>'Deactivate'));
 		?>  
-		<!--<?php echo $form->dropDownList($model,'status',array('prompt'=> 'Select','1'=>'Activate','0'=>'Deactivate'));
-		?>-->
+
 		<?php echo $form->error($model,'status'); ?>
 	</div>
 <!---

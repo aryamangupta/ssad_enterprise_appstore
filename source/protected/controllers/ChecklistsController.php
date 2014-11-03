@@ -18,6 +18,7 @@ class ChecklistsController extends Controller
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -35,7 +36,9 @@ class ChecklistsController extends Controller
                                 'users'=>array('*'),
                         ),
                 );
+
 	}
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -46,6 +49,7 @@ class ChecklistsController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -55,13 +59,14 @@ class ChecklistsController extends Controller
 		$model=new Checklists;
 		$entry = new ChecklistCategoryMap;
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
-                $this->performAjaxValidation($entry);
+		// $this->performAjaxValidation($model);
+
 		if(isset($_POST['Checklists']))
 		{	
 		
 			$model->attributes=$_POST['Checklists'];
-			$entry->attributes = $_POST['ChecklistCategoryMap'];		
+			$entry->attributes = $_POST['ChecklistCategoryMap'];
+		
 			$model->modified_date = date_create()->format('Y-m-d H:i:s');
 		        $model->create_date = date_create()->format('Y-m-d H:i:s');
 			if($model->save()){
@@ -105,7 +110,19 @@ class ChecklistsController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+
+     public function actionDelete($id) 
+        { 
+                $app = $this->loadModel($id); 
+                $app->status=2; 
+                $app->update(); 
+                // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser 
+//              if(!isset($_GET['ajax'])) 
+                        $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin')); 
+        } 
+
+
+/*	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
 

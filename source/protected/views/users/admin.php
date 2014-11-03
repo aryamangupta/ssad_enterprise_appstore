@@ -32,7 +32,7 @@ You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&g
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
 
-<!--<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>-->
+<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -87,12 +87,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 				),
                                 'update'=>array(
                                         'label'=>'Update details',
-                                        'url'=>'Yii::app()->createUrl("/applications/updateApp", array("id"=>$data->id))',
+                                        'url'=>'Yii::app()->createUrl("/users/updateApp", array("id"=>$data->id))',
                                                         'visible'=>"Yii::app()->user->checkAccess('createApp')",
                                         ),
                                 'delete' => array(
                                         'label'=>'Delete',
-                                        'url'=>'Yii::app()->createUrl("/applications/delete", array("id"=>$data->id)',
+                                        'url'=>'Yii::app()->createUrl("/users/delete", array("id"=>$data->id))',
                                                 'visible'=>"Yii::app()->user->checkAccess('Create')",
                                                 ),
                                         ),

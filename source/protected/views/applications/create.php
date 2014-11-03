@@ -15,4 +15,4 @@ $this->menu=array(
 
 <h1>Upload Application</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model,'entry'=>$entry,'media'=>$media)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'entry'=>$entry)); ?>
