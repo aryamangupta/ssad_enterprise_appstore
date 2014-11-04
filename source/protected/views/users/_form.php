@@ -83,7 +83,7 @@
                         CHtml::listData(
                                 Categories::model()->findAllByAttributes(array('status'=>'1')),
                                 'id',
-                                'title'
+                                'concatenated'
                         ),
                          array(
 							'separator'=>'<br>',

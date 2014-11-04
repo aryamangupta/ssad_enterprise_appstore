@@ -27,6 +27,11 @@ class Checklists extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
+		public function getConcatenated()
+        {
+                return $this->title.': '.$this->description;
+        }
+
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that

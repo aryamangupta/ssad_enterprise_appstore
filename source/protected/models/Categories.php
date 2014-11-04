@@ -27,6 +27,11 @@ class Categories extends CActiveRecord
 
 
 	public $parent_search;
+			public function getConcatenated()
+        {
+                return $this->title.': '.$this->description;
+        }
+
 	public function tableName()
 	{
 		return 'categories';

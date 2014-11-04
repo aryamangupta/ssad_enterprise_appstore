@@ -99,7 +99,7 @@ Please go through the the checklists and accordingly review the app : <br>
                           CHtml::listData(
 				                $var,
                                 'id',
-                                'checklist.title'
+                                'checklist.concatenated'
                         ),
                          array(
                             'separator'=>'<br>',

@@ -122,14 +122,32 @@ class ApplicationsController extends Controller
 				$entry->reviewer_id=1;
 				$entry->status_id = 1; //default
 				$test = 1;
+
 				if ( $model->save()  ){
 					$entry->application_id =$model->id;
 					$photos = CUploadedFile::getInstancesByName('photos');
 				
 						if( $entry->save() ) {
+							if (!is_dir(Yii::app()->basePath.'/../data')) {
+           						mkdir(Yii::app()->basePath.'/../data');
+           					}
+							if (!is_dir(Yii::app()->basePath.'/../data/'.$model->name)) {
+           					    mkdir(Yii::app()->basePath.'/../data/'.$model->name);
+           					    mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/Logo');
+           					    mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/MediaFiles');
+       					    
+       					    }
+							if (!is_dir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version)) {
+           					    mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version);
+           					     mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version.'/Code');
+       					    
+       					    }
+            
+							$model->logo->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/Logo/'.$model->logo);
+							$entry->file_name->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version.'/Code/'.$entry->file_name);
 							if (isset($photos) && count($photos) > 0) {
 	 		                foreach ($photos as $image => $pic) {
-	        		     	    if($pic->saveAs(Yii::app()->basePath.'/../images/'.$pic->name)){
+	        		     	    if($pic->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/MediaFiles/'.$pic->name)){
 		                       		$img_add = new MediaFiles;
 	                        		$img_add->filename = $pic->name; //it might be $img_add->name for you, filename is just what I chose to call it in my model
 	                        		$img_add->application_id = $model->id; 
@@ -145,9 +163,6 @@ class ApplicationsController extends Controller
 	        	            	}
 	                		}
                 		}
-						$model->logo->saveAs(Yii::app()->basePath.'/../images/'.$model->logo);
-						$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-					//	$media->filename->saveAs(Yii::app()->basePath.'/../code/'.$media->filename);
 
 						$cats =  CategoryReviewerMapping::model()->findAllByAttributes(array('category_id' => $model->category_id));
 						$rev = [];

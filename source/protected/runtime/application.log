@@ -4178,3 +4178,19 @@ Stack trace:
 REQUEST_URI=/yii/source/index.php?r=applications/updateApp
 HTTP_REFERER=http://localhost/yii/source/index.php?r=versions/viewall&id=6
 ---
+2014/11/04 11:11:38 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/newuser/Sites/source/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/newuser/Sites/source/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/newuser/Sites/source/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/newuser/Sites/source/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/newuser/Sites/source/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/newuser/Sites/source/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/newuser/Sites/source/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/newuser/Sites/source/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/newuser/Sites/source/framework/web/CWebApplication.php(282): CController->run('create')
+#8 /Users/newuser/Sites/source/framework/web/CWebApplication.php(141): CWebApplication->runController('applications/cr...')
+#9 /Users/newuser/Sites/source/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/newuser/Sites/source/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/source/index.php?r=applications/create
+---
