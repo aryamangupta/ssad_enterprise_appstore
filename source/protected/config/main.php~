@@ -32,7 +32,7 @@ return array(
 
 	// application components
 	'components'=>array(
-		'MultiMailer' => array(
+			'MultiMailer' => array(
                 'class' => 'ext.MultiMailer.MultiMailer',
                 'setFromAddress' => 'from@yourwebsite.com',
                 'setFromName' => 'App8it',
@@ -47,6 +47,7 @@ return array(
 			'allowAutoLogin'=>true,
 //			'class'=>'MyWebUser',
 		),
+
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(
@@ -67,7 +68,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=appstore',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'arya0048',
 			'charset' => 'utf8',
 		),
 	        'authManager'=> array(
