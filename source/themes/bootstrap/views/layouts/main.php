@@ -96,7 +96,7 @@
 							array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 							
 							array('label'=>'Edit Profile', 'url'=>Yii::app()->createUrl('users/update',array('id'=>Yii::app()->user->id)),'visible'=>!Yii::app()->user->isGuest),
-							array('label'=>'Pending Apps', 'url'=>array('/applications/admin '), 'visible'=>Yii::app()->user->checkAccess('reviewApp')),
+							array('label'=>'Pending Apps', 'url'=>array('/versions/admin '), 'visible'=>Yii::app()->user->checkAccess('reviewApp')),
 						
 							array('label'=>'Manage Users', 'url'=>array('/users/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
                                 array('label'=>'Manage Categories', 'url'=>array('/categories/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),

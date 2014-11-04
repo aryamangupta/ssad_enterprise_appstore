@@ -169,7 +169,9 @@ public function getVersionStatus()
 		$criteria=new CDbCriteria;
 		$criteria->with = array('application','status','reviewer');
 		$criteria->addCondition("application.status <= 2");
-
+		$user = Users::model()->findbyPk(Yii::app()->user->id);
+		if( $user->role_id == 3 )
+			$criteria->addInCondition('t.reviewer_id',array($user->id));
 //		$criteria->addCondition(($this->appStatus =1 || $this->appStatus = 0 ) && ( $this->versionStatus !=6));
 		$criteria->compare('reviewer.email',$this->reviewerEmail,true);
 		$criteria->compare('application.status',$this->appStatus,true);

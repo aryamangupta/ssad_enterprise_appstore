@@ -181,22 +181,23 @@ class Applications extends CActiveRecord
 		$criteria->addCondition("t.status <= 2");	
 		if( $temp->role_id == 2 )// developer should only see his own apps
 		{
-			$criteria->addCondition('t.user_id',Yii::app()->user->id);
+			$criteria->addInCondition('t.user_id',array(Yii::app()->user->id),'AND');
 		}
+		
 		if ( $temp->role_id == 3 ){// reviewer
-			$criteria->addCondition('versions.reviewer_id',Yii::app()->user->id);
+			$criteria->addInCondition('versions.reviewer_id',array(Yii::app()->user->id),'AND');
 			$criteria->compare('versions.status_id',1);
 		}
 		$criteria->compare('device.type',$this->device_search,true);
 		$criteria->compare('platform.name',$this->platform_search,true);
-		$criteria->compare('category.title',$this->categoryTitle,true);
+	//	$criteria->compare('category.title',$this->categoryTitle,true);
 
-                $criteria->compare('category_search',$this->category_search,true);
+               $criteria->compare('category.title',$this->category_search,true);
 
 		$criteria->compare('t.id',$this->id);
 		$criteria->compare('t.status',$this->status,true);
 		$criteria->compare('t.name',$this->name,true);
-		$criteria->compare('t.user_id',$this->user_id);
+//		$criteria->compare('t.user_id',$this->user_id);
 		$criteria->compare('t.category_id',$this->category_id);
 		$criteria->compare('t.description',$this->description,true);
 		$criteria->compare('t.status',$this->status,true);

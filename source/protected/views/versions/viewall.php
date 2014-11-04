@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 $app = Applications::model()->findbyPk($versions[0]->application_id);
 
 $this->menu=array(
-	array('label'=>'Add new Version', 'url'=>array('applications/updateApp') ),
-	array('label'=>'View '.$app->name, 'url'=>array('applications/updateApp') ),
+	array('label'=>'Add new Version', 'url'=>array('applications/updateApp'),'visible'=>Yii::app()->user->checkAccess('createApp') ),
+	array('label'=>'View '.$app->name, 'url'=>array('applications/view&id='.$app->id) ),
 	array('label'=>'Manage Versions', 'url'=>array('applications/admin')),
 );
 ?>
