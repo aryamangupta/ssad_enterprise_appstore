@@ -49,16 +49,21 @@ class Users extends CActiveRecord
 //			array('role.role','length','max'=>64),
 			array('email, password, first_name, last_name, phone_number, role_id, activation_key, status', 'required'),
 			array('role_id', 'numerical', 'integerOnly'=>true),
+                        array('role_id', 'compare', 'compareValue' => 4, 'operator' => '<=','message'=>'role should be selected'),
 			array('email, password, first_name, last_name, reset_password_key', 'length', 'max'=>128),
-			array('phone_number', 'length', 'max'=>20),
 			array('status', 'length', 'max'=>1),
 			array('reset_password_date', 'safe'),
+                        array('email','email'),
+                        array('phone_number', 'match', 'pattern' => '/^\d{12}/',"message"=>"International Format required"),
+                        array('first_name', 'match', 'pattern' => '/^\w+$/',"message"=>"First Name is invalid"),
+                        array('last_name', 'match', 'pattern' => '/^\w+$/',"message"=>"Last Name is invalid"),
+                        //array('role_id', 'in', 'range' => [1, 2, 3, 4],'message'=>'role should be selected'),
+                        //array('phone_number','validatePhoneNumber','message'=>'International Format Required'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, role_search, email, password, first_name, last_name, phone_number, role_id, create_date, modified_date, activation_key, status, reset_password_key, reset_password_date', 'safe', 'on'=>'search'),
 		);
 	}
-
 	/**
 	 * @return array relational rules.
 	 */

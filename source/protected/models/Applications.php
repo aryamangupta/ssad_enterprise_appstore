@@ -75,6 +75,7 @@ class Applications extends CActiveRecord
 				array('status', 'length', 'max'=>1),
 				array('logo', 'file', 'types'=>'jpeg,jpg,gif,png'),
 				array('logo','safe'),
+                                array('name','match','pattern'=>'/^\w+?/','message'=>'file name is invalid'),
 				// The following rule is used by search().
 				// @todo Please remove those attributes that should not be searched.
 				array('id,platform.name,platform_search,device.type,device_search,category_search,category.title, categoryTitle, name, user_id, category_id, description, status, logo, platform_id, device_id, ndownloads, disabled_comments', 'safe', 'on'=>'search'),

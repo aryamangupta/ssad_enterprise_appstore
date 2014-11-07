@@ -59,11 +59,10 @@ class ChecklistsController extends Controller
 		$model=new Checklists;
 		$entry = new ChecklistCategoryMap;
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		 $this->performAjaxValidation($model);
+                 $this->performAjaxValidation($entry);
 		if(isset($_POST['Checklists']))
 		{	
-		
 			$model->attributes=$_POST['Checklists'];
 			$entry->attributes = $_POST['ChecklistCategoryMap'];
 		

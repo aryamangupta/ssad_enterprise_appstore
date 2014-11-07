@@ -26,11 +26,6 @@ class CategoriesController extends Controller
 	 */
 	public function accessRules()
 	{
-
-
-
-
-
 		return array(
 				array('allow', // allow admin user to perform 'admin' and 'delete' actions
 					'actions'=>array('view','admin','delete','index','create','update'),
@@ -50,7 +45,6 @@ class CategoriesController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
-
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -58,21 +52,16 @@ class CategoriesController extends Controller
 	public function actionCreate()
 	{
 		$model=new Categories;
-
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		 $this->performAjaxValidation($model);
 		if(isset($_POST['Categories']))
 		{
 			$model->attributes=$_POST['Categories'];
 			$model->create_date = date_create()->format('Y-m-d H:i:s');
 			$model->modified_date = date_create()->format('Y-m-d H:i:s');
-
-
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-
 		$this->render('create',array(
 			'model'=>$model,
 		));

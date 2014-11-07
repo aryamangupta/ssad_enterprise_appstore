@@ -55,8 +55,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		array(
                         'name'=>'status',
                         'header'=>'Status',
-                        'value' => '($data->status==1 ? "Activated" : "Deactivated")',
-                ),
+	                    'value' => '$data->status',
+                        'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
+                 ),
 		'description',
 	/*	'create_date',
 		'modified_date',

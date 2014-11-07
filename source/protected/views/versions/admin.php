@@ -52,11 +52,23 @@ $('.search-form form').submit(function(){
 				array(
                         'name'=>'appStatus',
                         'header'=>'App Status',
-                        'value' => '($data->application->status=="1" ? "Activated" : "Deactivated")',
+                        'value' => '$data->appStatus',
+                        'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
+                
+                       // 'value' => '($data->application->status=="1" ? "Activated" : "Deactivated")',
                     //    'filter'=>CHtml::activeTextField($model,'versions_search'),
                      ),
 		'version',
-			'versionStatus',
+			
+			array(
+                        'name'=>'versionStatus',
+                        'header'=>'Version Status',
+                        'value' => '$data->versionStatus',
+                        'filter'=> array(),
+                
+                       // 'value' => '($data->application->status=="1" ? "Activated" : "Deactivated")',
+                    //    'filter'=>CHtml::activeTextField($model,'versions_search'),
+                     ),
 	'reviewerName',
 		'reviewerEmail',
 	  			array(

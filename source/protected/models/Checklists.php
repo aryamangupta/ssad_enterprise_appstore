@@ -23,7 +23,6 @@ class Checklists extends CActiveRecord
 	{
 		return 'checklists';
 	}
-
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -40,6 +39,7 @@ class Checklists extends CActiveRecord
 			array('title, description, create_date, modified_date', 'required'),
 			array('title', 'length', 'max'=>128),
 			array('status', 'length', 'max'=>1),
+                        array('title','match','pattern'=>'/^\w+$/','message'=>'Title is Invalid'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, title, description, status, create_date, modified_date', 'safe', 'on'=>'search'),

@@ -50,11 +50,16 @@ $('.search-form form').submit(function(){
 		),
 			
 		'phone_number',
-
+/*		array(
+        'name'=>'status',
+        'value'=>'$data->getStatus',
+        'filter'=> array('0' => 'Disabled', '1' => 'Enabled'),
+    ),*/
 		 array(
                         'name'=>'status',
                         'header'=>'Status',
-                        'value' => '($data->status==1 ? "Activated" : "Deactivated")',
+                        'value' => '$data->status',
+                        'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
                 //        'filter'=>CHtml::activeTextField($model,'versions_search'),
                      ),
 

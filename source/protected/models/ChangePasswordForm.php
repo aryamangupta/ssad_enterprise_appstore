@@ -9,9 +9,9 @@ class ChangePasswordForm extends CFormModel
   public function rules()
   {
     return array(
-   //   array(
-     //   'currentPassword', 'compareCurrentPassword'
-     // ),
+      array(
+        'currentPassword', 'compareCurrentPassword'
+      ),
       array(
         'currentPassword, newPassword, newPassword_repeat', 'required',
       ),
@@ -19,10 +19,37 @@ class ChangePasswordForm extends CFormModel
         'newPassword_repeat', 'compare',
         'compareAttribute'=>'newPassword',
       ),
-      
+      array(
+        'currentPassword', 'compare','compareAttribute'=>'newPassword','operator'=>'!=','message'=>'Old and New password are same',  
+      ),
+      array('newPassword','length','min'=>8),
+      array('newPassword','validatePasswordStrength','message'=>'password '),
     );
   }
   
+  public function validatePasswordStrength($attribute,$params){
+      $pattern1 ='/*[0-9]*/';
+      $pattern2 ='/*[a-z]*/';
+      $pattern3 ='/*[A-Z]*/';
+      $pattern4 ='/*!\w*/';
+      if(!preg_match($pattern1,$this->currentPassword)){
+              $this->addError($this->currentPassword,"Password should have at least one digit");
+              return;
+      }
+      if(!preg_match($pattern2,$this->currentPassword)){
+              $this->addError($this->currentPassword,"Password should have at least one small letter ");
+              return;
+      }
+      if(!preg_match($pattern3,$this->currentPassword)){
+              $this->addError($this->currentPassword,"Password should have at least one capital letter");
+              return;
+      }
+      if(!preg_match($pattern4,$this->currentPassword)){
+              $this->addError($this->currentPassword,"Password should have at least one special character");
+              return;
+      }
+              
+      }
   public function compareCurrentPassword($attribute,$params)
   {
     if( $this->currentPassword !== $this->_user->password )

@@ -106,8 +106,11 @@ class ApplicationsController extends Controller
 			$model = new Applications;
 			$entry = new Versions;
 			// Uncomment the following line if AJAX validation is needed
-			// $this->performAjaxValidation($model);
-			$img_add = new MediaFiles;
+			$this->performAjaxValidation($model);
+                        $this->performAjaxValidation($entry);
+                        
+                        $img_add = new MediaFiles;
+                   
 			if(isset($_POST['Applications']) && isset($_POST['Versions']) )
 			{
 				$entry->attributes = $_POST['Versions'];
@@ -202,8 +205,6 @@ class ApplicationsController extends Controller
 					}
 
 				}
-
-
 				else {
 				//	$model->delete();
 					
@@ -211,9 +212,6 @@ class ApplicationsController extends Controller
 								'model'=>$model,'entry'=>$entry
 								));
 				}
-
-
-
 			}
 			else{
 				$this->render('create',array(
@@ -221,7 +219,6 @@ class ApplicationsController extends Controller
 							));
 
 			}
-
 		}
 		catch(Exception $e){
 			echo $e->getMessage();
@@ -237,7 +234,7 @@ class ApplicationsController extends Controller
 			$model = new Applications;
 			$entry = new Versions;
 			// Uncomment the following line if AJAX validation is needed
-			// $this->performAjaxValidation($model);
+			 $this->performAjaxValidation($entry);
 		try{
 			if(isset($_POST['Applications']) && isset($_POST['Versions']))
 			{

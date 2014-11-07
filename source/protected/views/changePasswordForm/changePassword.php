@@ -6,9 +6,13 @@
         // controller action is handling ajax validation correctly.
         // There is a call to performAjaxValidation() commented in generated controller code.
         // See class documentation of CActiveForm for details on this.
-        'enableAjaxValidation'=>false,
+    //    'enableAjaxValidation'=>true,
+    'enableClientValidation'=>true,
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+            ),
 )); ?>
-<?php $this->endWidget(); ?>
+
 
 <br>
 <br>
@@ -19,25 +23,26 @@
 	<?php  $user = Users::model()->findByPk(Yii::app()->user->id);?>
         <?php if($user->role_id != 1 ) echo CHtml::activeLabel($model,'currentPassword'); ?>
         <?php if($user->role_id != 1) echo CHtml::activePasswordField($model,'currentPassword') ?>
+        <?php echo $form->error($model,'currentPassword'); ?>
     </div>
 
     <div class="row">
         <?php echo CHtml::activeLabel($model,'newPassword'); ?>
         <?php echo CHtml::activePasswordField($model,'newPassword') ?>
+        <?php echo $form->error($model,'newPassword'); ?>
     </div>
 
     <div class="row">
         <?php echo CHtml::activeLabel($model,'newPassword_repeat'); ?>
         <?php echo CHtml::activePasswordField($model,'newPassword_repeat') ?>
+        <?php echo $form->error($model,'newPassword_repeat'); ?>
     </div>
 
     <div class="row submit">
         <?php echo CHtml::submitButton('Change password',array('confirm'=>'Are you sure?')); ?>
 
-
-
     </div>
 
-<?php //$this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 
 </div><!-- form -->

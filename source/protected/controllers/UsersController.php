@@ -81,13 +81,7 @@ class UsersController extends Controller
 
 					if( !empty($model->activation_key ))
 					{		/*	{
-								echo "Categories not Assigned";
-								$this->render('create',array(
-								'model'=>$model,
-								));
-
-								}	
-
+								echo "Categories not Assigned"; $this->render('create',array('model'=>$model,));}	
 								else
 							 */	foreach ($model->activation_key as $y):
 						$temp[$count] = $y;
@@ -102,14 +96,11 @@ class UsersController extends Controller
 					$auth->assign(Roles::model()->findByPk($model->role_id)->role,$model->id);
 					if( empty($temp) )
 					{
-
 						echo "Categories not Assigned";
 						$model->delete();
 						$this->render('create',array(
 									'model'=>$model,
 									));
-
-
 					}
 					else{	
 						foreach( $temp as $t ):
@@ -122,21 +113,18 @@ class UsersController extends Controller
 						$this->redirect(array('admin','id'=>$model->id));
 					}
 				}				
-				//else{ $model->delete();}
 			}
 			else
 				$this->render('create',array(
 							'model'=>$model,
 							));
 		}
-
 		catch(Exception $e){
 			echo $e->getMessage();
 			?><br><h1><?php	echo "Email already registered!" ; ?> </h1><?php
 				$this->render('create',array(
 							'model'=>$model,
 							));
-
 		}
 	}
 

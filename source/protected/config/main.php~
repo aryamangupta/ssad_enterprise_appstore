@@ -38,8 +38,8 @@ return array(
                 'setFromName' => 'App8it',
                 'setMethod'         => 'GMAIL',
             	'setOptions'        => array(
-                'Username'  => 'aryaman0048@gmail.com',
-                'Password'  => 'Fearless11',
+                'Username'  => 'vatika.harlalka@research.iiit.ac.in',
+                'Password'  => 'Dream123',
                 ),
             ),
 		'user'=>array(
@@ -68,7 +68,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=appstore',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'arya0048',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 	        'authManager'=> array(

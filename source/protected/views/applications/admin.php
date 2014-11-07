@@ -61,7 +61,10 @@ $('.search-form form').submit(function(){
 		 array(
                         'name'=>'status',
                         'header'=>'App Status',
-			'value' => '($data->status=="1" ? "Activated":"Deactivated")',//CHtml::image(Yii::app()->baseUrl ."/images/active.png" ): CHtml::image(Yii::app()->baseUrl ."/images/inactive.jpg"),
+                        'value' => '$data->status',
+                        'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
+          
+			//'value' => '($data->status=="1" ? "Activated":"Deactivated")',//CHtml::image(Yii::app()->baseUrl ."/images/active.png" ): CHtml::image(Yii::app()->baseUrl ."/images/inactive.jpg"),
                 //        'filter'=>CHtml::activeTextField($model,'versions_search'),
                      ),
 
