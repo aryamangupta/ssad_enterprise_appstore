@@ -93,10 +93,14 @@
 </div>
 </div>
 	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->labelEx($model,'status'); ?><br>
 		<?php //echo $form->dropDownList($model,'status',array('prompt'=> 'Select','1'=>'Activate','0'=>'Deactivate'));
 		?>
-				<?php echo $form->radioButtonList($model,'status',array('1'=>'Activate','0'=>'Deactivate'));
+				<?php echo $form->radioButtonList($model,'status',array('1'=>'Activate','0'=>'Deactivate'), array(
+							'separator'=>'<br>',
+							 'template'=>'<div style="padding-left:100px"><div class="row">{label}{input}</div></div>',
+        					
+						));
 		?>  
 
 		<?php echo $form->error($model,'status'); ?>

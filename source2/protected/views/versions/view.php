@@ -36,7 +36,26 @@ echo "   ". $app->name;
 <h1>
  Version <?php echo $model->version ; ?></h1>
 
+<?php if( $model->status_id == 1 ){ ?> 
+<?php $this->widget('zii.widgets.CDetailView', array(
+	'data'=>$model,
+	'attributes'=>array(
+		 array(
+                        'name'=>'file_name',
+                        'header'=>'File',
 
+                         'type'=>'raw',
+                         'value'=>CHtml::link($model->file_name,Yii::app()->request->baseUrl."/code/".$model->file_name ),
+		 ),
+		'application.description',
+		'create_date',
+		'versionStatus',
+		'reviewerName',
+//		'activity',
+//		'comment',
+	),
+)); ?>
+<?php } else {  ?>
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
@@ -54,7 +73,7 @@ echo "   ". $app->name;
 		'activity',
 		'comment',
 	),
-)); ?>
+)); }?>
 
 <?php $config = array();
 $dataProvider = new CActiveDataProvider('MediaFiles', array('data' => $model->application->mediaFiles));
@@ -82,6 +101,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             )*/
     )
 )); ?>
+
 
 <?php
     $user = Users::model()->findbyPk(Yii::app()->user->id);
@@ -118,8 +138,8 @@ foreach( $list as $l):
 endforeach;
 
 ?>
-<br>	
-Please go through the the checklists and accordingly review the app : <br>
+<br>
+<h4>Please go through the the checklists and accordingly review the app :</h4> <br>
 <?php		echo $form->checkBoxList(
                         $model,'activity',
                           CHtml::listData(
@@ -128,13 +148,22 @@ Please go through the the checklists and accordingly review the app : <br>
                                 'checklist.concatenated'
                         ),
                          array(
+			    'name'=>'checklist',
                             'separator'=>'<br>',
-                             'template'=>'<div style="padding-left:100px"><div class="row">{label}{input}</div></div>',
-                            
+                            'template'=>'<div style="padding-left:100px"><div class="row">{label}{input}</div></div>',
+                            'checkAll' => 'Select All',
                         )
                  );
  ?>
 </ul>
+
+  	<div class="row">
+                <?php echo $form->labelEx($model,'comment'); ?>
+                <?php echo $form->textArea($model,'comment',array('name'=>'comment','rows'=>3, 'cols'=>100)); ?>
+                <?php echo $form->error($model,'comment'); ?>
+        </div>
+
+
 <br>
 <div class="row buttons">
 <br/>

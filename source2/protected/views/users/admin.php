@@ -43,10 +43,11 @@ $('.search-form form').submit(function(){
 		
 		'email',
 		array(
-			'name' => 'role.role',
+			'name' => 'role_id',
 			'header' => 'Profile',
-			'filter'=>CHtml::activeTextField($model,'role_search'),
-
+		//	'filter'=>CHtml::activeTextField($model,'role_search'),
+			'value'=>'( $data->role_id== 1 ? "Admin" : ($data->role_id == 2 ? "Developer" : ( $data->role_id == 3 ?  "QA Analyst": " User" ) ) )',
+			'filter'=> array('1' => 'Admin', '2' => 'Developer' , '3' => 'QA Analyst' , '4' => 'User'),
 		),
 			
 		'phone_number',
@@ -55,6 +56,7 @@ $('.search-form form').submit(function(){
                         'name'=>'status',
                         'header'=>'Status',
                         'value' => '($data->status==1 ? "Activated" : "Deactivated")',
+			'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
                 //        'filter'=>CHtml::activeTextField($model,'versions_search'),
                      ),
 

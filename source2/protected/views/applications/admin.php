@@ -63,6 +63,7 @@ $('.search-form form').submit(function(){
                         'header'=>'App Status',
 			'value' => '($data->status=="1" ? "Activated":"Deactivated")',//CHtml::image(Yii::app()->baseUrl ."/images/active.png" ): CHtml::image(Yii::app()->baseUrl ."/images/inactive.jpg"),
                 //        'filter'=>CHtml::activeTextField($model,'versions_search'),
+ 			'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
                      ),
 
 

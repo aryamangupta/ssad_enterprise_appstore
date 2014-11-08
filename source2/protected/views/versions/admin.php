@@ -52,11 +52,20 @@ $('.search-form form').submit(function(){
 				array(
                         'name'=>'appStatus',
                         'header'=>'App Status',
-                        'value' => '($data->application->status=="1" ? "Activated" : "Deactivated")',
-                    //    'filter'=>CHtml::activeTextField($model,'versions_search'),
+                        'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
+                
+                        'value' => '($data->appStatus=="1" ? "Activated" : "Deactivated")',
                      ),
 		'version',
-			'versionStatus',
+array(
+                        'name'=>'versionStatus',
+                        'header'=>'Version Status',
+                        'value' => '$data->versionStatus',
+                        'filter'=> array('Admin Approved'=>'Admin Approved','Analyst approved'=>'Analyst Approved','Analyst rejected'=>'Analyst Rejected','Admin Rejected'=>'Admin Rejected','Waiting for review'=>'Waiting for review'),//'Removed'=>'Removed'),
+                
+                       // 'value' => '($data->application->status=="1" ? "Activated" : "Deactivated")',
+                    //    'filter'=>CHtml::activeTextField($model,'versions_search'),
+                     ),
 	'reviewerName',
 		'reviewerEmail',
 	  			array(

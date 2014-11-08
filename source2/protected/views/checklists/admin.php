@@ -51,6 +51,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                         'name'=>'status',
                         'header'=>'Status',
                         'value' => '($data->status==1 ? "Activated" : "Deactivated")',
+			'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
                 ),
 		'create_date',
 		'modified_date',
