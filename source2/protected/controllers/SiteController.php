@@ -20,7 +20,19 @@ class SiteController extends Controller
 			),
 		);
 	}
-
+	public function actionViewapp($applicationId=118){
+	//try{
+	//echo 'Hello';
+	//echo "<BR>".Yii::app()->homeUrl."?r=applications/viewapp.php";
+	$this->render("viewapp",
+	array('applicationId'=>$applicationId,
+	));
+	//YII:app()->end();
+	//}
+	//catch(CDbException $e){
+	//$this->redirect(Yii::app()->homeUrl);
+	//}
+	}
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.

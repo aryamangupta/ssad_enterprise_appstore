@@ -42,12 +42,6 @@
 <div class="container">
 	<div class="row">
 			<!-- Categories side bar --> 
- <div style='float: right;direction: rtl; color: #ffffff; margin: 5px 0 0 5px; font-size: 13px'>
-		     				
-		     				   <?php echo CHtml::form(Yii::app()->createUrl('applications/search'),'get') ?>
-		    				   <?php echo CHtml::textField('search_key', 'Search by app name') ?>
-        					   <?php echo CHtml::endForm() ?>
-	</div>
 		<div class="col-md-3">
    			<p class="lead">Categories</p>
                 <div class="list-group navbar">
@@ -62,13 +56,11 @@
 	            </div>
 	        </p>
 	    </div>    
-	</div>
+
 
 		<!-- Top 5 Apps -->	
-<h2>
-		<div class="column">Favourites</div>
-</h2>
-	  	<div class="col-md-12" >
+
+	  	<div class="col-md-9" >
 			<?php 
 				$applications = Applications::model()->findAllByAttributes(array('status'=>'1')); 
 				$ratelist = [];				
@@ -101,16 +93,15 @@
 					$app = Applications::model()->findbyPk($key); 
 	//				echo $app->name. " : " .$value ."<br>";
 ?>
-			<div class="col-sm-2 col-lg-2 col-md-2">
-		      	 <div class="thumbnail">
+			<div class="col-sm-4 col-lg-4 col-md-4">
+		        <div class="thumbnail">
 					<?php $image = (Yii::app()->baseUrl.'/images/'.$app->logo) ; ?>
 	
     	            <img src= "<?= $image; ?>"  alt="" style="width:80%;height:60%">
-				
     	            <div class="caption">
     	                  <!--<h4 class="pull-right">$64.99</h4>-->
 		                <h4><div style="width: 100; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
-							<a href= "<?= Yii::app()->basePath.'?r=applications/viewapp&id='.$app->id ?>"><?= $app->name;?></a>
+							<a href="#"><?= $app->name;?></a>
     	               </div></h4>
 						<!--div style="width: 40; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
 		                    <p><?= $app->description;?>.</p>
@@ -139,17 +130,20 @@
     	            </div>
     	        </div>
 			</div>
-		</div>
+	
+	</div>
 
 
+<?php				endforeach;
 
-<?php		
-		endforeach;
-?>
-    
+
+			?>
+
+        </div>
+        
+    </div>
 </div>
 
-</div>
 <!-- Home page -->
 <div class="container">
 <?php 
@@ -159,13 +153,9 @@
 		//echo $category->title."<br>";
 
 ?>
-<?php	$options = array('id' => $category->id);?>
-
-<h2><a href=" <?php echo $this->createUrl('applications/viewCategoryApps',$options); ?>" class="column"><?= $category->title;?></a></h2>
-<a href=" <?php echo $this->createUrl('applications/viewCategoryApps',$options); ?>" class="column">
-<button type="button" style="float:right;">See more</button>
-</a>
-	
+	<h2>
+		<a id="<?= $category->title;?>" class="column"><?= $category->title;?></a>
+	</h2> 
 	<div class="row">
 <?php
 			$applications = Applications::model()->findAllByAttributes(array('status'=>'1', 'category_id'=> $category->id)); 
@@ -200,14 +190,14 @@
 		//		echo $app->name. " : " .$value ."<br>";
 ?>
 			<div class="col-sm-2 col-lg-2 col-md-2">
-		        <div class="thumbnail"><a href="<?= Yii::app()->basePath.'?r=applications/viewapp&id='.$app->id ?>">
+		        <div class="thumbnail">
 					<?php $image = (Yii::app()->baseUrl.'/images/'.$app->logo) ; ?>
 	
     	            <img src= "<?= $image; ?>"  alt="" style="width:80%;height:60%">
     	            <div class="caption">
     	                  <!--<h4 class="pull-right">$64.99</h4>-->
 		                <h4><div style="width: 100; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
-							<?= $app->name;?>
+							<a href="#"><?= $app->name;?></a>
     	               </div></h4>
 						<!--div style="width: 40; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;">
 		                    <p><?= $app->description;?>.</p>
@@ -233,10 +223,11 @@
 							<?php $t++; } ?>
 							
     	            	</p>
-    	            </div></a>
+    	            </div>
     	        </div>
 			</div>
-		</div>
+	
+	</div>
 
 <?php
 		endforeach;
@@ -246,8 +237,10 @@
 	endforeach;
 
 ?>
-</div>
 
+
+
+</div>
 
     <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.0.js"></script>

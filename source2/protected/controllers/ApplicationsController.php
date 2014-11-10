@@ -27,16 +27,16 @@ class ApplicationsController extends Controller
 	{
 		return array(
 				array('allow',  // allow all users to perform 'index' and 'view' actions
-					'actions'=>array('index','view','create','admin','updateApp','update'),
+					'actions'=>array('index','view','create','admin','updateApp','update','search'),
 					'roles'=>array('developer'),
 				     ),
 				array('allow',  // allow all users to perform 'index' and 'view' actions
-					'actions'=>array('index','view','admin','pendingrev'),
+					'actions'=>array('index','view','admin','pendingrev','search'),
 					'roles'=>array('qa analyst'),
 				     ),
 
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-					'actions'=>array('view','delete','admin','index','update','pendingdev','pendingrev'),
+					'actions'=>array('view','delete','admin','index','update','pendingdev','pendingrev','search'),
 					'roles'=>array('admin'),
 				     ),
 				array('deny',
@@ -196,7 +196,7 @@ class ApplicationsController extends Controller
 					}
 					else {
 						$model->delete();
-						$entry->delete();
+						//$entry->delete();
 						//	$media->delete();
 						//	$entry->delete();	
 						$this->render('create',array(
@@ -398,6 +398,19 @@ class ApplicationsController extends Controller
 		$this->render('pendingrev',array(
 					'model'=>$model,
 					));
+	}
+	public function actionSearch()
+	{
+	    $model = new Applications('search');
+	    $model->unsetAttributes();
+	    if(isset($_GET['search_key'])){
+	        $model->name = $_GET['search_key']; 
+	        $model->description = $_GET['search_key'];     
+	     }
+
+	    $this -> render('search', array(
+	        'model' => $model,
+	    ));
 	}
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

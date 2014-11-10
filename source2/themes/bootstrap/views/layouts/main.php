@@ -70,12 +70,6 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<a class="brand "  href="#"><?php echo Yii::app()->name ?></a>
 				<div class="nav-collapse">
 					
 
@@ -83,7 +77,6 @@
       <div class="masthead">
         
        
-
 
 
 <?php $this->widget('zii.widgets.CMenu',array(
@@ -156,14 +149,7 @@
 
 	</div>
 
-	<div class="extra">
-	  <div class="container">
-		<div class="row">
-			
-			</div> <!-- /row -->
-		</div> <!-- /container -->
-	</div>
-	
+
 	<div class="footer">
 	  <div class="container">
 		<div class="row">
