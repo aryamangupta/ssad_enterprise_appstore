@@ -17,6 +17,13 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
+<?php if(Yii::app()->user->hasFlash('success')):?>
+    <div class="info">
+        <?php echo Yii::app()->user->getFlash('success'); ?>
+    </div>
+<?php endif; ?>
+
+
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
@@ -24,33 +31,21 @@
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
-	<div class="row">
-	        <?php
-                echo $form->labelEx($model,'parent_id'); 
-                echo $form->dropDownList(
-                        $model,'parent_id',
-                        CHtml::listData(
-                                Categories::model()->findAll(),
-                                'id',
-                                'title'
-                        ),
-                        array(
-                                'class'=> 'my-drop-down',
-                        	'prompt'=>'Select',
-				        
-                        )
-                );
-        ?>
-	
-		
-		<?php echo $form->error($model,'parent_id'); ?>
-	</div>
 	 <div class="row">
-                <?php echo $form->labelEx($model,'status'); ?>
-                <?php echo $form->dropDownList($model,'status',array('prompt'=>'Select','1'=>'Activate','0'=>'Deactivate')); ?>
-                <?php echo $form->error($model,'status'); ?>
-        </div>
+            <?php echo $form->labelEx($model,'status'); ?>
+                <?php //echo $form->dropDownList($model,'status',array('prompt'=> 'Select','1'=>'Activate','0'=>'Deactivate'));
+                ?>
+                                <?php echo $form->radioButtonList($model,'status',array('1'=>'Activate','0'=>'Deactivate'), array(
+                                                    //    'separator'=>'<br>',
+                                                         'template'=>'<div style="padding-left:140px;position:absolute;">{input}{label}</div>',
 
+                                                ));
+                ?>
+
+                <?php echo $form->error($model,'status'); ?>
+
+	</div>
+<br>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>

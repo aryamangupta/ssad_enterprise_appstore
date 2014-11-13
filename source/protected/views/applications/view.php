@@ -25,19 +25,18 @@ $this->menu=array(
 	{
 		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/inactive.jpg');
 	}
-	if ( $temp->role_id == 1)
-		echo CHtml::link($image, array('/applications/updateApp','id'=>$model->id));
-	else
+//	if ( $temp->role_id == 1)
+	//	echo CHtml::link($image, array('/applications/updateApp','id'=>$model->id));
+//	else
 		echo $image;
-
+	$userAgent = Yii::app()->request->userAgent;
 ?>
 
 </div>
 <h1>
-<?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/'.$model->logo,
-							"this is alt tag of image",
-							array("width"=>"50px" ,"height"=>"50px"));
 
+
+<?php echo CHtml::image(Yii::app()->baseUrl.'/data/'.$model->name.'/Logo/'.$model->logo,$model->name,array('width' =>'80px' , 'height'=>'80px' ));
 echo "   ".$model->name;				 ?>
 
 
@@ -50,7 +49,6 @@ echo "   ".$model->name;				 ?>
 
 
 </h1>
-
 <?php $this->widget('zii.widgets.CDetailView', array(
 			'data'=>$model,
 			'attributes'=>array(
@@ -88,7 +86,7 @@ echo "   ".$model->name;				 ?>
 //				     ),
 
 				'ndownloads',
-				'disabled_comments',
+//				'disabled_comments',
 				//		array('name'=>'Checklist', 'header'=>'Checklist',
 		//			 'value'=>  $b),
 
@@ -96,8 +94,51 @@ echo "   ".$model->name;				 ?>
 
 			),
 	)); ?>
+
+	<?php if($model->status == 0 ){   
+
+
+$this->widget('zii.widgets.CDetailView', array(
+                        'data'=>$model,
+                        'attributes'=>array(
+//                              'name',
+                                'disabled_comments',
+//                              'logo',
+)));
+
+} ?>
+
 	<br>
-<h4> <?php $current_user = Users::model()->findbyPk(Yii::app()->user->id); 
+<h4> 
+
+<?php $config = array();
+$dataProvider = new CActiveDataProvider('MediaFiles', array('data' => $model->mediaFiles));
+$this->widget('zii.widgets.grid.CGridView', array(
+    'dataProvider'=>$dataProvider,
+    'columns'=>array(
+    /*      array(
+                'name'=>'application.name',
+                'header'=>'Application Name',
+            ),*/
+          array(
+                        'name'=>'filename',
+                        'header'=>'Media File',
+                        'type'=>'raw',
+                        'value' => 'CHtml::image(Yii::app()->baseUrl."/data/".$data->application->name."/MediaFiles/".$data->filename,"",array(\'width\'=>\'100\', \'height\'=>\'100\'))',                     ),
+            'type',
+       /*     array(
+            'class'=>'CButtonColumn',
+                'template'=>'',
+        
+             'viewButtonUrl'=>'Yii::app()->createUrl("/mediaFiles/view", array("id"=>$data["id"]))'
+       //     , 'updateButtonUrl'=>'Yii::app()->createUrl("/mediaFiles/update", array("id"=>$data["id"]))'
+      //      , 'deleteButtonUrl'=>'Yii::app()->createUrl("/mediaFiles/delete", array("id"=>$data["id"]))'
+            )*/
+    )
+)); ?>
+
+
+<?php $current_user = Users::model()->findbyPk(Yii::app()->user->id); 
 	if( $current_user->role_id == 3 )
 		
 		echo "Checklists : ";?></h4>
@@ -127,9 +168,20 @@ echo "   ".$model->name;				 ?>
         if ( $temp->role_id == 1 && $flag ){
 	echo CHtml::beginForm(Yii::app()->createUrl('applications/view&id='.$model->id),'post');
 ?>
-        <div class="row buttons" style="float:right">
+
+
+ <?php if( $model->status == 1) {
+		?>	
+		<form action="" method ="post" >
+			Comments for Disabling:<br><input type="text" name="disabled_comments" style="width:400px;height:100px;>
+		</form> 
+<?php } ?>
+        <div class="row buttons" >
                <?php if( $model->status == 0) echo CHtml::submitButton('Activate',array('name'=>'button1','class' => 'button1')); ?>
-               <?php if( $model->status == 1) echo CHtml::submitButton('Deactivate', array('name'=>'button2')); ?>
+               <?php if( $model->status == 1) {
+		?>	
+
+		<?php		echo CHtml::submitButton('Deactivate', array('name'=>'button2')); } ?>
 
         </div>
 <?php   

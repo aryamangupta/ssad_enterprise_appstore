@@ -27,16 +27,16 @@ class ApplicationsController extends Controller
 	{
 		return array(
 				array('allow',  // allow all users to perform 'index' and 'view' actions
-					'actions'=>array('index','view','create','admin','updateApp'),
+					'actions'=>array('index','view','create','admin','updateApp','update','search'),
 					'roles'=>array('developer'),
 				     ),
 				array('allow',  // allow all users to perform 'index' and 'view' actions
-					'actions'=>array('index','view','admin','pendingrev'),
+					'actions'=>array('index','view','admin','pendingrev','search'),
 					'roles'=>array('qa analyst'),
 				     ),
 
 				array('allow', // allow authenticated user to perform 'create' and 'update' actions
-					'actions'=>array('view','delete','admin','index','update','pendingdev','pendingrev'),
+					'actions'=>array('view','delete','admin','index','update','pendingdev','pendingrev','search'),
 					'roles'=>array('admin'),
 				     ),
 				array('deny',
@@ -73,12 +73,23 @@ class ApplicationsController extends Controller
 			}
 			else if(isset($_POST['button2']))
 			{
-				$app->status = 0;
-				$app->update();
-
-				$this->render('view',array(
+				if( isset($_POST["disabled_comments"] ) && ($_POST["disabled_comments"] ))
+				{	
+					$app->status = 0;
+					$app->disabled_comments = $_POST["disabled_comments"] ;
+					$app->update();
+					$this->render('view',array(
 							'model'=>$this->loadModel($id),
 							));
+
+				}else {
+					$message['title']="Cannot deactivate";
+					$message['content']="Please give comment!";
+					Yii::app()->user->setFlash('success', $message);
+					$this->render('view',array(
+							'model'=>$this->loadModel($id),
+							));
+				}
 
 			}	
 			else{
@@ -111,8 +122,20 @@ class ApplicationsController extends Controller
                         
                         $img_add = new MediaFiles;
                    
-			if(isset($_POST['Applications']) && isset($_POST['Versions']) )
+			if(isset($_POST['Applications']) && isset($_POST['Versions']) )//&& $_POST['file_name'] && $_POST['version'] )
 			{
+				//				print_r( $_POST['Versions']) ;
+				/*	foreach( $_POST['Versions'] as $key=>$value ):
+					if( !$value )
+					{
+					echo "<h1>No ".$key." Selected</h1>";
+					$this->render('create',array(
+					'model'=>$model,'entry'=>$entry
+					));
+					}
+
+				 */	
+				//	endforeach;
 				$entry->attributes = $_POST['Versions'];
 				$model->attributes = $_POST['Applications'];
 				$model->user_id = Yii::app()->user->id;
@@ -129,53 +152,59 @@ class ApplicationsController extends Controller
 				if ( $model->save()  ){
 					$entry->application_id =$model->id;
 					$photos = CUploadedFile::getInstancesByName('photos');
-				
-						if( $entry->save() ) {
-							if (!is_dir(Yii::app()->basePath.'/../data')) {
-           						mkdir(Yii::app()->basePath.'/../data');
-           					}
-							if (!is_dir(Yii::app()->basePath.'/../data/'.$model->name)) {
-           					    mkdir(Yii::app()->basePath.'/../data/'.$model->name);
-           					    mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/Logo');
-           					    mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/MediaFiles');
-       					    
-       					    }
-							if (!is_dir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version)) {
-           					    mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version);
-           					     mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version.'/Code');
-       					    
-       					    }
-            
-							$model->logo->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/Logo/'.$model->logo);
-							$entry->file_name->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version.'/Code/'.$entry->file_name);
-							if (isset($photos) && count($photos) > 0) {
-	 		                foreach ($photos as $image => $pic) {
-	        		     	    if($pic->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/MediaFiles/'.$pic->name)){
-		                       		$img_add = new MediaFiles;
-	                        		$img_add->filename = $pic->name; //it might be $img_add->name for you, filename is just what I chose to call it in my model
-	                        		$img_add->application_id = $model->id; 
-	                        		$img_add->type = 'image';
-	                        		$img_add->status = '0';
-	                        		$img_add->create_date = date_create()->format('Y-m-d H:i:s');// this links your picture model to the main model (like your user, or profile model)
-	                        	//	echo $pic->name;
-	                        		try { $img_add->save(); unset($img_add);}
-	                        		catch(Exception $e){
 
-	                        			echo $e->getMessage();
-	                        		}
-	        	            	}
-	                		}
-                		}
+					if( $entry->save() ) {
+						if (!is_dir(Yii::app()->basePath.'/../data')) {
+							mkdir(Yii::app()->basePath.'/../data');
+						}
+						if (!is_dir(Yii::app()->basePath.'/../data/'.$model->name)) {
+							mkdir(Yii::app()->basePath.'/../data/'.$model->name);
+							mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/Logo');
+							mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/MediaFiles');
+
+						}
+						if (!is_dir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version)) {
+							mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version);
+							mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version.'/Code');
+
+						}
+
+						$model->logo->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/Logo/'.$model->logo);
+						$image = Yii::app()->image->load('images/../data/'.$model->name.'/Logo/'.$model->logo);
+						$image->resize(150, 150);
+						$image->save();
+
+						$entry->file_name->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version.'/Code/'.$entry->file_name);
+						if (isset($photos) && count($photos) > 0) {
+							foreach ($photos as $image => $pic) {
+								if($pic->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/MediaFiles/'.$pic->name)){
+
+									$img_add = new MediaFiles;
+									$img_add->filename = $pic->name; //it might be $img_add->name for you, filename is just what I chose to call it in my model
+									$img_add->application_id = $model->id; 
+									$img_add->type = 'image';
+									$img_add->status = '0';
+									$img_add->create_date = date_create()->format('Y-m-d H:i:s');// this links your picture model to the main model (like your user, or profile model)
+									//	echo $pic->name;
+									try { $img_add->save(); unset($img_add);}
+									catch(Exception $e){
+
+										echo $e->getMessage();
+									}
+								}
+							}
+						}
 
 						$cats =  CategoryReviewerMapping::model()->findAllByAttributes(array('category_id' => $model->category_id));
+						
 						$rev = [];
 						$count = 0;
 						foreach($cats as $x):
 							$u = Users::model()->findbyPk($x->user_id);
-							if($u->status == 1){			
-								$rev[$x->user_id] = 0;
-								$count+=1;	
-							}
+						if($u->status == 1){			
+							$rev[$x->user_id] = 0;
+							$count+=1;	
+						}
 						endforeach;
 						$category = Versions::model()->findAllByAttributes(array('status_id' => 1));
 						if( $count != 0){
@@ -190,13 +219,16 @@ class ApplicationsController extends Controller
 						else
 							$entry->reviewer_id = 1; //assuming single admin
 						$entry->update();
+						$message['title']="Application added";
+						$message['content']="successfully added";
+						Yii::app()->user->setFlash('success', $message);
 						$this->redirect(Yii::app()->createUrl('/applications/view', array('id' => $model->id)));
 
-				
+
 					}
 					else {
 						$model->delete();
-						$entry->delete();
+						//$entry->delete();
 						//	$media->delete();
 						//	$entry->delete();	
 						$this->render('create',array(
@@ -206,8 +238,8 @@ class ApplicationsController extends Controller
 
 				}
 				else {
-				//	$model->delete();
-					
+					//	$model->delete();
+
 					$this->render('create',array(
 								'model'=>$model,'entry'=>$entry
 								));
@@ -217,64 +249,119 @@ class ApplicationsController extends Controller
 				$this->render('create',array(
 							'model'=>$model,'entry'=>$entry
 							));
-
 			}
 		}
 		catch(Exception $e){
-			echo $e->getMessage();
-			?><br><h1><?php	echo "Application with name ".$model->name." already exists!" ; ?> </h1><?php
-				$this->render('create',array(
+					$message['title']="Application not added";
+					$message['content']="Already exists ";
+					Yii::app()->user->setFlash('success', $message);
+						$this->render('create',array(
 							'model'=>$model,'entry'=>$entry
 							));
 
 		}
 	}
-	public function actionUpdateApp($id = 0)
-	{	
-			$model = new Applications;
-			$entry = new Versions;
-			// Uncomment the following line if AJAX validation is needed
-			 $this->performAjaxValidation($entry);
+		public function actionUpdateApp($id)
+	{
+	//	$id = $_GET['app_id'];	
+		$model = new Applications;
+		$entry = new Versions;
+		$mfile=new MediaFiles('search');
+		$photos = CUploadedFile::getInstancesByName('photos');
+		$app = Applications::model()->findbyPk($id);
+		$this->performAjaxValidation($entry);
 		try{
 			if(isset($_POST['Applications']) && isset($_POST['Versions']))
 			{
-				$model->attributes = $_POST['Applications'];
+
+
+    $model->attributes = $_POST['Applications'];
+                                $entry->attributes = $_POST['Versions'];
+                                $entry->reviewer_id = 1;
+                                $entry->create_date = date_create()->format('Y-m-d H:i:s');
+                                $entry->file_name = CUploadedFile::getInstance($entry,'file_name');
+                                $entry->status_id = 1;
+                                $entry->application_id = $model->name;
+                                if ( $entry->save() ){
+
+				if (isset($photos) && count($photos) > 0) {
+							if (!is_dir(Yii::app()->basePath.'/../data')) {
+           						mkdir(Yii::app()->basePath.'/../data');
+           					}
+							if (!is_dir(Yii::app()->basePath.'/../data/'.$app->name)) {
+           					    mkdir(Yii::app()->basePath.'/../data/'.$app->name);
+           					    mkdir(Yii::app()->basePath.'/../data/'.$app->name.'/MediaFiles');
+       					    
+       					    }
+				//	echo 'Shikha';
+		 		                foreach ($photos as $image => $pic) {
+		        		     	    if($pic->saveAs(Yii::app()->basePath.'/../data/'.$app->name.'/MediaFiles/'.$pic->name)){
+			                       		$img_add = new MediaFiles;
+
+		                        		$img_add->filename = $pic->name; //it might be $img_add->name for you, filename is just what I chose to call it in my model
+		                        		$img_add->application_id = $app->id; 
+		          //              		echo $img_add->application_id;
+		                        		$img_add->type = 'image';
+		                        		$img_add->status = '0';
+		                        		$img_add->create_date = date_create()->format('Y-m-d H:i:s');// this links your picture model to the main model (like your user, or profile model)
+		                        	//	echo $pic->name;
+		                        		try { $img_add->save(); unset($img_add);}
+		                        		catch(Exception $e){
+
+		                        			echo $e->getMessage();
+		                        		}
+		        	            	}
+		                		}
+	                		}
+
+/*				$model->attributes = $_POST['Applications'];
 				$entry->attributes = $_POST['Versions'];
-				$entry->reviewer_id = 1; //default admin
+				$entry->reviewer_id = 1;
 				$entry->create_date = date_create()->format('Y-m-d H:i:s');
 				$entry->file_name = CUploadedFile::getInstance($entry,'file_name');
-				$entry->status_id = 1; //default
+				$entry->status_id = 1; 
 				$entry->application_id = $model->name;
 				if ( $entry->save() ){
-					$entry->file_name->saveAs(Yii::app()->basePath.'/../code/'.$entry->file_name);
-					$this->redirect(Yii::app()->user->returnUrl);
+*/
+				if (!is_dir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version)) {
+					mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version);
+					mkdir(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version.'/Code');
+
+				}
+
+					$entry->file_name->saveAs(Yii::app()->basePath.'/../data/'.$model->name.'/'.$entry->version.'/Code'.$entry->file_name);
+					$message['title']="Version added";
+					$message['content']="Successfully added new version!";
+					Yii::app()->user->setFlash('error', $message);
+
+					$this->redirect($this->createUrl("admin"));
 				}
 				else{
 					$this->render('updateApp',array(
-								'id'=>$id,'model'=>$model,'entry'=>$entry,
+								'id'=>$id,'model'=>$model,'entry'=>$entry,'mfile'=>$mfile,
 								));
-
-				}
-
+					}
 			}
 			else{
-				$this->render('updateApp',array(
-							'id'=>$id,'model'=>$model,'entry'=>$entry,
-							));
+				$mfile->unsetAttributes();  // clear any default values
+				if(isset($_GET['MediaFiles']))
+					$mfile->attributes=$_GET['MediaFiles'];
 
+				$this->render('updateApp',array(
+							'id'=>$id,'model'=>$model,'entry'=>$entry,'mfile'=>$mfile,
+							));
 			}
 
 		}
-		  catch(Exception $e){
-                  //      echo $e->getMessage();
-                        ?><br><h1><?php echo "The application with same version already exists!" ; ?> </h1><?php
-                                $this->render('updateApp',array(
-							'id'=>$id,
-                                                        'model'=>$model,'entry'=>$entry
-                                                        ));
-
-                }
-
+	  	catch(Exception $e){
+            	  	$message['title']="Version not added";
+					$message['content']="Already exists ";
+					Yii::app()->user->setFlash('error', $message);
+				              $this->render('updateApp',array(
+						'id'=>$id,
+                                                    'model'=>$model,'entry'=>$entry,'mfile'=>$mfile,
+                                                    ));
+            }
 	}
 
 	 	/**
@@ -316,14 +403,13 @@ class ApplicationsController extends Controller
                 $app->update();
                 // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser 
 //              if(!isset($_GET['ajax'])) 
-                        $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
         }
-
-
 
 	/**
 	 * Lists all models.
 	 */
+
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('Applications');
@@ -335,6 +421,7 @@ class ApplicationsController extends Controller
 	/**
 	 * Manages all models.
 	 */
+
 	public function actionAdmin()
 	{
 		$model=new Applications('search');
@@ -346,6 +433,7 @@ class ApplicationsController extends Controller
 					'model'=>$model,
 					));
 	}
+
 	public function actionPendingdev()
 	{
 		$model=new Applications('searchpendingdev');
@@ -357,6 +445,7 @@ class ApplicationsController extends Controller
 					'model'=>$model,
 					));
 	}
+
 	public function actionPendingrev()
 	{
 		$model=new Applications('searchpendingrev');
@@ -368,6 +457,23 @@ class ApplicationsController extends Controller
 					'model'=>$model,
 					));
 	}
+
+
+	public function actionSearch()
+	{
+	    $model = new Applications('search');
+	    $model->unsetAttributes();
+	    if(isset($_GET['search_key'])){
+	        $model->name = $_GET['search_key']; 
+	        $model->description = $_GET['search_key'];     
+	     }
+
+	    $this -> render('search', array(
+	        'model' => $model,
+	    ));
+	}
+
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -395,4 +501,4 @@ class ApplicationsController extends Controller
 			Yii::app()->end();
 		}
 	}
-		}
+}

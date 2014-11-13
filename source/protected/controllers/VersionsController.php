@@ -58,57 +58,103 @@ class VersionsController extends Controller
 		if( !empty($version ))
 		$app = Applications::model()->findbyPk($version->application_id);
 
-		if(isset($_POST['Versions']) )
+		
+		if(isset($_POST['comment']) )
 		{
-			$model->attributes= $_POST['Versions'];
-			$version->activity = '';
-			if ( !empty($model->activity) )  
-			{
-				foreach($model->activity as $temp ):
-											/*	echo $temp;
-												$cat = new ChecklistAnalystMapping;
-												$cat->analyst_id = Yii::app()->user->id;
-												$cat->checklist_id = $temp;
-												$cat->version_id = $version->id;
-												$cat->create_date = date_create()->format('Y-m-d H:i:s');
-												$cat->save();
-												unset($cat);
-				//								echo $cat->id;
-
-							*/
-					$temp = Checklists::model()->findbyPk($temp);
-//					echo $temp->title;
-					$version->activity = $version->activity.','.$temp->title;
+			$version->comment = $_POST['comment'];
+			if ( isset($_POST['checklist']))
+			{	
+		//		$model->attributes= $_POST['Versions'];
+		//		echo $model->activity;
+		//		exit;
+				$var = array();
+				$list = ChecklistCategoryMap::model()->findAllByAttributes(array('category_id' => $app->category_id));
+				$count = 0;
+				foreach( $list as $l):
+					$check = Checklists::model()->findbyPk($l->checklist_id);
+				if( $check->status==1 ){
+					$var[$count++] = $l;
+				}
 				endforeach;
+				$temp =  $_POST['checklist'];
+				for($i=0;$i<count($temp);$i++)
+				{
+					if(isset($temp[$i]))
+					{
+						$get_checklist = Checklists::model()->findbyPk($temp[$i]);
+						if ( $i )
+							$version->activity  = $version->activity. ",".$get_checklist->title;
+						else{
+							$version->activity  = $get_checklist->title;
+						}
+					}
+				}
+				$i=0;
+				if ( isset($temp) && count($temp) > 0 ){
+					
+					foreach( $temp as $ent => $checklistEntry ){
+						$m = new ChecklistAnalystMapping;
+						$m->setIsNewRecord(true);
+						$m->analyst_id = Yii::app()->user->id;
+						$m->checklist_id = $temp[$i++];
+						$m->version_id = $id;
+						$m->create_date = date_create()->format('Y-m-d H:i:s');
+						try{
+							
+						
+							$m->save();
+						//	print_r($m->getErrors());exit;	
+						
+							unset($m);
+						}
+						catch(Exception $e){
+							echo $e->getMessage();
+						}
+						$count = $count - 1;
+				//		echo intval($checklistEntry)+1;
+					}
+
+				}
+				if(isset($_POST['button1']) && $count == 0)
+				{
+					if( Yii::app()->user->id == $version->reviewer_id )
+						$version->status_id = 2;
+					else
+						$version->status_id = 4;
+
+					$version->update();
+					$app->status=1;
+					$app->update();
+					$this->render('view',array(
+								'model'=>$this->loadModel($id),
+								));
+
+				}
+				else if(isset($_POST['button2']))
+				{
+					if( Yii::app()->user->id == $version->reviewer_id )
+						$version->status_id = 3;
+					else
+						$version->status_id = 5;
+					$version->update();      
+					$this->render('view',array(
+								'model'=>$this->loadModel($id),
+								));
+
+				}
+				else{
+					if( $count != 0 ){
+						$message['title']="Cannot approve";
+						$message['content']="All checklists need to be covered!";
+						Yii::app()->user->setFlash('error', $message);
+	
+					}
+					$this->render('view',array(
+								'model'=>$this->loadModel($id),
+								));
+				}
+
 			}
-		}	
-
-		if(isset($_POST['button1']))
-		{
-			if( Yii::app()->user->id == $version->reviewer_id )
-				$version->status_id = 2;
-			else
-				$version->status_id = 4;
-
-			$version->update();
-			$app->status=1;
-			$app->update();
-			$this->render('view',array(
-						'model'=>$this->loadModel($id),
-						));
-
-		}
-		else if(isset($_POST['button2']))
-		{
-			if( Yii::app()->user->id == $version->reviewer_id )
-				$version->status_id = 3;
-			else
-				$version->status_id = 5;
-			$version->update();      
-			$this->render('view',array(
-						'model'=>$this->loadModel($id),
-						));
-
 		}
 		else{
 			$this->render('view',array(

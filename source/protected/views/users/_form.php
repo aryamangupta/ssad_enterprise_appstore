@@ -9,6 +9,10 @@
   $cs->registerScriptFile($baseUrl.'/js/myscript.js');
 ?>
 <div class="form">
+<script>
+window.onload = muFun(document.getElementById('Users_role_id').value)
+
+</script>
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'users-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
@@ -51,6 +55,7 @@
 	</div>
 
 	<div class="row">
+	<div id = "p">
 	<?php
 		echo $form->labelEx($model,'role_id'); 
 		echo $form->dropDownList(
@@ -67,7 +72,7 @@
 			)
 		);
 	?>
-
+	</div>
 
 	</div>
 
@@ -85,7 +90,7 @@
                         ),
                          array(
 							'separator'=>'<br>',
-							 'template'=>'<div style="padding-left:100px"><div class="row">{label}{input}</div></div>',
+							 'template'=>'<div style="padding-left:100px; position"><div class="row">{input}{label}</div></div>',
         					
 						)
                 );
@@ -93,10 +98,15 @@
 </div>
 </div>
 	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
+<br>Status:*
+		<?php // echo $form->labelEx($model,'status'); ?><br>
 		<?php //echo $form->dropDownList($model,'status',array('prompt'=> 'Select','1'=>'Activate','0'=>'Deactivate'));
 		?>
-				<?php echo $form->radioButtonList($model,'status',array('1'=>'Activate','0'=>'Deactivate'));
+				<?php echo $form->radioButtonList($model,'status',array('1'=>'Activate','0'=>'Deactivate'), array(
+							'separator'=>'<br>',
+							 'template'=>'<div style="padding-left:100px"><div class="row">{input}{label}</div></div>',
+        					
+						));
 		?>  
 
 		<?php echo $form->error($model,'status'); ?>
@@ -117,6 +127,7 @@
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
-<?php $this->endWidget(); ?>
 
-</div><!-- form -->
+</div--><!-- form -->
+
+<?php $this->endWidget(); ?>

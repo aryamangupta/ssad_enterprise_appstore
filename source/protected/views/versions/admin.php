@@ -40,31 +40,28 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
- array(
-                        'name'=>'application.logo',
-                        'header'=>'Logo',
-                        'type'=>'raw',
-
-                        'value' =>'CHtml::image(Yii::app()->baseUrl ."/images/".$data->application->logo,"",array("width"=>"50px", "height"=>"50px"))',
-                     ),
 
 		'appName',
 				array(
                         'name'=>'appStatus',
                         'header'=>'App Status',
-                        'value' => '$data->appStatus',
                         'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
                 
-                       // 'value' => '($data->application->status=="1" ? "Activated" : "Deactivated")',
-                    //    'filter'=>CHtml::activeTextField($model,'versions_search'),
+                        'value' => '($data->appStatus=="1" ? "Activated" : "Deactivated")',
                      ),
 		'version',
-			
-			array(
+array(
                         'name'=>'versionStatus',
                         'header'=>'Version Status',
                         'value' => '$data->versionStatus',
-                        'filter'=> array(),
+                        /*$status= Application_status_ref::model()->findAll(); $temp = Categories::model()->findAll();
+                        $stack = array();
+                        foreach ($status as $key) {
+                            $stack=array_push($stack, "$key[status]" => "$key[status]");
+                        }
+                        'filter'=> $stack,
+*/
+                        'filter'=> array('Admin Approved'=>'Admin Approved','Analyst approved'=>'Analyst Approved','Analyst rejected'=>'Analyst Rejected','Admin Rejected'=>'Admin Rejected','Waiting for review'=>'Waiting for review'),//'Removed'=>'Removed'),
                 
                        // 'value' => '($data->application->status=="1" ? "Activated" : "Deactivated")',
                     //    'filter'=>CHtml::activeTextField($model,'versions_search'),

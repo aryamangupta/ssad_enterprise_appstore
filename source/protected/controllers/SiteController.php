@@ -20,11 +20,7 @@ class SiteController extends Controller
 			),
 		);
 	}
-
-	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
-	 */
+	
 	public function actionIndex()
 	{
 		// renders the view file 'protected/views/site/index.php'
@@ -108,4 +104,69 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+		public function actionViewCategoryApps($id)
+	{
+				//$application = Applications::model()->findbyPk($id);
+				//$cat_id= $application ->category_id;
+				$this->render('viewCategoryApps',array('id'=>$id));
+	}
+	public function actionViewapp($id){
+		//print_r($options);
+		$applicationId=$id;
+        //echo "<br>"."hello";
+        echo $applicationId;
+        
+        //Yii::app()->end();
+        $entry=new ApplicationDownloads;
+                //$ratings=new Ratings;
+        $model=new Comments;
+        //$this->performAjaxValidation($model);
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='comments-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+		// collect user input data
+		if(isset($_POST['Comments']))
+		{
+                  //  print_r($model->attributes);
+                    //echo "<br>sdjjvnsj<br>";
+			$model->attributes=$_POST['Comments'];
+                        $model->application_id=$applicationId;
+                        $model->status=1;
+                        $model->user_id=Yii::app()->user->id;
+                        $model->date_reviewed=date_create()->format('Y-m-d H:i:s');
+                        //echo "here";
+                        // print_r($model->attributes);
+			// validate user input and redirect to the previous page if valid
+			if($model->save())
+                            $this->render('viewapp',array('model'=>$model,'applicationDownloads'=>$entry,"applicationId"=>$applicationId));
+		}
+		// collect user input data
+		if(isset($_POST['ApplicationDownloads']))
+		{
+			$entry->attributes=$_POST['ApplicationDownloads'];
+                       // $entry->application_id=$applicationId;
+                        $entry->user_id=Yii::app()->user->id;
+                        $entry->download_date=date_create()->format('Y-m-d H:i:s');
+                        $appVersion = Yii::app()->db->createCommand("SELECT id FROM versions WHERE application_id=".$applicationId." ORDER BY id DESC")->queryAll();
+            			$entry->application_id=$applicationId;            
+                        $entry->version_id=$appVersion[0]["id"];
+                        if($entry->save()){
+                            $this->render('viewapp',array('model'=>$model,'applicationDownloads'=>$entry,"applicationId"=>$applicationId));
+                        }
+                        else{// will not go here in normal conditions 	
+                            $this->render('viewapp',array('model'=>$model,'applicationDownloads'=>$entry,"applicationId"=>$applicationId));
+                        }
+                }                                   
+		// display the login form
+                
+		$this->render('viewapp',array('model'=>$model,'entry'=>$entry,"applicationId"=>$applicationId));
+                  // $this->render("viewapp",
+                    //    array('applicationId'=>$applicationId,
+                      //      ));/
+                      
+        }
+
 }

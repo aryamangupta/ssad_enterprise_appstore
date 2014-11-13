@@ -63,65 +63,103 @@ class UsersController extends Controller
 	 */
 	public function actionCreate()
 	{
-		try{	$model=new Users;
+	
+	try{	
+		
+		$model=new Users;
+		
+		// Uncomment the following line if AJAX validation is needed
+		$this->performAjaxValidation($model);
 
-			// Uncomment the following line if AJAX validation is needed
-			$this->performAjaxValidation($model);
+		if(isset($_POST['Users']))
+		{
+			$model->attributes=$_POST['Users'];
+			$model->create_date = date_create()->format('Y-m-d H:i:s');
+			$model->modified_date= date_create()->format('Y-m-d H:i:s');
+			$model->modified_date= date_create()->format('Y-m-d H:i:s');
+			$model->reset_password_date =	date_create()->format('Y-m-d H:i:s');
+			$temp = [];
+			$count = 0;
+			if( $model->role_id == 3  && !empty($model->activation_key)){
+				foreach ($model->activation_key as $y):
+					$temp[$count] = $y;
+					$count += 1;
+				endforeach;
+			}
+			if ( count($temp) == 0 ){
+					$message['title']="Cannot create";
+					$message['content']="Please assign atleast one category!";
+					Yii::app()->user->setFlash('success', $message);
+	
+					 $this->render('create',array(
+						'model'=>$model,
+						));	
 
-			if(isset($_POST['Users']))
-			{
-				$model->attributes=$_POST['Users'];
-				$model->create_date = date_create()->format('Y-m-d H:i:s');
-				$model->modified_date= date_create()->format('Y-m-d H:i:s');
-				$model->modified_date= date_create()->format('Y-m-d H:i:s');
-				$model->reset_password_date =	date_create()->format('Y-m-d H:i:s');
-				$temp = array();
-				$count = 0;
-				if( $model->role_id == 3 ){
-
-					if( !empty($model->activation_key ))
-					{		/*	{
-								echo "Categories not Assigned"; $this->render('create',array('model'=>$model,));}	
-								else
-							 */	foreach ($model->activation_key as $y):
-						$temp[$count] = $y;
-						$count += 1;
-						endforeach;
-						echo "HELL";
-					}
-				}
-				$model->activation_key = 0;
+			}
+			$model->activation_key = 0;
+			if( (!empty($temp) && $model->role_id == 3)  || $model->role_id != 3){
 				if($model->save()){
+				
 					$auth = Yii::app()->authManager;
 					$auth->assign(Roles::model()->findByPk($model->role_id)->role,$model->id);
-					if( empty($temp) )
-					{
-						echo "Categories not Assigned";
-						$model->delete();
-						$this->render('create',array(
-									'model'=>$model,
-									));
-					}
-					else{	
-						foreach( $temp as $t ):
-							$revCat = new CategoryReviewerMapping;
-							$revCat->user_id = $model->id;
-							$revCat->category_id = $t;
-							$revCat->save();
+					foreach( $temp as $t ):
+						$revCat = new CategoryReviewerMapping;
+						$revCat->user_id = $model->id;
+						$revCat->category_id = $t;
+						$revCat->save();
+						$criteria=new CDbCriteria;
+						$criteria->with = array('application');
+						$criteria->compare("application.category_id",$revCat->category_id);
+						$criteria->addCondition("reviewer_id = 1");
+						$appsWithoutReviewer = Versions::model()->findAll($criteria);
+						$count = 0;
+						foreach($appsWithoutReviewer as $app):
+						if( $count < 5){
+						$app->reviewer_id = $model->id;
+						$app->update();
+						$count += 1;
+						}
+						else{
+						break;
+						}
 
 						endforeach;
-						$this->redirect(array('admin','id'=>$model->id));
-					}
-				}				
+					endforeach;
+					$message['title']="User added";
+					$message['content']="successfully added".$model->first_name.' '.$model->last_name.'!';
+					Yii::app()->user->setFlash('success', $message);
+				$this->redirect(array('admin','id'=>$model->id));
+				}
+				else
+				{
+
+					 $this->render('create',array(
+						'model'=>$model,
+						));	
+
+				}
+
+
 			}
 			else
-				$this->render('create',array(
-							'model'=>$model,
-							));
+			{
+				 $this->render('create',array(
+					'model'=>$model,
+					));	
+
+			}
+		}
+
+		else {	$this->render('create',array(
+			'model'=>$model,
+		));
+		}
+
 		}
 		catch(Exception $e){
-			echo $e->getMessage();
-			?><br><h1><?php	echo "Email already registered!" ; ?> </h1><?php
+			$message['title']="User not added";
+			$message['content']="User already exists ".$model->first_name.' '.$model->last_name.'!';
+			Yii::app()->user->setFlash('success', $message);
 				$this->render('create',array(
 							'model'=>$model,
 							));

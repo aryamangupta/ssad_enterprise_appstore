@@ -8,12 +8,12 @@
  * @property integer $analyst_id
  * @property integer $checklist_id
  * @property integer $version_id
- * @property integer $create_date
+ * @property string $create_date
  *
  * The followings are the available model relations:
+ * @property Versions $version
  * @property Users $analyst
  * @property Checklists $checklist
- * @property Versions $version
  */
 class ChecklistAnalystMapping extends CActiveRecord
 {
@@ -33,8 +33,8 @@ class ChecklistAnalystMapping extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, analyst_id, checklist_id, version_id, create_date', 'required'),
-			array('id, analyst_id, checklist_id, version_id, create_date', 'numerical', 'integerOnly'=>true),
+			array('analyst_id, checklist_id, version_id, create_date', 'required'),
+			array('analyst_id, checklist_id, version_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, analyst_id, checklist_id, version_id, create_date', 'safe', 'on'=>'search'),
@@ -49,9 +49,9 @@ class ChecklistAnalystMapping extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'version' => array(self::BELONGS_TO, 'Versions', 'version_id'),
 			'analyst' => array(self::BELONGS_TO, 'Users', 'analyst_id'),
 			'checklist' => array(self::BELONGS_TO, 'Checklists', 'checklist_id'),
-			'version' => array(self::BELONGS_TO, 'Versions', 'version_id'),
 		);
 	}
 
@@ -91,7 +91,7 @@ class ChecklistAnalystMapping extends CActiveRecord
 		$criteria->compare('analyst_id',$this->analyst_id);
 		$criteria->compare('checklist_id',$this->checklist_id);
 		$criteria->compare('version_id',$this->version_id);
-		$criteria->compare('create_date',$this->create_date);
+		$criteria->compare('create_date',$this->create_date,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

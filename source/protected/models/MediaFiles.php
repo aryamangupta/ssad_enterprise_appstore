@@ -23,6 +23,15 @@ class MediaFiles extends CActiveRecord
 	{
 		return 'media_files';
 	}
+	private $_applicationName = null;
+	public function getApplicationName()
+	{
+		if ($this->_applicationName === null && $this->application !== null)
+		{
+			$this->_applicationName = $this->application->name;
+		}
+		return $this->_applicationName;
+	}
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -82,17 +91,20 @@ class MediaFiles extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($id)
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+		$criteria->with = array('application');
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('application_id',$this->application_id);
+		$criteria->compare('application.name',$this->applicationName,true);
+		
+		$criteria->compare('application_id',$id);
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('filename',$this->filename,true);
-		$criteria->compare('status',$this->status,true);
+//		$criteria->compare('status',$this->status,true);
 		$criteria->compare('create_date',$this->create_date,true);
 
 		return new CActiveDataProvider($this, array(

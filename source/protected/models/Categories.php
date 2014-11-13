@@ -51,7 +51,6 @@ class Categories extends CActiveRecord
 			array('parent_id', 'numerical', 'integerOnly'=>true),
 			array('status', 'boolean','message'=>'Status should be selected'),
                         array('title', 'length', 'max'=>128),
-                        array('parent_id','required'),
                         array('status','required'),
                         array('title','match','pattern'=>'/^\w+$/','message'=>'Title is invalid please choose another'),
 			//array('status', 'length', 'max'=>1),   not required
