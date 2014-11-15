@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Add new Version', 'url'=>array('updateApp'),'visible'=>Yii::app()->user->checkAccess('createApp')),
+//	array('label'=>'Add new Version', 'url'=>array('updateApp'),'visible'=>Yii::app()->user->checkAccess('createApp')),
 	array('label'=>'Create Applications', 'url'=>array('create') ,'visible'=>Yii::app()->user->checkAccess('createApp') ),
 	array('label'=>'Pending Applications', 'url'=>array('pendingdev') ,'visible'=>Yii::app()->user->checkAccess('Create') ),
 
@@ -39,7 +39,17 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
-	$active='active';
+/*	$versions = Versions::model()->findAllByAttributes(array('application_id'=>$model->id));
+	$count = count($versions);
+	if( $count){
+		echo $count;
+		if ( $versions[$count-1]->status == 1)
+				$var = 0;
+	
+		else $var = 1;
+	}
+	else $var = 0;
+*/	$active='active';
 	$inactive = 'inactive'; 
 	$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'applications-grid',
@@ -61,11 +71,9 @@ $('.search-form form').submit(function(){
 		 array(
                         'name'=>'status',
                         'header'=>'App Status',
-                        'value' => '$data->status',
-                        'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
-          
-			//'value' => '($data->status=="1" ? "Activated":"Deactivated")',//CHtml::image(Yii::app()->baseUrl ."/images/active.png" ): CHtml::image(Yii::app()->baseUrl ."/images/inactive.jpg"),
+			'value' => '($data->status=="1" ? "Activated":"Deactivated")',//CHtml::image(Yii::app()->baseUrl ."/images/active.png" ): CHtml::image(Yii::app()->baseUrl ."/images/inactive.jpg"),
                 //        'filter'=>CHtml::activeTextField($model,'versions_search'),
+ 			'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
                      ),
 
 

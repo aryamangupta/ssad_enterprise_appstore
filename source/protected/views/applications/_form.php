@@ -50,7 +50,7 @@ div#gender input
 	echo $form->dropDownList(
 			$model,'category_id',
 			CHtml::listData(
-				Categories::model()->findAll(),
+				Categories::model()->findAllByAttributes(array('status'=>'1')),
 				'id',
 				'title'
 				),

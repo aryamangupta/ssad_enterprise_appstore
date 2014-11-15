@@ -16,6 +16,8 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.helpers.*',
+ 
 	),
 
 	'modules'=>array(
@@ -38,8 +40,8 @@ return array(
                 'setFromName' => 'App8it',
                 'setMethod'         => 'GMAIL',
             	'setOptions'        => array(
-                'Username'  => 'admin@gmail.com',
-                'Password'  => '',
+                'Username'  => 'vatika.harlalka@research.iiit.ac.in',
+                'Password'  => 'Dream123',
                 ),
             ),
 		'user'=>array(
@@ -47,6 +49,13 @@ return array(
 			'allowAutoLogin'=>true,
 //			'class'=>'MyWebUser',
 		),
+		'image'=>array(
+          'class'=>'application.extensions.image.CImageComponent',
+            // GD or ImageMagick
+            'driver'=>'GD',
+            // ImageMagick setup path
+           'params'=>array('directory'=>'../extensions/image/drivers'),
+        ),
 
 		// uncomment the following to enable URLs in path-format
 		/*
@@ -65,7 +74,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=appstore',
+			'connectionString' => 'mysql:host=localhost;dbname=testappstore',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'arya0048',

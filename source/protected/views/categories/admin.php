@@ -28,10 +28,6 @@ $('.search-form form').submit(function(){
 
 <h1>Manage Categories</h1>
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
 
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
@@ -55,9 +51,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		array(
                         'name'=>'status',
                         'header'=>'Status',
-	                    'value' => '$data->status',
-                        'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
-                 ),
+                        'value' => '($data->status==1 ? "Activated" : "Deactivated")',
+			 'filter'=> array('0' => 'Deactivated', '1' => 'Activated'),
+                ),
 		'description',
 	/*	'create_date',
 		'modified_date',

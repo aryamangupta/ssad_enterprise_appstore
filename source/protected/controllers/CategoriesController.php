@@ -51,20 +51,38 @@ class CategoriesController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Categories;
+		try{ 
+			$model=new Categories;
 		// Uncomment the following line if AJAX validation is needed
-		 $this->performAjaxValidation($model);
-		if(isset($_POST['Categories']))
-		{
-			$model->attributes=$_POST['Categories'];
-			$model->create_date = date_create()->format('Y-m-d H:i:s');
-			$model->modified_date = date_create()->format('Y-m-d H:i:s');
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			 $this->performAjaxValidation($model);
+			if(isset($_POST['Categories']))
+			{
+				$model->attributes=$_POST['Categories'];
+				$model->create_date = date_create()->format('Y-m-d H:i:s');
+				$model->parent = NULL; 
+				$model->modified_date = date_create()->format('Y-m-d H:i:s');
+				if($model->save()){
+					$message['title']="Category added";
+					$message['content']="successfully added";
+					Yii::app()->user->setFlash('success', $message);
+					$this->redirect(array('view','id'=>$model->id));
+				}
+			}
+			$this->render('create',array(
+				'model'=>$model,
+			));
 		}
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		    catch(Exception $e){
+ //                       echo $e->getMessage();
+
+  $message['title']="Category not added";
+					$message['content']="already exists";
+					Yii::app()->user->setFlash('success', $message);
+					                              $this->render('create',array(
+                                                        'model'=>$model
+                                                        ));
+
+                }
 	}
 
 	/**
@@ -74,6 +92,7 @@ class CategoriesController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+	try{
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -90,6 +109,19 @@ class CategoriesController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 		));
+		}
+
+catch(Exception $e){
+ //                       echo $e->getMessage();
+
+  Yii::app()->user->setFlash('notification','Your have been successfully logged in by facebook!');
+                        ?><br><h1><?php echo "Category with name ".$model->title." already exists!" ; ?> </h1><?php
+                                $this->render('update',array(
+                                                        'model'=>$model
+                                                        ));
+
+                }
+
 	}
 
 	/**

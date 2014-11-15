@@ -26,18 +26,14 @@ $this->menu=array(
 
 <h1>
 <?php
-echo CHtml::image(Yii::app()->request->baseUrl.'/images/'.$app->logo,
-                                                        "this is alt tag of image",
-                                                        array("width"=>"50px" ,"height"=>"50px"));
-echo "   ". $app->name;
-
+  echo CHtml::image(Yii::app()->baseUrl.'/data/'.$app->name.'/Logo/'.$app->logo,$app->name,array('width'=>'80px','height'=>'80px'));
+  echo "   ". $app->name;
 ?>
 </h1>
-<h1>
- Version <?php echo $model->version ; ?></h1>
+<h1> Version <?php echo $model->version ; ?></h1>
 
-
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php if( $model->status_id == 1 ){
+  $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		 array(
@@ -45,7 +41,25 @@ echo "   ". $app->name;
                         'header'=>'File',
 
                          'type'=>'raw',
-                         'value'=>CHtml::link($model->file_name,Yii::app()->request->baseUrl."/code/".$model->file_name ),
+                         'value'=>CHtml::link($model->file_name,Yii::app()->request->baseUrl."/data/".$model->application->name.'/'.$model->version.'/Code/'.$model->file_name ),
+		 ),
+		'application.description',
+		'create_date',
+		'versionStatus',
+		'reviewerName',
+	),
+)); 
+} 
+else {  
+  $this->widget('zii.widgets.CDetailView', array(
+	'data'=>$model,
+	'attributes'=>array(
+		 array(
+                        'name'=>'file_name',
+                        'header'=>'File',
+
+                         'type'=>'raw',
+                         'value'=>CHtml::link($model->file_name,Yii::app()->request->baseUrl."/data/".$model->application->name.'/'.$model->version.'/Code/'.$model->file_name ),
 		 ),
 		'application.description',
 		'create_date',
@@ -54,16 +68,30 @@ echo "   ". $app->name;
 		'activity',
 		'comment',
 	),
-)); ?>
-
-
-<?php
-    $user = Users::model()->findbyPk(Yii::app()->user->id);
-        if (( $user->role_id == 1 || ( $user->role_id == 3 && $user->id == $model->reviewer_id )) && $model->status_id == 1 ){
+)); 
+}
+$config = array();
+$dataProvider = new CActiveDataProvider('MediaFiles', array('data' => $model->application->mediaFiles));
+$this->widget('zii.widgets.grid.CGridView', array(
+    'dataProvider'=>$dataProvider,
+    'columns'=>array(
+          array(
+                'name'=>'application.name',
+                'header'=>'Application Name',
+            ),
+          array(
+                        'name'=>'filename',
+                        'header'=>'Logo',
+                        'type'=>'raw',
+                      'value' => 'CHtml::image(Yii::app()->baseUrl."/data/".$data->application->name."/MediaFiles/".$data->filename,"",array(\'width\'=>\'100\', \'height\'=>\'100\'))',
+                     ),
+            'type',
+      )
+)); 
+$user = Users::model()->findbyPk(Yii::app()->user->id);
+if (( $user->role_id == 1 || ( $user->role_id == 3 && $user->id == $model->reviewer_id )) && $model->status_id == 1 ){
 		echo CHtml::beginForm(Yii::app()->createUrl('versions/view&id='.$model->id),'post');
-?>
-
-        <?php $form=$this->beginWidget('CActiveForm', array( 
+ $form=$this->beginWidget('CActiveForm', array( 
         'id'=>'users-form', 
         // Please note: When you enable ajax validation, make sure the corresponding 
         // controller action is handling ajax validation correctly. 
@@ -75,40 +103,44 @@ echo "   ". $app->name;
 <ul>
 	<?php   
 		echo $form->labelEx($model,'Checklist');
-?>
+    //$var contains all those checklists of the category that are active
+    $var = array();
+    $list = ChecklistCategoryMap::model()->findAllByAttributes(array('category_id' => $app->category_id));
+    $count = 0;
+    foreach( $list as $l):
+    	$check = Checklists::model()->findbyPk($l->checklist_id);       
+    	if( $check->status==1 ){//&& $cat->status == 1 ){
+    		$var[$count++] = $check;
+    	} 
+    endforeach;
 
-
-<?php 
-//$var contains all those checklists of the category that are active
-$var = array();
-$list = ChecklistCategoryMap::model()->findAllByAttributes(array('category_id' => $app->category_id));
-$count = 0;
-foreach( $list as $l):
-//	$cat = Categories::model()->findbyPk($l->category_id);
-	$check = Checklists::model()->findbyPk($l->checklist_id);       
-	if( $check->status==1 ){//&& $cat->status == 1 ){
-		$var[$count++] = $l;
-	} 
-endforeach;
-
-?>
-<br>	
-Please go through the the checklists and accordingly review the app : <br>
+    ?>
+<br>
+<h4>Please go through the the checklists and accordingly review the app :</h4> <br>
 <?php		echo $form->checkBoxList(
                         $model,'activity',
                           CHtml::listData(
-				                $var,
+				                        $var,
                                 'id',
-                                'checklist.concatenated'
+                                'concatenated'
                         ),
                          array(
+                  			    'name'=>'checklist',
                             'separator'=>'<br>',
-                             'template'=>'<div style="padding-left:100px"><div class="row">{label}{input}</div></div>',
-                            
+                            'template'=>'<div style="padding-left:100px"><div class="row">{label}{input}</div></div>',
+                            'checkAll' => 'Select All',
                         )
                  );
  ?>
 </ul>
+
+  	<div class="row">
+                <?php echo $form->labelEx($model,'comment'); ?>
+                <?php echo $form->textArea($model,'comment',array('name'=>'comment','rows'=>3, 'cols'=>100)); ?>
+                <?php echo $form->error($model,'comment'); ?>
+        </div>
+
+
 <br>
 <div class="row buttons">
 <br/>

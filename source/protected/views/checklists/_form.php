@@ -48,16 +48,25 @@
 		?>
 	</div>
  <div class="row">
-                <?php echo $form->labelEx($model,'status'); ?>
                 <?php //echo $form->dropDownList($model,'status',array('prompt'=>'Select',1=>'Activate',0=>'Deactivate')); ?>
-                <?php echo $form->radioButtonList($model,'status',array('1'=>'Activate','0'=>'Deactivate'));
+        
+<?php echo $form->labelEx($model,'status'); ?>
+                <?php //echo $form->dropDownList($model,'status',array('prompt'=> 'Select','1'=>'Activate','0'=>'Deactivate'));
+                ?>
+                                <?php echo $form->radioButtonList($model,'status',array('1'=>'Activate','0'=>'Deactivate'), array(
+                                                    //    'separator'=>'<br>',
+                                                         'template'=>'<div style="padding-left:140px;position:absolute;">{input}{label}</div>',
 
-		?>  
+                                                ));
+                ?>
 
                 <?php echo $form->error($model,'status'); ?>
-        </div>
 
 
+
+</div>
+
+<br>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

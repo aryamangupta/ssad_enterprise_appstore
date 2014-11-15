@@ -70,8 +70,21 @@ class ChecklistsController extends Controller
 		        $model->create_date = date_create()->format('Y-m-d H:i:s');
 			if($model->save()){
 				$entry->checklist_id = $model->id;
-				if($entry->save())
-				$this->redirect(array('view','id'=>$model->id));
+				if($entry->save()){
+					$message['title']="Checklist added";
+					$message['content']="successfully added";
+					Yii::app()->user->setFlash('success', $message);
+					$this->redirect(array('view','id'=>$model->id));
+
+				}
+				else {
+					$model->delete();
+					$this->render('create',array(
+                        			'model'=>$model,'entry'=>$entry,
+                			));
+				}
+
+
 			}
 		}
 

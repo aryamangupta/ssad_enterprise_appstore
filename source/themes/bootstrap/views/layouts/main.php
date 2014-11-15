@@ -39,6 +39,14 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/bootstrap-responsive.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/style.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/star-rating.min.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/css1.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/star-rating.css" />
+
+
+
+ <script src="<?php echo Yii::app()->baseUrl; ?>/js/js1.js"></script>
+    <script src="<?php echo Yii::app()->baseUrl; ?>/js/star-rating.js" type="text/javascript"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -96,7 +104,7 @@
 							array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 							
 							array('label'=>'Edit Profile', 'url'=>Yii::app()->createUrl('users/update',array('id'=>Yii::app()->user->id)),'visible'=>!Yii::app()->user->isGuest),
-							array('label'=>'Pending Apps', 'url'=>array('/versions/admin '), 'visible'=>Yii::app()->user->checkAccess('reviewApp')),
+							array('label'=>'Manage Apps', 'url'=>array('/versions/admin '), 'visible'=>Yii::app()->user->checkAccess('reviewApp')),
 						
 							array('label'=>'Manage Users', 'url'=>array('/users/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
                                 array('label'=>'Manage Categories', 'url'=>array('/categories/admin'), 'visible'=>Yii::app()->user->checkAccess('Create')),
@@ -149,7 +157,7 @@
 			)); ?>
 		<!-- breadcrumbs -->
 	  <?php endif?>
-	
+	<?php $this->renderPartial('//site/dialog'); ?>
 	<?php echo $content ?>
 	
 	</div><!--/.fluid-container-->

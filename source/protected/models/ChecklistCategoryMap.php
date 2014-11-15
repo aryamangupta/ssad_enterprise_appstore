@@ -50,6 +50,10 @@ class ChecklistCategoryMap extends CActiveRecord
 			'checklist' => array(self::BELONGS_TO, 'Checklists', 'checklist_id'),
 		);
 	}
+		public function getConcatenated()
+        {
+                return $this->title.': '.$this->description;
+        }
 
 	/**
 	 * @return array customized attribute labels (name=>label)

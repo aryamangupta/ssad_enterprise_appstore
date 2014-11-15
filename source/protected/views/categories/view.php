@@ -16,17 +16,39 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Categories #<?php echo $model->id; ?></h1>
+<h1>View Category : <?php echo $model->title; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'title',
-		'parent_id',
-		'status',
 		'description',
-		'create_date',
+		
+		array(
+                                        'name'=>'status',
+                                        'header'=>'Status',
+                                        'value' => ($model->status==1  ? "Activated" : "Deactivated"),
+                                     ),
+'create_date',
 		'modified_date',
 	),
 )); ?>
+
+
+
+
+<?php
+//        $temp = Users::model()->findbyPk(Yii::app()->user->id);
+  //      if ( $temp->role_id == 1){
+    //    echo CHtml::beginForm(Yii::app()->createUrl('applications/view&id='.$model->id),'post');
+?>
+	<br> 
+       <div class="row buttons" style="float:left">
+            <?php //if( $model->status == 0) echo CHtml::submitButton('Activate',array('name'=>'button1','class' => 'button1')); ?>
+            <?php //if( $model->status == 1) echo CHtml::submitButton('Deactivate', array('name'=>'button2')); ?>
+
+        </div>
+<?php
+       // echo// CHtml::endForm();
+       // }
+?>
+
